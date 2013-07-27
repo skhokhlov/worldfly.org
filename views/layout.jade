@@ -1,0 +1,37 @@
+doctype 5
+html.no-js
+  head
+    include includes/head
+
+  body.b-page
+    .b-header
+      .b-header-logo
+        a.b-header-logo_link(href='/') 
+      nav.b-header-nav
+        a.b-header-nav-list-item_link(href='/') Home
+        - if(title == 'Projects')
+          a.b-header-nav-list-item_link.b-header-nav-list-item_link_active(href='/projects') Projects
+        - else 
+          a.b-header-nav-list-item_link(href='/projects') Projects
+        - if(title == 'Principles')
+          a.b-header-nav-list-item_link.b-header-nav-list-item_link_active(href='/principles') Principles
+        - else 
+          a.b-header-nav-list-item_link(href='/principles') Principles
+        - if(title == 'Contacts')
+          a.b-header-nav-list-item_link.b-header-nav-list-item_link_active(href='/contacts') Contacts
+        - else 
+          a.b-header-nav-list-item_link(href='/contacts') Contacts
+
+
+    .b-content
+      h1.b-content-title=title
+      .b-content-placeholder
+        block content
+
+    .b-footer
+      .b-footer-placeholder
+        !{(new Date()).getFullYear()} © World Fly
+
+    //include script
+
+    include includes/i-stat

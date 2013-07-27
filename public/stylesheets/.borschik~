@@ -1,0 +1,8 @@
+{
+	"paths": {
+     		"_freeze": "//getheapp.ru/_freeze/"
+	},
+	"freeze_paths": {
+		".": "_freeze"
+ }
+

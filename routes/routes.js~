@@ -1,0 +1,15 @@
+module.exports = function(app){
+
+    app.get('/', function(req, res){
+        res.render('index', {
+            title: 'Express index'
+        });
+    });
+
+    app.get('/about', function(req, res){
+        res.render('about', {
+            title: 'Express about'
+        });
+    });
+    //other routes..
+}

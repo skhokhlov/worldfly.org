@@ -1,0 +1,12 @@
+@include url("reset.css");body {
+  padding: 50px;
+  font: 14px "Lucida Grande",Helvetica,Arial,sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+h2 {
+  color: rgba(0,0,0,.5);
+}

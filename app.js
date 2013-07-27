@@ -22,7 +22,7 @@ app.use(express.favicon(__dirname + '/public/favicon.ico', { maxAge: 2592000000 
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
-app.use(express.cookieParser('V29ybGQgRmx5IFNlcmdleSBLaG9raGxvdg=='));  //WorldFlySergeyKhokhlov
+app.use(express.cookieParser('V29ybGQgRmx5IFNlcmdleSBLaG9raGxvdg=='));  //WorldFlySergeyKhokhlov in base64
 app.use(express.session());
 app.use(app.router);
 app.use(require('less-middleware')({ src: __dirname + '/public' }));

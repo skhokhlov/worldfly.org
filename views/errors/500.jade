@@ -2,5 +2,15 @@ extends errorlayout
 
 
 block content
-  p #{title}
-  p #{error}
+  .b-content-error
+    |Internal Server Error
+
+  .b-content-descr
+    p.b-content-descr_item The requested resource was not found.
+
+    p.b-content-descr_item #{error}
+
+    p.b-content-descr_item
+      |Rather of all, we already know this, but you can still 
+      a(href='mailto:support@worldfly.info')&#32;tell us about it: support@worldfly.info
+      |.

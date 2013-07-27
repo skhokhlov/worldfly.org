@@ -37,6 +37,6 @@ module.exports = function(app){
     // Handle 500
     app.use(function(error, req, res, next) {
       res.status(500);
-      res.render('errors/500.jade', {title:'500: Internal Server Error', error: error});
+      res.render('errors/500.jade', {title:'500 Internal Server Error', error: error, errorname: '500'});
     });
 }

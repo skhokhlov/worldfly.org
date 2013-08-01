@@ -2,30 +2,31 @@ module.exports = function(app){
 
     app.get('/', function(req, res){
         res.render('index', {
-            title: 'Express index',
+            title: 'Home page',
             description: 'The home page'
         });
     });
 
     app.get('/projects', function(req, res){
-        res.render('about', {
+        res.render('projects', {
             title: 'Projects'
         });
     });
 
     app.get('/principles', function(req, res){
-        res.render('about', {
+        res.render('principles', {
             title: 'Principles'
         });
     });
 
     app.get('/contacts', function(req, res){
-        res.render('about', {
+        res.render('contacts', {
             title: 'Contacts'
         });
     });
 
     //other routes..
+
 
     //Errors
     // Handle 404

@@ -26,10 +26,10 @@ app.get('/', function(req, res){
     }
 });
 
-app.get('/_/global.css', function(req, res){
-    res.sendfile('_/global.html');
-});
+//app.get('/_/global.css', function(req, res){
+//    res.sendfile('_/global.html');
+//});
 
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+  console.log('Server listening on port ' + app.get('port'));
 });

@@ -19,7 +19,15 @@ app.use(app.router);
 
 
 app.get('/', function(req, res){
+    if(req.host == 'worldfly.info' || req.host == 'www.worldfly.info' || req.host == 'worldfly.org'){
+        res.redirect(301, 'http://www.worldfly.org');
+    } else{
     res.sendfile('index.html');
+    }
+});
+
+app.get('/_/global.css', function(req, res){
+    res.sendfile('_/global.html');
 });
 
 http.createServer(app).listen(app.get('port'), function(){

@@ -31,7 +31,7 @@
       <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="18" selection-start="501" selection-end="501" vertical-scroll-proportion="0.36659878" vertical-offset="0" max-vertical-offset="982">
+            <state line="24" column="14" selection-start="497" selection-end="497" vertical-scroll-proportion="0.36659878" vertical-offset="0" max-vertical-offset="982">
               <folding />
             </state>
           </provider>
@@ -285,7 +285,11 @@
       <created>1397141933910</created>
       <updated>1397141933910</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add HTTP 200">
+      <created>1397142206195</created>
+      <updated>1397142206195</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -350,7 +354,8 @@
     <MESSAGE value="init" />
     <MESSAGE value="Update app.js" />
     <MESSAGE value="Add index.html from https://github.com/skhokhlov/worldfly.info" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add index.html from https://github.com/skhokhlov/worldfly.info" />
+    <MESSAGE value="add HTTP 200" />
+    <option name="LAST_COMMIT_MESSAGE" value="add HTTP 200" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -436,7 +441,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="18" selection-start="501" selection-end="501" vertical-scroll-proportion="0.36659878" vertical-offset="0" max-vertical-offset="982">
+        <state line="24" column="14" selection-start="497" selection-end="497" vertical-scroll-proportion="0.36659878" vertical-offset="0" max-vertical-offset="982">
           <folding />
         </state>
       </provider>

@@ -31,7 +31,7 @@
       <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="14" selection-start="497" selection-end="497" vertical-scroll-proportion="0.36659878" vertical-offset="0" max-vertical-offset="982">
+            <state line="22" column="28" selection-start="445" selection-end="445" vertical-scroll-proportion="0.33604887" vertical-offset="0" max-vertical-offset="982">
               <folding />
             </state>
           </provider>
@@ -289,7 +289,11 @@
       <created>1397142206195</created>
       <updated>1397142206195</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add HTTP 200&#10;">
+      <created>1397142306451</created>
+      <updated>1397142306451</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -355,7 +359,8 @@
     <MESSAGE value="Update app.js" />
     <MESSAGE value="Add index.html from https://github.com/skhokhlov/worldfly.info" />
     <MESSAGE value="add HTTP 200" />
-    <option name="LAST_COMMIT_MESSAGE" value="add HTTP 200" />
+    <MESSAGE value="add HTTP 200&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="add HTTP 200&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -441,7 +446,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="14" selection-start="497" selection-end="497" vertical-scroll-proportion="0.36659878" vertical-offset="0" max-vertical-offset="982">
+        <state line="22" column="28" selection-start="445" selection-end="445" vertical-scroll-proportion="0.33604887" vertical-offset="0" max-vertical-offset="982">
           <folding />
         </state>
       </provider>

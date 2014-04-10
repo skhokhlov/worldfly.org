@@ -22,8 +22,7 @@ app.get('/', function(req, res){
     if(req.host == 'worldfly.info' || req.host == 'www.worldfly.info' || req.host == 'worldfly.org'){
         res.redirect(301, 'http://www.worldfly.org');
     } else{
-    res.status(200);
-    res.sendfile('index.html');
+    res.status(200).sendfile('index.html');
     }
 });
 

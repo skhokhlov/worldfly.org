@@ -26,9 +26,19 @@ app.get('/', function(req, res){
     }
 });
 
-//app.get('/_/global.css', function(req, res){
-//    res.sendfile('_/global.html');
-//});
+app.get('/projects', function(req, res){
+    if(req.host == 'worldfly.info' || req.host == 'www.worldfly.info' || req.host == 'worldfly.org'){
+        res.redirect(301, 'http://www.worldfly.org/projects');
+    } else{
+        res.status(200).sendfile('projects.html');
+    }
+});
+
+app.get('/_/global.css', function(req,res){
+    res.status(200).sendfile('_/global.css');
+});
+
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Server listening on port ' + app.get('port'));

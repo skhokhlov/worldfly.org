@@ -14,7 +14,10 @@ var htmlmin = require('gulp-htmlmin');
 gulp.task('htmlmin', function() {
     gulp.src('./src/pages/index/index.html')
         .pipe(htmlmin({collapseWhitespace: true,removeComments:true}))
-        .pipe(gulp.dest('./'))
+        .pipe(gulp.dest('./'));
+    gulp.src('./src/pages/projects/projects.html')
+        .pipe(htmlmin({collapseWhitespace: true,removeComments:true}))
+        .pipe(gulp.dest('./'));
 });
 
 

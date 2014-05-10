@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var stylus = require('gulp-stylus');
 var csso = require('gulp-csso');
-var htmlmin = require('gulp-htmlmin');
 
     gulp.task('stylus', function () {
         gulp.src('./src/pages/global.styl')
@@ -11,14 +10,7 @@ var htmlmin = require('gulp-htmlmin');
     });
 
 
-gulp.task('htmlmin', function() {
-    gulp.src('./src/pages/index/index.html')
-        .pipe(htmlmin({collapseWhitespace: true,removeComments:true}))
-        .pipe(gulp.dest('./'));
-    gulp.src('./src/pages/projects/projects.html')
-        .pipe(htmlmin({collapseWhitespace: true,removeComments:true}))
-        .pipe(gulp.dest('./'));
-});
+
 
 
 //gulp.task('csso', function() {
@@ -26,4 +18,4 @@ gulp.task('htmlmin', function() {
 //        .pipe(csso())
 //        .pipe(gulp.dest('./_/global.min.css'));
 //});
-gulp.task('default', ['stylus', 'htmlmin']);
+gulp.task('default', ['stylus']);

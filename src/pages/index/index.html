@@ -4,182 +4,175 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>World Fly - Home
         page</title>
-    <script>;
-    window.Modernizr = function (a, b, c) {
-        function y(a) {
-            j.cssText = a
-        }
 
-        function z(a, b) {
-            return y(m.join(a + ";") + (b || ""))
-        }
 
-        function A(a, b) {
-            return typeof a === b
-        }
-
-        function B(a, b) {
-            return!!~("" + a).indexOf(b)
-        }
-
-        function C(a, b, d) {
-            for (var e in a) {
-                var f = b[a[e]];
-                if (f !== c)return d === !1 ? a[e] : A(f, "function") ? f.bind(d || b) : f
-            }
-            return!1
-        }
-
-        var d = "2.6.2", e = {}, f = !0, g = b.documentElement, h = "modernizr", i = b.createElement(h), j = i.style, k, l = {}.toString, m = " -webkit- -moz- -o- -ms- ".split(" "), n = {svg: "http://www.w3.org/2000/svg"}, o = {}, p = {}, q = {}, r = [], s = r.slice, t, u = function (a, c, d, e) {
-            var f, i, j, k, l = b.createElement("div"), m = b.body, n = m || b.createElement("body");
-            if (parseInt(d, 10))while (d--)j = b.createElement("div"), j.id = e ? e[d] : h + (d + 1), l.appendChild(j);
-            return f = ["&#173;", '<style id="s', h, '">', a, "</style>"].join(""), l.id = h, (m ? l : n).innerHTML += f, n.appendChild(l), m || (n.style.background = "", n.style.overflow = "hidden", k = g.style.overflow, g.style.overflow = "hidden", g.appendChild(n)), i = c(l, a), m ? l.parentNode.removeChild(l) : (n.parentNode.removeChild(n), g.style.overflow = k), !!i
-        }, v = function (b) {
-            var c = a.matchMedia || a.msMatchMedia;
-            if (c)return c(b).matches;
-            var d;
-            return u("@media " + b + " { #" + h + " { position: absolute; } }", function (b) {
-                d = (a.getComputedStyle ? getComputedStyle(b, null) : b.currentStyle)["position"] == "absolute"
-            }), d
-        }, w = {}.hasOwnProperty, x;
-        !A(w, "undefined") && !A(w.call, "undefined") ? x = function (a, b) {
-            return w.call(a, b)
-        } : x = function (a, b) {
-            return b in a && A(a.constructor.prototype[b], "undefined")
-        }, Function.prototype.bind || (Function.prototype.bind = function (b) {
-            var c = this;
-            if (typeof c != "function")throw new TypeError;
-            var d = s.call(arguments, 1), e = function () {
-                if (this instanceof e) {
-                    var a = function () {
-                    };
-                    a.prototype = c.prototype;
-                    var f = new a, g = c.apply(f, d.concat(s.call(arguments)));
-                    return Object(g) === g ? g : f
-                }
-                return c.apply(b, d.concat(s.call(arguments)))
-            };
-            return e
-        }), o.touch = function () {
-            var c;
-            return"ontouchstart"in a || a.DocumentTouch && b instanceof DocumentTouch ? c = !0 : u(["@media (", m.join("touch-enabled),("), h, ")", "{#modernizr{top:9px;position:absolute}}"].join(""), function (a) {
-                c = a.offsetTop === 9
-            }), c
-        }, o.svg = function () {
-            return!!b.createElementNS && !!b.createElementNS(n.svg, "svg").createSVGRect
-        }, o.inlinesvg = function () {
-            var a = b.createElement("div");
-            return a.innerHTML = "<svg/>", (a.firstChild && a.firstChild.namespaceURI) == n.svg
-        };
-        for (var D in o)x(o, D) && (t = D.toLowerCase(), e[t] = o[D](), r.push((e[t] ? "" : "no-") + t));
-        return e.addTest = function (a, b) {
-            if (typeof a == "object")for (var d in a)x(a, d) && e.addTest(d, a[d]); else {
-                a = a.toLowerCase();
-                if (e[a] !== c)return e;
-                b = typeof b == "function" ? b() : b, typeof f != "undefined" && f && (g.className += " i-ua-" + (b ? "" : "no-") + a), e[a] = b
-            }
-            return e
-        }, y(""), i = k = null, function (a, b) {
-            function k(a, b) {
-                var c = a.createElement("p"), d = a.getElementsByTagName("head")[0] || a.documentElement;
-                return c.innerHTML = "x<style>" + b + "</style>", d.insertBefore(c.lastChild, d.firstChild)
-            }
-
-            function l() {
-                var a = r.elements;
-                return typeof a == "string" ? a.split(" ") : a
-            }
-
-            function m(a) {
-                var b = i[a[g]];
-                return b || (b = {}, h++, a[g] = h, i[h] = b), b
-            }
-
-            function n(a, c, f) {
-                c || (c = b);
-                if (j)return c.createElement(a);
-                f || (f = m(c));
-                var g;
-                return f.cache[a] ? g = f.cache[a].cloneNode() : e.test(a) ? g = (f.cache[a] = f.createElem(a)).cloneNode() : g = f.createElem(a), g.canHaveChildren && !d.test(a) ? f.frag.appendChild(g) : g
-            }
-
-            function o(a, c) {
-                a || (a = b);
-                if (j)return a.createDocumentFragment();
-                c = c || m(a);
-                var d = c.frag.cloneNode(), e = 0, f = l(), g = f.length;
-                for (; e < g; e++)d.createElement(f[e]);
-                return d
-            }
-
-            function p(a, b) {
-                b.cache || (b.cache = {}, b.createElem = a.createElement, b.createFrag = a.createDocumentFragment, b.frag = b.createFrag()), a.createElement = function (c) {
-                    return r.shivMethods ? n(c, a, b) : b.createElem(c)
-                }, a.createDocumentFragment = Function("h,f", "return function(){var n=f.cloneNode(),c=n.createElement;h.shivMethods&&(" + l().join().replace(/\w+/g, function (a) {
-                    return b.createElem(a), b.frag.createElement(a), 'c("' + a + '")'
-                }) + ");return n}")(r, b.frag)
-            }
-
-            function q(a) {
-                a || (a = b);
-                var c = m(a);
-                return r.shivCSS && !f && !c.hasCSS && (c.hasCSS = !!k(a, "article,aside,figcaption,figure,footer,header,hgroup,nav,section{display:block}mark{background:#FF0;color:#000}")), j || p(a, c), a
-            }
-
-            var c = a.html5 || {}, d = /^<|^(?:button|map|select|textarea|object|iframe|option|optgroup)$/i, e = /^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i, f, g = "_html5shiv", h = 0, i = {}, j;
-            (function () {
-                try {
-                    var a = b.createElement("a");
-                    a.innerHTML = "<xyz></xyz>", f = "hidden"in a, j = a.childNodes.length == 1 || function () {
-                        b.createElement("a");
-                        var a = b.createDocumentFragment();
-                        return typeof a.cloneNode == "undefined" || typeof a.createDocumentFragment == "undefined" || typeof a.createElement == "undefined"
-                    }()
-                } catch (c) {
-                    f = !0, j = !0
-                }
-            })();
-            var r = {elements: c.elements || "abbr article aside audio bdi canvas data datalist details figcaption figure footer header hgroup mark meter nav output progress section summary time video", shivCSS: c.shivCSS !== !1, supportsUnknownElements: j, shivMethods: c.shivMethods !== !1, type: "default", shivDocument: q, createElement: n, createDocumentFragment: o};
-            a.html5 = r, q(b)
-        }(this, b), e._version = d, e._prefixes = m, e.mq = v, e.testStyles = u, g.className = g.className.replace(/(^|\s)no-js(\s|$)/, "$1$2") + (f ? " i-ua-js i-ua-" + r.join(" i-ua-") : ""), e
-    }(this, this.document);
-    </script>
-    <!-- for development-->
-    <link href='//fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet'/>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet'/>
     <link rel="stylesheet" href="/_/global.css"/>
-    <!--for prodaction--><!--link(rel='stylesheet', href='//get.worldfly.org/storage/main/styles/default.min.css')-->
+
 </head>
 <body>
-<div class="b-page b-page_index">
-    <div class="b-page-index">
+<div class="b-page">
+    <div id="main">
         <div class="b-logo b-logo_index">
             <div class="b-logo__view b-logo__view_index"></div>
         </div>
-        <nav class="b-page-index__nav">
-            <a class="b-page-index__nav__link" href="/projects">Projects</a>
+        <nav class="b-nav">
+            <a class="b-nav__link b-nav__link_projects" href="/projects">Projects</a>
         </nav>
 
     </div>
-    <div class="b-page-index__footer"><p>2014 © WorldFly, Photo by <a href="http://letchikleha.livejournal.com"
-                                                                  class="b-page-index__footer__link">letchikleha</a></p></div>
+    <div id="projects" style="display: none;">
+        <div class="b-header">
+            <div class="b-logo">
+                <img src="//get.worldfly.org/storage/main/images/b-error__header_logo.svg?/ver/0.11" alt="World Fly"/>
+            </div>
+            <nav class="b-nav b-nav_header">
+                <div class="b-nav__item">
+                    <a class="b-nav__item__link b-nav__link_main" href="#">Main</a>
+
+                    <a class="b-nav__item__link b-nav__item__link_active" href="#projects">Projects</a>
+                </div>
+            </nav>
+        </div>
+        <div class="b-container">
+            <h1 class="b-container__title">Projects</h1>
+
+            <div class="b-content b-list">
+                <div class="b-list__item">
+                    <h2 class="b-list__item__title">Gewefope</h2>
+
+                    <div class="b-list__item__desrc">
+                        <p><a href="https://github.com/skhokhlov/gewefope">Github</a>.</p>
+
+                    </div>
+                </div>
+                <div class="b-list__item">
+                    <h2 class="b-list__item__title">Greengrocery</h2>
+
+                    <div class="b-list__item__desrc">
+                        <p><a href="https://github.com/skhokhlov/GreenGrocery">Github</a>. Is not developing.</p>
+
+                    </div>
+                </div>
+                <div class="b-list__item">
+                    <h2 class="b-list__item__title">Blog about IT</h2>
+
+                    <div class="b-list__item__desrc b-list__item__descr_closed">
+                        <p>Closed.</p>
+
+                    </div>
+                </div>
+                <div class="b-list__item">
+                    <h2 class="b-list__item__title">Collection of articles on aviation and astronautics</h2>
+
+                    <div class="b-list__item__desrc b-list__item__descr_closed">
+                        <p>Closed.</p>
+
+                    </div>
+                </div>
+                <div class="b-list__item">
+                    <h2 class="b-list__item__title">News of aviation and astronautics</h2>
+
+                    <div class="b-list__item__desrc b-list__item__descr_closed">
+                        <p>Closed.</p>
+
+                    </div>
+                </div>
+                <div class="b-list__item">
+                    <h2 class="b-list__item__title">Photo Album</h2>
+
+                    <div class="b-list__item__desrc b-list__item__descr_closed">
+                        <p>Closed.</p>
+
+                    </div>
+                </div>
+                <div class="b-list__item">
+                    <h2 class="b-list__item__title">Encyclopedia of Aviation and Astronautics</h2>
+
+                    <div class="b-list__item__desrc b-list__item__descr_closed">
+                        <p>Closed.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="b-page-index__footer"><p>2014 © WorldFly</p></div>
 </div>
+<script src="//get.worldfly.org/storage/main/js/zepto-custom-1.min.js"></script>
+<!--<script>-->
+
+    <!--var main = $('#main'),-->
+            <!--projects = $('#projects');-->
+
+
+    <!--$('.b-nav__link_projects').on('click', function () {-->
+        <!--main.fadeOut('_default', function(){-->
+            <!--projects.fadeIn();-->
+            <!--history.pushState({page: 'projects'}, 'Projects of World Fly', '/projects-test');-->
+            <!--console.log(window.history.state);-->
+            <!--return false;-->
+        <!--});-->
+
+        <!--//return false;-->
+    <!--});-->
+
+    <!--$('.b-nav__link_main').on('click', function () {-->
+        <!--projects.fadeOut('_default', function(){-->
+            <!--main.fadeIn();-->
+            <!--history.pushState({page: 'main'}, 'Home page of World Fly', '/main-test');-->
+            <!--console.log(window.history.state);-->
+            <!--return false;-->
+        <!--});-->
+
+        <!--//return false;-->
+    <!--});-->
+
+<!--</script>-->
 <div class="i-stat">
     <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
         ga('create', 'UA-50638713-1', 'worldfly.org');
         ga('send', 'pageview');
 
     </script>
-    <script>(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter206275 = new Ya.Metrika({id:206275, webvisor:true, clickmap:true, trackLinks:true, accurateTrackBounce:true, trackHash:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script>
+    <script>(function (d, w, c) {
+        (w[c] = w[c] || []).push(function () {
+            try {
+                w.yaCounter206275 = new Ya.Metrika({id: 206275, webvisor: true, clickmap: true, trackLinks: true, accurateTrackBounce: true, trackHash: true});
+            } catch (e) {
+            }
+        });
+        var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () {
+            n.parentNode.insertBefore(s, n);
+        };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else {
+            f();
+        }
+    })(document, window, "yandex_metrika_callbacks");</script>
     <script>new Image().src = "//counter.yadro.ru/hit?r" + escape(document.referrer) + ((typeof(screen) == "undefined") ? "" : ";s" + screen.width + "*" + screen.height + "*" + (screen.colorDepth ? screen.colorDepth : screen.pixelDepth)) + ";u" + escape(document.URL) + ";h" + escape(document.title.substring(0, 80)) + ";" + Math.random();</script>
     <noscript>
         <div class="i-stat_noscript"><img src="//mc.yandex.ru/watch/206275" style="position:absolute; left:-9999px;">
 
-            <img src="//analytics.worldfly.org/piwik.php?idSite=1&rec=1" style="border:0" alt="" />
+            <img src="//analytics.worldfly.org/piwik.php?idSite=1&rec=1" style="border:0" alt=""/>
 
         </div>
     </noscript>

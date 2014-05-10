@@ -1,0 +1,40 @@
+module "main"
+
+match / {
+<div class="b-header b-header_home">
+    <div class="b-logo b-logo_home"><img src="//get.worldfly.org/storage/main/images/b-logo_index_black.svg" alt="World Fly"/></div>
+    <div class="b-nav b-nav_home"><a class="b-nav__link b-nav__link_projects" href="/projects">Projects</a></div>
+</div>
+<div class="b-footer b-footer_home"><p>2014 © World Fly</p></div>
+}
+
+match /projects {
+<div class="b-header">
+    <div class="b-logo"><img src="//get.worldfly.org/storage/main/images/b-error__header_logo.svg?/ver/0.11" alt="World Fly"/></div>
+    <div class="b-nav">
+        <a class="b-nav__link b-nav__link_home" href="/">Home</a>
+        <a class="b-nav__link b-nav__link_active b-nav__link_projects" href="/projects">Projects</a>
+    </div>
+    </div>
+<div class="b-body">
+    <div class="b-body__content">
+        <h1 class="b-body__title">Projects</h1>
+        <div class="b-list">
+            for .projects {
+            <div class="b-list__item">
+                <h2 class="b-list__item__title">{ .title }</h2>
+                <div class="b-list__item__desrc">
+                    for .link {
+                    <span><a href="{ .href }">{ .body }</a>{ .separator }</span>
+                    }
+                    if .description {
+                    <p>{ .description }</p>
+                    }
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+<div class="b-footer"><p>2014 © World Fly</p></div>
+}

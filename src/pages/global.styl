@@ -1,11 +1,7 @@
-body
-  margin 0
-  padding 0
 
 .b-page
-  font 13pt 'EB Garamond', 'serif'
-  margin 0
-  padding 0
+  //font 13pt 'EB Garamond', 'serif'
+  font 13pt 'Open Sans', sans-serif
 
 a
   color #08c
@@ -14,12 +10,76 @@ a
 
 
 .b-header
-  width 98%
   height 55px
+
+.b-header_home
+  position absolute
+  top 20%
+  margin: 0 auto
+  text-align center
+  width 99%
+
+.b-nav
+  display inline-block
+  padding: 0 0 3pt 10pt
+  vertical-align: bottom
+
+.b-nav_home
+  font-size 2em
+  padding 0
+
+.b-nav__item
+  display inline-block
+  margin 1pt 5pt 1pt 1pt
+
+.b-nav__link
+  padding 0 4.5pt
+
+.b-nav__link_active
+  text-decoration none
+  border-bottom 0 none
+  color #000
+
+.b-nav_header
+  display inline-block
+  padding 0 0 3pt 10pt
+  vertical-align bottom
+
+.b-logo
+  display inline-block
+
+.b-logo_home
+  display block
+
+
+.b-body
+  max-width 1600px
+  margin 0 auto
+  text-align center
+
+.b-body__content
   text-align left
 
+//.b-body__title,.b-list__item__title
+//  font-weight 300
 
-@require 'index/index.styl'
+.b-list__item__desrc
+  padding 0 9pt
 
-@require 'projects/projects.styl'
+.b-list
+  padding 0 15pt
+
+.b-footer
+  text-align right
+  font-size 11pt
+
+.b-footer_home
+  position: absolute
+  bottom: 5px
+  color: #000
+  right: 30px
+
+/*@require 'index/index.styl'*/
+
+/*@require 'projects/projects.styl'*/
 

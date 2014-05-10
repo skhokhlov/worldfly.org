@@ -6,13 +6,11 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.5.1",
+    "express": "3.5.*",
     "stylus": "*",
-"http": "*",
-"path": "*"
-
-
-
+    "http": "*",
+    "path": "*",
+    "yate": "0.0.70"
   },
   "devDependencies": {
     "gulp": "~3.6.0",

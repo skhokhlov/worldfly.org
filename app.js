@@ -21,7 +21,11 @@ app.get('/', function(req, res){
     if(req.host == 'worldfly.info' || req.host == 'www.worldfly.info' || req.host == 'worldfly.org'){
         res.redirect(301, 'http://www.worldfly.org');
     } else{
-    res.status(200).sendfile('index.html');
+        if(req.param('_escaped_fragment_') == ''){
+            res.status(200).sendfile('src/pages/index/index.html');
+        } else {
+            res.status(200).sendfile('index.html');
+        }
     }
 });
 
@@ -29,7 +33,11 @@ app.get('/projects', function(req, res){
     if(req.host == 'worldfly.info' || req.host == 'www.worldfly.info' || req.host == 'worldfly.org'){
         res.redirect(301, 'http://www.worldfly.org/projects');
     } else{
-        res.status(200).sendfile('index.html');
+        if(req.param('_escaped_fragment_') == ''){
+            res.status(200).sendfile('src/pages/projects/projects.html');
+        } else {
+            res.status(200).sendfile('index.html');
+        }
     }
 });
 

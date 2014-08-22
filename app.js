@@ -53,6 +53,14 @@ app.get('/_/template.js', function(req,res){
     res.status(200).sendfile('_/template.js');
 });
 
+app.get('/robots.txt', function(req,res){
+    res.status(200).sendfile('robots.txt');
+});
+
+app.get('/sitemap.xml', function(req,res){
+    res.status(200).sendfile('sitemap.xml');
+});
+
 //app.get('/_/cache.manifest', function(req,res){
 //    res.status(200).sendfile('_/cache.manifest');
 //});

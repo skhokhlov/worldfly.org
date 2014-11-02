@@ -4,7 +4,6 @@
  */
 
 var express = require('express');
-var http = require('http');
 
 var app = express();
 
@@ -22,7 +21,7 @@ app.get('/', function(req, res){
         res.redirect(301, 'https://www.worldfly.org');
     } else{
         if(req.param('_escaped_fragment_') == ''){
-            res.status(200).sendfile('src/pages/index/index.html');
+            res.status(200).sendfile('noscript/index.html');
         } else {
             res.status(200).sendfile('index.html');
         }
@@ -34,27 +33,27 @@ app.get('/projects', function(req, res){
         res.redirect(301, 'https://www.worldfly.org/projects');
     } else{
         if(req.param('_escaped_fragment_') == ''){
-            res.status(200).sendfile('src/pages/projects/projects.html');
+            res.status(200).sendfile('noscript/projects.html');
         } else {
             res.status(200).sendfile('index.html');
         }
     }
 });
 
-app.get('/_/global.css', function(req,res){
-    res.status(200).sendfile('_/global.css');
+app.get('/_/default.css', function(req,res){
+    res.status(200).sendfile('dist/default.css');
 });
 
-app.get('/_/runtime.min.js', function(req,res){
-    res.status(200).sendfile('_/runtime.min.js');
+app.get('/_/runtime.js', function(req,res){
+    res.status(200).sendfile('dist/runtime.js');
 });
 
 app.get('/_/template.js', function(req,res){
-    res.status(200).sendfile('_/template.js');
+    res.status(200).sendfile('dist/template.js');
 });
 
 app.get('/_/zepto.js', function(req,res){
-    res.status(200).sendfile('_/zepto.js');
+    res.status(200).sendfile('dist/zepto.js');
 });
 
 app.get('/robots.txt', function(req,res){
@@ -69,6 +68,6 @@ app.get('/sitemap.xml', function(req,res){
 //    res.status(200).sendfile('_/cache.manifest');
 //});
 
-http.createServer(app).listen(app.get('port'), function(){
+require('http').createServer(app).listen(app.get('port'), function(){
   console.log('Server listening on port ' + app.get('port'));
 });

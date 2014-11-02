@@ -1,21 +1,27 @@
 var gulp = require('gulp');
 var stylus = require('gulp-stylus');
 var csso = require('gulp-csso');
+var shell = require('gulp-shell');
 
-    gulp.task('stylus', function () {
-        gulp.src('./src/pages/global.styl')
-            .pipe(stylus())
-            .pipe(csso())
-            .pipe(gulp.dest('./_'));
-    });
+gulp.task('stylus', function () {
+    gulp.src('./src/default.styl')
+        .pipe(stylus())
+        .pipe(csso())
+        .pipe(gulp.dest('./dist'));
+});
 
+gulp.task('yate-template', function () {
+    gulp.src('src/template.yate', {read: false})
+        .pipe(shell([
+            './node_modules/.bin/yate <%= file.path %> > dist/template.js'
+        ]))
+});
 
+gulp.task('yate-runtime', function(){
+    gulp.src('./node_modules/yate/lib/runtime.js')
+        .pipe(shell([
+            './node_modules/.bin/uglifyjs <%= file.path %> -o dist/runtime.js'
+        ]))
+});
 
-
-
-//gulp.task('csso', function() {
-//    return gulp.src('./_/global.css')
-//        .pipe(csso())
-//        .pipe(gulp.dest('./_/global.min.css'));
-//});
-gulp.task('default', ['stylus']);
+gulp.task('default', ['stylus', 'yate-template', 'yate-runtime']);

@@ -1,5 +1,5 @@
 User-Agent: *
 Allow: /
 
-Sitemap: http://www.worldfly.org/sitemap.xml
+Sitemap: https://www.worldfly.org/sitemap.xml
 Host: https://www.WorldFly.org

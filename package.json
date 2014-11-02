@@ -1,21 +1,19 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node app.js"
-  },
-  "dependencies": {
-    "express": "3.5.*",
-    "stylus": "*",
-    "http": "*",
-    "path": "*",
-    "yate": "0.0.70"
-  },
-  "devDependencies": {
-    "gulp": "~3.6.0",
-    "gulp-stylus": "~0.1.0",
-    "gulp-csso": "~0.2.7",
-    "gulp-htmlmin": "~0.1.2"
-  }
+    "name": "application-name",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "express": "3.5.*",
+        "stylus": "*"
+    },
+    "devDependencies": {
+        "gulp": "~3.6.0",
+        "gulp-stylus": "~0.1.0",
+        "gulp-csso": "~0.2.7",
+        "gulp-htmlmin": "~0.1.2",
+        "yate": "0.0.70"
+    }
 }

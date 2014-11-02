@@ -10,7 +10,7 @@ match / {
 
 match /projects {
 <div class="b-header">
-    <div class="b-logo"><img src="//get.worldfly.org/storage/main/images/b-error__header_logo.svg?/ver/0.11" alt="World Fly"/></div>
+    <div class="b-logo b-logo_page"><img class="b-logo__image b-logo__image_home" src="//get.worldfly.org/storage/main/images/b-logo_index_black.svg" alt="World Fly"/></div>
     <div class="b-nav">
         <a class="b-nav__link b-nav__link_home" href="/">Home</a>
         <a class="b-nav__link b-nav__link_active b-nav__link_projects" href="/projects">Projects</a>

@@ -1,1 +1,115 @@
-var yr=yr||require("yate/lib/runtime.js");!function(){yr.cmpNN,yr.cmpSN;var c=yr.nodeset2xml;yr.nodeset2boolean;var e=yr.nodeset2attrvalue;yr.nodeset2scalar,yr.scalar2attrvalue,yr.xml2attrvalue,yr.scalar2xml,yr.xml2scalar,yr.simpleScalar;var l=yr.simpleBoolean,m=yr.selectNametest,n=yr.closeAttrs,o=new yr.Module;o.t0=function(a,b,c,d,e){var f="";return f+=n(e),f+='<div class="b-header b-header_home">',f+='<div class="b-logo b-logo_home"><img src="//get.worldfly.org/storage/main/images/b-logo_index_black.svg" alt="World Fly"/></div>',f+='<div class="b-nav b-nav_home"><a class="b-nav__link b-nav__link_projects" href="/projects">Projects</a></div>',f+="</div>",f+='<div class="b-footer b-footer_home"><p>2014 \xa9 World Fly</p></div>'},o.t0.j=1,o.t0.a=1,o.t1=function(a,b,d,f,g){var h="";h+=n(g),h+='<div class="b-header">',h+='<div class="b-logo"><img src="//get.worldfly.org/storage/main/images/b-error__header_logo.svg?/ver/0.11" alt="World Fly"/></div>',h+='<div class="b-nav">',h+='<a class="b-nav__link b-nav__link_home" href="/">Home</a>',h+='<a class="b-nav__link b-nav__link_active b-nav__link_projects" href="/projects">Projects</a>',h+="</div>",h+="</div>",h+='<div class="b-body">',h+='<div class="b-body__content">',h+='<h1 class="b-body__title">Projects</h1>',h+='<div class="b-list">';for(var j=m("projects",b,[]),k=0,o=j.length;o>k;k++){var p=j[k];h+='<div class="b-list__item">',h+='<h2 class="b-list__item__title">'+c(m("title",p,[]))+"</h2>",h+='<div class="b-list__item__desrc">';for(var q=m("link",p,[]),r=0,s=q.length;s>r;r++){var t=q[r];h+='<span><a href="'+e(m("href",t,[]))+'">'+c(m("body",t,[]))+"</a>"+c(m("separator",t,[]))+"</span>"}l("description",p)&&(h+="<p>"+c(m("description",p,[]))+"</p>"),h+="</div>",h+="</div>"}return h+="</div>",h+="</div>",h+="</div>",h+='<div class="b-footer"><p>2014 \xa9 World Fly</p></div>'},o.t1.j=1,o.t1.a=1,o.matcher={"":{"":["t0"]},projects:{"":["t1"]}},o.imports=[],yr.register("main",o)}();
+var yr = yr || require('yate/lib/runtime.js');
+
+(function() {
+
+    var cmpNN = yr.cmpNN;
+    var cmpSN = yr.cmpSN;
+    var nodeset2xml = yr.nodeset2xml;
+    var nodeset2boolean = yr.nodeset2boolean;
+    var nodeset2attrvalue = yr.nodeset2attrvalue;
+    var nodeset2scalar = yr.nodeset2scalar;
+    var scalar2attrvalue = yr.scalar2attrvalue;
+    var xml2attrvalue = yr.xml2attrvalue;
+    var scalar2xml = yr.scalar2xml;
+    var xml2scalar = yr.xml2scalar;
+    var simpleScalar = yr.simpleScalar;
+    var simpleBoolean = yr.simpleBoolean;
+    var selectNametest = yr.selectNametest;
+    var closeAttrs = yr.closeAttrs;
+
+    var M = new yr.Module();
+
+    var j0 = [ ];
+
+    var j1 = [ 0, 'projects' ];
+
+    var j2 = [ 0, 'title' ];
+
+    var j3 = [ 0, 'link' ];
+
+    var j4 = [ 0, 'href' ];
+
+    var j5 = [ 0, 'body' ];
+
+    var j6 = [ 0, 'separator' ];
+
+    var j7 = [ 0, 'description' ];
+
+    // match /
+    M.t0 = function t0(m, c0, i0, l0, a0) {
+        var r0 = '';
+        var current = [ c0 ];
+
+        r0 += closeAttrs(a0);
+        r0 += "<div class=\"" + "b-header b-header_home" + "\">";
+        r0 += "<div class=\"" + "b-logo b-logo_home" + "\"><img src=\"" + "//get.worldfly.org/storage/main/images/b-logo_index_black.svg" + "\" alt=\"" + "World Fly" + "\"/></div>";
+        r0 += "<div class=\"" + "b-nav b-nav_home" + "\"><a class=\"" + "b-nav__link b-nav__link_projects" + "\" href=\"" + "/projects" + "\">" + "Projects" + "</a></div>";
+        r0 += "</div>";
+        r0 += "<div class=\"" + "b-footer b-footer_home" + "\"><p>" + "2014 © World Fly" + "</p></div>";
+
+        return r0;
+    };
+    M.t0.j = 1;
+    M.t0.a = 1;
+
+    // match / : projects
+    M.t1 = function t1(m, c0, i0, l0, a0) {
+        var r0 = '';
+        var current = [ c0 ];
+
+        r0 += closeAttrs(a0);
+        r0 += "<div class=\"" + "b-header" + "\">";
+        r0 += "<div class=\"" + "b-logo b-logo_page" + "\"><img class=\"" + "b-logo__image b-logo__image_home" + "\" src=\"" + "//get.worldfly.org/storage/main/images/b-logo_index_black.svg" + "\" alt=\"" + "World Fly" + "\"/></div>";
+        r0 += "<div class=\"" + "b-nav" + "\">";
+        r0 += "<a class=\"" + "b-nav__link b-nav__link_home" + "\" href=\"" + "/" + "\">" + "Home" + "</a>";
+        r0 += "<a class=\"" + "b-nav__link b-nav__link_active b-nav__link_projects" + "\" href=\"" + "/projects" + "\">" + "Projects" + "</a>";
+        r0 += "</div>";
+        r0 += "</div>";
+        r0 += "<div class=\"" + "b-body" + "\">";
+        r0 += "<div class=\"" + "b-body__content" + "\">";
+        r0 += "<h1 class=\"" + "b-body__title" + "\">" + "Projects" + "</h1>";
+        r0 += "<div class=\"" + "b-list" + "\">";
+        var items0 = selectNametest('projects', c0, []);
+        for (var i1 = 0, l1 = items0.length; i1 < l1; i1++) {
+            var c1 = items0[ i1 ];
+            r0 += "<div class=\"" + "b-list__item" + "\">";
+            r0 += "<h2 class=\"" + "b-list__item__title" + "\">" + nodeset2xml( ( selectNametest('title', c1, []) ) ) + "</h2>";
+            r0 += "<div class=\"" + "b-list__item__desrc" + "\">";
+            var items1 = selectNametest('link', c1, []);
+            for (var i2 = 0, l2 = items1.length; i2 < l2; i2++) {
+                var c2 = items1[ i2 ];
+                r0 += "<span><a href=\"" + nodeset2attrvalue( ( selectNametest('href', c2, []) ) ) + "\">" + nodeset2xml( ( selectNametest('body', c2, []) ) ) + "</a>" + nodeset2xml( ( selectNametest('separator', c2, []) ) ) + "</span>";
+            }
+            if (simpleBoolean('description', c1)) {
+                r0 += "<p>" + nodeset2xml( ( selectNametest('description', c1, []) ) ) + "</p>";
+            }
+            r0 += "</div>";
+            r0 += "</div>";
+        }
+        r0 += "</div>";
+        r0 += "</div>";
+        r0 += "</div>";
+        r0 += "<div class=\"" + "b-footer" + "\"><p>" + "2014 © World Fly" + "</p></div>";
+
+        return r0;
+    };
+    M.t1.j = 1;
+    M.t1.a = 1;
+
+    M.matcher = {
+        "": {
+            "": [
+                "t0"
+            ]
+        },
+        "projects": {
+            "": [
+                "t1"
+            ]
+        }
+    };
+    M.imports = [];
+
+    yr.register('main', M);
+
+})();

@@ -19,7 +19,7 @@ app.use(app.router);
 
 app.get('/', function(req, res){
     if(req.host == 'worldfly.info' || req.host == 'www.worldfly.info' || req.host == 'worldfly.org'){
-        res.redirect(301, 'http://www.worldfly.org');
+        res.redirect(301, 'https://www.worldfly.org');
     } else{
         if(req.param('_escaped_fragment_') == ''){
             res.status(200).sendfile('src/pages/index/index.html');
@@ -31,7 +31,7 @@ app.get('/', function(req, res){
 
 app.get('/projects', function(req, res){
     if(req.host == 'worldfly.info' || req.host == 'www.worldfly.info' || req.host == 'worldfly.org'){
-        res.redirect(301, 'http://www.worldfly.org/projects');
+        res.redirect(301, 'https://www.worldfly.org/projects');
     } else{
         if(req.param('_escaped_fragment_') == ''){
             res.status(200).sendfile('src/pages/projects/projects.html');
@@ -45,12 +45,16 @@ app.get('/_/global.css', function(req,res){
     res.status(200).sendfile('_/global.css');
 });
 
-app.get('/_/runtime.js', function(req,res){
-    res.status(200).sendfile('_/runtime.js');
+app.get('/_/runtime.min.js', function(req,res){
+    res.status(200).sendfile('_/runtime.min.js');
 });
 
 app.get('/_/template.js', function(req,res){
     res.status(200).sendfile('_/template.js');
+});
+
+app.get('/_/zepto.js', function(req,res){
+    res.status(200).sendfile('_/zepto.js');
 });
 
 app.get('/robots.txt', function(req,res){

@@ -1,9 +1,8 @@
 CACHE MANIFEST
-//fonts.googleapis.com/css?family=Open+Sans:400
+NETWORK:
+/
+/projects
 /_/global.css
-//cdnjs.cloudflare.com/ajax/libs/zepto/1.1.3/zepto.min.js
-/_/runtime.js
-/_/template.js
-//get.worldfly.org/storage/main/images/b-error__header_logo.svg?/ver/0.11
+CACHE:
+//fonts.googleapis.com/css?family=Open+Sans:400
 //get.worldfly.org/storage/main/images/b-logo_index_black.svg
-//themes.googleusercontent.com/static/fonts/opensans/v8/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff

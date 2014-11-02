@@ -2,4 +2,4 @@ User-Agent: *
 Allow: /
 
 Sitemap: http://www.worldfly.org/sitemap.xml
-Host: www.WorldFly.org
+Host: https://www.WorldFly.org

@@ -16,26 +16,26 @@
 <script>
     $(function () {
         checkPath();
-
     });
-    function b_nav() {
-        $('.b-nav__link_home').click(function () {
-            history.pushState({page: 'home'}, 'Home page of World Fly', '/');
-            pageHome();
-            return false;
-        });
 
-        $('.b-nav__link_projects').click(function () {
-            history.pushState({page: 'projects'}, 'Projects of World Fly', '/projects');
+    window.addEventListener('popstate', function (event) {
+        if (event.state.page === 'home') {
+            pageHome();
+        } else if (event.state.page == 'projects') {
             pageProjects();
-            return false;
-        });
-    }
+        }
+    });
 
     function pageHome() {
         $('title').text('Home page of World Fly');
         var resultHome = yr.run('main');
-        $('.b-page').html(resultHome);
+        var data = {
+            "home": true,
+            "footer": [{
+                "modifer": "home"
+            }]
+        };
+        $('.b-page').html(resultHome, data);
         b_nav();
     }
     function pageProjects() {
@@ -47,7 +47,7 @@
                     "title": "Gewefope",
                     "link": [
                         {
-                            "href": "https://github.com/skhokhlov/gewefope",
+                            "href": "https://github.com/gewefope/gewefope",
                             "body": "Github",
                             "separator": ". "
                         },
@@ -63,7 +63,7 @@
                     "title": "Greengrocery",
                     "link": [
                         {
-                            "href": "https://github.con/skhokhlov/greengrocery",
+                            "href": "https://github.com/skhokhlov/greengrocery",
                             "body": "Github",
                             "separator": "."
                         }
@@ -108,13 +108,21 @@
 
         }
     }
-    window.addEventListener('popstate', function (event) {
-        if (event.state.page === 'home') {
+
+    function b_nav() {
+        $('.b-nav__link_home').click(function () {
+            history.pushState({page: 'home'}, 'Home page of World Fly', '/');
             pageHome();
-        } else if (event.state.page == 'projects') {
+            return false;
+        });
+
+        $('.b-nav__link_projects').click(function () {
+            history.pushState({page: 'projects'}, 'Projects of World Fly', '/projects');
             pageProjects();
-        }
-    });
+            return false;
+        });
+    }
+
 
 </script>
 <div class="i-stat">

@@ -1,0 +1,61 @@
+match .* b-main-attrs {
+
+    apply . b-attrs
+    apply .* b-attrs
+
+    if .id {
+        @id = .id
+    }
+
+    @class += for .class {
+        ' {.}'
+    }
+
+    if .mixin-b {
+        @data-b += for .mixin-b {
+            ' {.}'
+        }
+    }
+
+
+    for .data-b.* {
+        @data-b-{name()} = .
+    }
+
+    for .attrs.* {
+        @{name()} = .
+    }
+}
+
+func _b-block(name, nodeset options) {
+    apply _b-wrap(name, options).* b
+}
+
+func _size-theme-type-class(nodeset options) {
+     @class += " b-{ options.name }"
+
+        // Set the size and theme modifier
+        if (!options.size || options.size == 'm' ) && ( !options.theme || options.theme == 'normal' ) && !options.type {
+            @class += ' _b-normal-{ options.name }'
+        } else {
+            size = (if options.size == 's' {
+                '-small'
+            } else if options.size == 'xs' {
+                '-extra-small'
+            } else if options.size == 'l' {
+                '-large'
+            } else if options.size == 'xl' {
+                '-extra-large'
+            })
+
+            theme = (if options.theme != 'normal' && options.theme {
+                '-' +  options.theme
+            })
+
+            type = (if options.type {
+                '-' +  options.type
+            })
+
+            @class += ' _b{ size }{ theme }{ type }-{ options.name }'
+        }
+}

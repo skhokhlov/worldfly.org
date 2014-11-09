@@ -1,0 +1,9 @@
+external nodeset _b-extend(nodeset, nodeset)
+external nodeset _b-wrap(scalar, nodeset)
+
+
+static = "//get.worldfly.org/storage/main/images"
+
+
+include 'common/common.yate'
+include 'logo/logo.yate'

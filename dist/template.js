@@ -19,31 +19,41 @@ var yr = yr || require('yate/lib/runtime.js');
 
     var M = new yr.Module();
 
+    //  var static : scalar
+    M.v0 = "//get.worldfly.org/storage/main/images";
+
     var j0 = [ ];
 
-    var j1 = [ 0, 'projects' ];
+    var j1 = [ 0, 'header' ];
 
-    var j2 = [ 0, 'title' ];
+    var j2 = [ 0, 'projects' ];
 
-    var j3 = [ 0, 'link' ];
+    var j3 = [ 0, 'title' ];
 
-    var j4 = [ 0, 'href' ];
+    var j4 = [ 0, 'link' ];
 
-    var j5 = [ 0, 'body' ];
+    var j5 = [ 0, 'href' ];
 
-    var j6 = [ 0, 'separator' ];
+    var j6 = [ 0, 'body' ];
 
-    var j7 = [ 0, 'description' ];
+    var j7 = [ 0, 'separator' ];
+
+    var j8 = [ 0, 'description' ];
 
     // match /
     M.t0 = function t0(m, c0, i0, l0, a0) {
         var r0 = '';
         var current = [ c0 ];
 
+        r0 += m.a(m, 0, selectNametest('header', c0, []), 'block', a0)
         r0 += closeAttrs(a0);
         r0 += "<div class=\"" + "b-header b-header_home" + "\">";
-        r0 += "<div class=\"" + "b-logo b-logo_home" + "\"><img src=\"" + "//get.worldfly.org/storage/main/images/b-logo_index_black.svg" + "\" alt=\"" + "World Fly" + "\"/></div>";
-        r0 += "<div class=\"" + "b-nav b-nav_home" + "\"><a class=\"" + "b-nav__link b-nav__link_projects" + "\" href=\"" + "/projects" + "\">" + "Projects" + "</a></div>";
+        r0 += "<div class=\"" + "b-logo b-logo_home" + "\">";
+        r0 += "<img src=\"" + scalar2attrvalue( ( m.v('v0', c0.doc.root) ) ) + "/b-logo_index_black.svg" + "\" alt=\"" + "World Fly" + "\"/>";
+        r0 += "</div>";
+        r0 += "<div class=\"" + "b-nav b-nav_home" + "\">";
+        r0 += "<a class=\"" + "b-nav__link b-nav__link_projects" + "\" href=\"" + "/projects" + "\">" + "Projects" + "</a>";
+        r0 += "</div>";
         r0 += "</div>";
         r0 += "<div class=\"" + "b-footer b-footer_home" + "\"><p>" + "2014 © World Fly" + "</p></div>";
 
@@ -59,7 +69,9 @@ var yr = yr || require('yate/lib/runtime.js');
 
         r0 += closeAttrs(a0);
         r0 += "<div class=\"" + "b-header" + "\">";
-        r0 += "<div class=\"" + "b-logo b-logo_page" + "\"><img class=\"" + "b-logo__image b-logo__image_home" + "\" src=\"" + "//get.worldfly.org/storage/main/images/b-logo_index_black.svg" + "\" alt=\"" + "World Fly" + "\"/></div>";
+        r0 += "<div class=\"" + "b-logo b-logo_page" + "\">";
+        r0 += "<img class=\"" + "b-logo__image b-logo__image_home" + "\" src=\"" + scalar2attrvalue( ( m.v('v0', c0.doc.root) ) ) + "/b-logo_index_black.svg" + "\" alt=\"" + "World Fly" + "\"/>";
+        r0 += "</div>";
         r0 += "<div class=\"" + "b-nav" + "\">";
         r0 += "<a class=\"" + "b-nav__link b-nav__link_home" + "\" href=\"" + "/" + "\">" + "Home" + "</a>";
         r0 += "<a class=\"" + "b-nav__link b-nav__link_active b-nav__link_projects" + "\" href=\"" + "/projects" + "\">" + "Projects" + "</a>";
@@ -78,7 +90,7 @@ var yr = yr || require('yate/lib/runtime.js');
             var items1 = selectNametest('link', c1, []);
             for (var i2 = 0, l2 = items1.length; i2 < l2; i2++) {
                 var c2 = items1[ i2 ];
-                r0 += "<span><a href=\"" + nodeset2attrvalue( ( selectNametest('href', c2, []) ) ) + "\">" + nodeset2xml( ( selectNametest('body', c2, []) ) ) + "</a>" + nodeset2xml( ( selectNametest('separator', c2, []) ) ) + "</span>";
+                r0 += "<span><a href=\"" + nodeset2attrvalue( ( selectNametest('href', c2, []) ) ) + "\"><span>" + nodeset2xml( ( selectNametest('body', c2, []) ) ) + "</span></a>" + nodeset2xml( ( selectNametest('separator', c2, []) ) ) + "</span>";
             }
             if (simpleBoolean('description', c1)) {
                 r0 += "<p>" + nodeset2xml( ( selectNametest('description', c1, []) ) ) + "</p>";

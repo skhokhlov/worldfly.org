@@ -1,21 +1,33 @@
 module "main"
 
+static = "//get.worldfly.org/storage/main/images"
+
+
+
 match / {
+apply .header block
 <div class="b-header b-header_home">
-    <div class="b-logo b-logo_home"><img src="//get.worldfly.org/storage/main/images/b-logo_index_black.svg" alt="World Fly"/></div>
-    <div class="b-nav b-nav_home"><a class="b-nav__link b-nav__link_projects" href="/projects">Projects</a></div>
+    <div class="b-logo b-logo_home">
+        <img src="{ static }/b-logo_index_black.svg" alt="World Fly"/>
+    </div>
+    <div class="b-nav b-nav_home">
+        <a class="b-nav__link b-nav__link_projects" href="/projects">Projects</a>
+    </div>
 </div>
 <div class="b-footer b-footer_home"><p>2014 © World Fly</p></div>
 }
 
+
 match /projects {
 <div class="b-header">
-    <div class="b-logo b-logo_page"><img class="b-logo__image b-logo__image_home" src="//get.worldfly.org/storage/main/images/b-logo_index_black.svg" alt="World Fly"/></div>
+    <div class="b-logo b-logo_page">
+        <img class="b-logo__image b-logo__image_home" src="{ static }/b-logo_index_black.svg" alt="World Fly"/>
+    </div>
     <div class="b-nav">
         <a class="b-nav__link b-nav__link_home" href="/">Home</a>
         <a class="b-nav__link b-nav__link_active b-nav__link_projects" href="/projects">Projects</a>
     </div>
-    </div>
+</div>
 <div class="b-body">
     <div class="b-body__content">
         <h1 class="b-body__title">Projects</h1>
@@ -25,10 +37,10 @@ match /projects {
                 <h2 class="b-list__item__title">{ .title }</h2>
                 <div class="b-list__item__desrc">
                     for .link {
-                    <span><a href="{ .href }">{ .body }</a>{ .separator }</span>
+                            <span><a href="{ .href }"><span>{ .body }</span></a>{ .separator }</span>
                     }
                     if .description {
-                    <p>{ .description }</p>
+                        <p>{ .description }</p>
                     }
                 </div>
             </div>

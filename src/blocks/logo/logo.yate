@@ -1,0 +1,33 @@
+func b-logo(nodeset options) {
+    default = {
+        'size': 's'
+    }
+
+    if options.type == 'link' {
+            _b-block('logoLink', _b-extend(default, options))
+    } else {
+        _b-block('logo', _b-extend(default, options))
+    }
+
+}
+
+func b-logo-attributes(type) {
+    if type == "home" {
+        @class += "b-logo_home"
+    } else if type == "page" {
+        @class += "b-logo_page"
+    }
+}
+
+match .logo b {
+<div>
+    _size-theme-type-class({
+        'name': 'logo'
+        'size': .size
+    })
+
+    apply . b-main-attrs
+
+    <img src="{ static }/b-logo_index_black.svg" alt="World Fly"/>
+</div>
+}

@@ -1,0 +1,83 @@
+static = "//get.worldfly.org/"
+
+params = /.page.page-params
+page = params._page
+
+
+// --------------------------------- //
+
+match / {
+  <html>
+  <head lang="en">
+    <meta name="fragment" content="!"/>
+    <meta charset="UTF-8"/>
+    <title>World Fly</title>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet"/>
+    <link rel="stylesheet" href="/_/default.css"/>
+  </head>
+  <body>
+    apply .page
+  </body>
+  </html>
+}
+
+match .page {
+  <div class="b-page">
+  <div class="b-page__content">
+    apply .page-blocks.* block
+  </div>
+  </div>
+}
+
+// ----------------------------------------------------------------------------------------------------------------- //
+
+match .* block {
+  <div class="b-{ name() }">
+    apply . block-content
+  </div>
+}
+
+match .* block-content {
+  apply .* block
+}
+
+// ----------------------------------------------------------------------------------------------------------------- //
+
+match .* href {
+  @href = apply . href-content
+}
+
+// ----------------------------------------------------------------------------------------------------------------- //
+
+match .layout block-content {
+    <div class="b-header">
+      apply .header block
+    </div>
+    if .body {
+    <div class="body">
+      apply .body block
+    </div>
+    }
+    <div class="b-footer">
+      apply .footer block
+    </div>
+}
+
+
+match .logo block-content {
+  <span>Logo</span>
+}
+
+
+match .projects block-content {
+    apply /.page.projects
+}
+
+match .projects {
+    <div class="b-layout__inner">
+        apply . head
+        <i class="b-toolbar-hr"></i>
+        apply . list
+        apply .details.pager
+    </div>
+}

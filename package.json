@@ -1,0 +1,17 @@
+{
+  "name": "worldfly-org",
+  "version": "0.2.1",
+  "description": "The worldfly.org website",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sergey Khokhlov",
+  "license": "Copyright",
+  "dependencies": {
+    "express": "^4.10.6"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.10"
+  }
+}

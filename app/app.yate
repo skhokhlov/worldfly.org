@@ -1,0 +1,66 @@
+module "common"
+
+static = "//get.worldfly.org/storage/main/images"
+
+params = /.page.page-params
+page = params._page
+
+match / {
+    <html>
+        <head lang="en">
+            <meta charset="utf-8"/>
+            <title>{ params.title }</title>
+            <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans&subset=latin"/>
+            <link rel="stylesheet" href="/public/common.css"/>
+        </head>
+        <body>
+            apply .page
+        </body>
+    </html>
+
+}
+
+match .page {
+    <div class="b-page">
+        <div class="b-page__content">
+            apply .page-blocks.* block
+        </div>
+    </div>
+}
+
+match .* block {
+        apply . block-content
+}
+
+match .* block-content {
+    apply .* block
+}
+
+match .projects block-content {
+    apply .project
+}
+
+match .project {
+    <span>{ .project }</span>
+}
+
+
+match .logo block-content {
+    <div>
+    @class=(
+        "b-logo "
+        if page == "home" {
+            "b-logo_home"
+        }
+    )
+
+    if page == "home" {
+        <img class="b-logo__image b-logo__image_home" src="{ static }/b-logo_index_black.svg" alt="World Fly"/>
+    } else if page == "page" {
+        <img class="b-logo__image b-logo__image_page" src="{ static }/b-logo_index_black.svg" alt="World Fly"/>
+    } else {
+        <img class="b-logo__image" src="{ static }/b-logo_index_black.svg" alt="World Fly"/>
+    }
+
+    </div>
+}

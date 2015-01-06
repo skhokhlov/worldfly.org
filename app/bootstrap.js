@@ -99,11 +99,10 @@
     });
 
 
-    Request('/assest/data.json').then(function (response) {
-        //console.log(response)
-
-    }).then(function () {
-        //console.log('asd')
+    Request('/assest/data.json').then(function (res) {
+        window['PagesData'] = res;
+    }, function () {
+        BootstrapError(error);
     });
 
     //console.log(data);

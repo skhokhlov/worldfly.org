@@ -11,13 +11,12 @@ match / {
             <meta charset="utf-8"/>
             <title>{ params.title }</title>
             <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans&subset=latin"/>
-            <link rel="stylesheet" href="/public/common.css"/>
+            <link rel="stylesheet" href="/public/app.css"/>
         </head>
         <body>
             apply .page
         </body>
     </html>
-
 }
 
 match .page {
@@ -56,12 +55,57 @@ match .logo block-content {
 
     if page == "home" {
         <img class="b-logo__image b-logo__image_home" src="{ static }/b-logo_index_black.svg" alt="World Fly"/>
-        <img class="" src="//get.worldfly.org/brands/worldfly/anything_is_possible.svg" alt="Anything is possible"/>
+        <img class="b-logo__slogan" src="//get.worldfly.org/brands/worldfly/anything_is_possible.svg" alt="Anything is possible"/>
     } else if page == "page" {
         <img class="b-logo__image b-logo__image_page" src="{ static }/b-logo_index_black.svg" alt="World Fly"/>
     } else {
         <img class="b-logo__image" src="{ static }/b-logo_index_black.svg" alt="World Fly"/>
     }
+    </div>
+}
 
+
+match .nav block-content {
+    <div>
+    @class=(
+        "b-nav "
+        if page == "home" {
+            "b-nav_home"
+        }
+    )
+
+    if page == "home" {
+        <a class="b-nav__link b-nav__link_projects" href="/projects">Projects</a>
+    } else {
+        <a class="b-nav__link b-nav__link_home" href="/">Home</a>
+        <a class="b-nav__link b-nav__link_active b-nav__link_projects" href="/projects">Projects</a>
+    }
+    </div>
+}
+
+
+match .header block {
+    <div>
+    @class=(
+            "b-header "
+            if page == "home" {
+                "b-header_home"
+            }
+        )
+    apply .* block
+    </div>
+}
+
+
+match .footer block-content {
+    <div>
+    @class=(
+        "b-footer "
+        if page == "home" {
+            "b-footer_home"
+        }
+    )
+
+    <p>2015 © World Fly</p>
     </div>
 }

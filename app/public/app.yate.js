@@ -54,6 +54,12 @@ var yr = yr || require('yate/lib/runtime.js');
 
     var j10 = [ 0, 'logo' ];
 
+    var j11 = [ 0, 'nav' ];
+
+    var j12 = [ 0, 'header' ];
+
+    var j13 = [ 0, 'footer' ];
+
     // match /
     M.t0 = function t0(m, c0, i0, l0, a0) {
         var r0 = '';
@@ -65,7 +71,7 @@ var yr = yr || require('yate/lib/runtime.js');
         r0 += "<meta charset=\"" + "utf-8" + "\"/>";
         r0 += "<title>" + nodeset2xml( ( m.n(j3, m.v('v1', c0.doc.root)) ) ) + "</title>";
         r0 += "<link rel=\"" + "stylesheet" + "\" href=\"" + "//fonts.googleapis.com/css?family=Open+Sans&amp;subset=latin" + "\"/>";
-        r0 += "<link rel=\"" + "stylesheet" + "\" href=\"" + "/public/common.css" + "\"/>";
+        r0 += "<link rel=\"" + "stylesheet" + "\" href=\"" + "/public/app.css" + "\"/>";
         r0 += "</head>";
         r0 += "<body";
         a0.a = {
@@ -172,7 +178,7 @@ var yr = yr || require('yate/lib/runtime.js');
         r0 += closeAttrs(a0);
         if (cmpSN("home", m.v('v2', c0.doc.root))) {
             r0 += "<img class=\"" + "b-logo__image b-logo__image_home" + "\" src=\"" + scalar2attrvalue( ( m.v('v0', c0.doc.root) ) ) + "/b-logo_index_black.svg" + "\" alt=\"" + "World Fly" + "\"/>";
-            r0 += "<img class=\"" + "" + "\" src=\"" + "//get.worldfly.org/brands/worldfly/anything_is_possible.svg" + "\" alt=\"" + "Anything is possible" + "\"/>";
+            r0 += "<img class=\"" + "b-logo__slogan" + "\" src=\"" + "//get.worldfly.org/brands/worldfly/anything_is_possible.svg" + "\" alt=\"" + "Anything is possible" + "\"/>";
         } else if (cmpSN("page", m.v('v2', c0.doc.root))) {
             r0 += "<img class=\"" + "b-logo__image b-logo__image_page" + "\" src=\"" + scalar2attrvalue( ( m.v('v0', c0.doc.root) ) ) + "/b-logo_index_black.svg" + "\" alt=\"" + "World Fly" + "\"/>";
         } else {
@@ -184,6 +190,89 @@ var yr = yr || require('yate/lib/runtime.js');
     };
     M.t6.j = j10;
     M.t6.a = 0;
+
+    // match .nav : block-content
+    M.t7 = function t7(m, c0, i0, l0, a0) {
+        var r0 = '';
+        var current = [ c0 ];
+
+        r0 += closeAttrs(a0);
+        r0 += "<div";
+        a0.a = {
+        };
+        a0.s = 'div';
+        var r1 = '';
+        var a1 = { a: {} };
+        r1 += "b-nav ";
+        if (cmpSN("home", m.v('v2', c0.doc.root))) {
+            r1 += "b-nav_home";
+        }
+        a0.a[ "class" ] = new yr.scalarAttr(r1);
+        r0 += closeAttrs(a0);
+        if (cmpSN("home", m.v('v2', c0.doc.root))) {
+            r0 += "<a class=\"" + "b-nav__link b-nav__link_projects" + "\" href=\"" + "/projects" + "\">" + "Projects" + "</a>";
+        } else {
+            r0 += "<a class=\"" + "b-nav__link b-nav__link_home" + "\" href=\"" + "/" + "\">" + "Home" + "</a>";
+            r0 += "<a class=\"" + "b-nav__link b-nav__link_active b-nav__link_projects" + "\" href=\"" + "/projects" + "\">" + "Projects" + "</a>";
+        }
+        r0 += "</div>";
+
+        return r0;
+    };
+    M.t7.j = j11;
+    M.t7.a = 0;
+
+    // match .header : block
+    M.t8 = function t8(m, c0, i0, l0, a0) {
+        var r0 = '';
+        var current = [ c0 ];
+
+        r0 += closeAttrs(a0);
+        r0 += "<div";
+        a0.a = {
+        };
+        a0.s = 'div';
+        var r1 = '';
+        var a1 = { a: {} };
+        r1 += "b-header ";
+        if (cmpSN("home", m.v('v2', c0.doc.root))) {
+            r1 += "b-header_home";
+        }
+        a0.a[ "class" ] = new yr.scalarAttr(r1);
+        r0 += m.a(m, 0, selectNametest('*', c0, []), 'block', a0)
+        r0 += closeAttrs(a0);
+        r0 += "</div>";
+
+        return r0;
+    };
+    M.t8.j = j12;
+    M.t8.a = 0;
+
+    // match .footer : block-content
+    M.t9 = function t9(m, c0, i0, l0, a0) {
+        var r0 = '';
+        var current = [ c0 ];
+
+        r0 += closeAttrs(a0);
+        r0 += "<div";
+        a0.a = {
+        };
+        a0.s = 'div';
+        var r1 = '';
+        var a1 = { a: {} };
+        r1 += "b-footer ";
+        if (cmpSN("home", m.v('v2', c0.doc.root))) {
+            r1 += "b-footer_home";
+        }
+        a0.a[ "class" ] = new yr.scalarAttr(r1);
+        r0 += closeAttrs(a0);
+        r0 += "<p>" + "2015 © World Fly" + "</p>";
+        r0 += "</div>";
+
+        return r0;
+    };
+    M.t9.j = j13;
+    M.t9.a = 0;
 
     M.matcher = {
         "": {
@@ -200,6 +289,10 @@ var yr = yr || require('yate/lib/runtime.js');
         "block": {
             "*": [
                 "t2"
+            ],
+            "header": [
+                "t8",
+                "t2"
             ]
         },
         "block-content": {
@@ -212,6 +305,14 @@ var yr = yr || require('yate/lib/runtime.js');
             ],
             "logo": [
                 "t6",
+                "t3"
+            ],
+            "nav": [
+                "t7",
+                "t3"
+            ],
+            "footer": [
+                "t9",
                 "t3"
             ]
         }

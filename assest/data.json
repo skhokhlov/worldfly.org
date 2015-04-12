@@ -2,7 +2,11 @@
   "data": null,
   "page": {
     "page-blocks": {
-      "logo": true
+      "header": {
+        "logo": true,
+        "nav": true
+      },
+      "footer":true
     },
     "page-params": {
       "_page": "home",

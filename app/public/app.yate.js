@@ -172,6 +172,7 @@ var yr = yr || require('yate/lib/runtime.js');
         r0 += closeAttrs(a0);
         if (cmpSN("home", m.v('v2', c0.doc.root))) {
             r0 += "<img class=\"" + "b-logo__image b-logo__image_home" + "\" src=\"" + scalar2attrvalue( ( m.v('v0', c0.doc.root) ) ) + "/b-logo_index_black.svg" + "\" alt=\"" + "World Fly" + "\"/>";
+            r0 += "<img class=\"" + "" + "\" src=\"" + "//get.worldfly.org/brands/worldfly/anything_is_possible.svg" + "\" alt=\"" + "Anything is possible" + "\"/>";
         } else if (cmpSN("page", m.v('v2', c0.doc.root))) {
             r0 += "<img class=\"" + "b-logo__image b-logo__image_page" + "\" src=\"" + scalar2attrvalue( ( m.v('v0', c0.doc.root) ) ) + "/b-logo_index_black.svg" + "\" alt=\"" + "World Fly" + "\"/>";
         } else {

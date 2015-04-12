@@ -13,21 +13,21 @@
         }
     }
 
-    var Request = function (url) {
+    var request = function (url) {
         return new Promise(function (resolve, reject) {
-            var Request = new XMLHttpRequest();
-            Request.open('GET', url, true);
-            Request.onload = function () {
-                if (Request.status === 200) {
-                    resolve(Request.response);
+            var request = new XMLHttpRequest();
+            request.open('GET', url, true);
+            request.onload = function () {
+                if (request.status === 200) {
+                    resolve(request.response);
                 } else {
-                    reject(Error(Request.statusText));
+                    reject(Error(request.statusText));
                 }
             };
-            Request.onerror = function () {
+            request.onerror = function () {
                 reject(Error("Network Error"));
             };
-            Request.send(null);
+            request.send(null);
         });
     };
 
@@ -50,64 +50,66 @@
         }
     };
 
-    window['BlobContent.load'] = 0;
+    //window.wf = {};
+
+    window.wf.BlobContent.load = 0;
     var BlobRender = function () {
-        if (window['BlobContent.load'] === 4) {
-            MyBlob([window['BlobContent.zepto.js']], 'text/javascript', 'zepto.js');
-            MyBlob([window['BlobContent.runtime.js']], 'text/javascript', 'runtime.js');
-            MyBlob([window['BlobContent.app.yate.js']], 'text/javascript', 'app.yate.js');
-            MyBlob([window['BlobContent.app.js']], 'text/javascript', 'app.js');
+        if (window.wf.BlobContent.load === 4) {
+            MyBlob([window.wf.BlobContent.zeptojs], 'text/javascript', 'zepto.js');
+            MyBlob([window.wf.BlobContent.runtimejs], 'text/javascript', 'runtime.js');
+            MyBlob([window.wf.BlobContent.appyatejs], 'text/javascript', 'app.yate.js');
+            MyBlob([window.wf.BlobContent.appjs], 'text/javascript', 'app.js');
         }
     };
 
     var BootstrapError = function (error) {
-        window['BootCount']++;
+        window.wf.BootCount++;
         console.error(error);
-        if (window['BootCount'] < 1) {
+        if (window.wf.BootCount < 1) {
             console.log('Loading error. I\'m try again now');
             Bootstrap();
         }
     };
 
-    Request('/public/runtime.js').then(function (res) {
-        window['BlobContent.runtime.js'] = res;
-        window['BlobContent.load']++;
+    request('/public/runtime.js').then(function (res) {
+        window.wf.BlobContent.runtimejs = res;
+        window.wf.BlobContent.load++;
         BlobRender();
     }, function (error) {
         BootstrapError(error)
     });
-    Request('/public/app.yate.js').then(function (res) {
-        window['BlobContent.app.yate.js'] = res;
-        window['BlobContent.load']++;
+    request('/public/app.yate.js').then(function (res) {
+        window.wf.BlobContent.appyatejs = res;
+        window.wf.BlobContent.load++;
         BlobRender();
     }, function (error) {
         BootstrapError(error)
     });
-    Request('/public/zepto.js').then(function (res) {
-        window['BlobContent.zepto.js'] = res;
-        window['BlobContent.load']++;
+    request('/public/zepto.js').then(function (res) {
+        window.wf.BlobContent.zeptojs = res;
+        window.wf.BlobContent.load++;
         BlobRender();
     }, function (error) {
         BootstrapError(error)
     });
-    Request('/public/app.js').then(function (res) {
-        window['BlobContent.app.js'] = res;
-        window['BlobContent.load']++;
+    request('/public/app.js').then(function (res) {
+        window.wf.BlobContent.appjs = res;
+        window.wf.BlobContent.load++;
         BlobRender();
     }, function (error) {
         BootstrapError(error)
     });
 
 
-    Request('/assest/data.json').then(function (res) {
-        window['PagesData'] = res;
+    request('/assest/data.json').then(function (res) {
+        window.wf.PagesData = res;
     }, function () {
         BootstrapError(error);
     });
 
     //console.log(data);
 
-    //Request('/public/app.js').then(function (response) {
+    //request('/public/app.js').then(function (response) {
     //    MyBlob([response], 'text/javascript');
     //}, function (error) {
     //    console.error("Ошибка!", error);

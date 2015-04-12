@@ -56,6 +56,7 @@ match .logo block-content {
 
     if page == "home" {
         <img class="b-logo__image b-logo__image_home" src="{ static }/b-logo_index_black.svg" alt="World Fly"/>
+        <img class="" src="//get.worldfly.org/brands/worldfly/anything_is_possible.svg" alt="Anything is possible"/>
     } else if page == "page" {
         <img class="b-logo__image b-logo__image_page" src="{ static }/b-logo_index_black.svg" alt="World Fly"/>
     } else {

@@ -17,7 +17,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/assest/data.json', function(req,res){
-    res.send('{"data":"null"}');
+    res.status(200).sendFile(__dirname + '/assest/data.json');
 });
 
 require('http').createServer(app).listen(app.get('port'), function () {

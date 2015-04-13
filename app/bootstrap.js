@@ -54,8 +54,8 @@
 
     window.wf.BlobContent.load = 0;
     var BlobRender = function () {
-        if (window.wf.BlobContent.load === 4) {
-            MyBlob([window.wf.BlobContent.zeptojs], 'text/javascript', 'zepto.js');
+        if (window.wf.BlobContent.load === 3) {
+            //MyBlob([window.wf.BlobContent.zeptojs], 'text/javascript', 'zepto.js');
             MyBlob([window.wf.BlobContent.runtimejs], 'text/javascript', 'runtime.js');
             MyBlob([window.wf.BlobContent.appyatejs], 'text/javascript', 'app.yate.js');
             MyBlob([window.wf.BlobContent.appjs], 'text/javascript', 'app.js');
@@ -85,13 +85,13 @@
     }, function (error) {
         BootstrapError(error)
     });
-    request('/public/zepto.js').then(function (res) {
-        window.wf.BlobContent.zeptojs = res;
-        window.wf.BlobContent.load++;
-        BlobRender();
-    }, function (error) {
-        BootstrapError(error)
-    });
+    //request('/public/zepto.js').then(function (res) {
+    //    window.wf.BlobContent.zeptojs = res;
+    //    window.wf.BlobContent.load++;
+    //    BlobRender();
+    //}, function (error) {
+    //    BootstrapError(error)
+    //});
     request('/public/app.js').then(function (res) {
         window.wf.BlobContent.appjs = res;
         window.wf.BlobContent.load++;

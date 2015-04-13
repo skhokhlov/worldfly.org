@@ -1,16 +1,34 @@
 {
-  "data": null,
-  "page": {
-    "page-blocks": {
-      "header": {
-        "logo": true,
-        "nav": true
+  "home":{
+    "data": null,
+    "page": {
+      "page-blocks": {
+        "header": {
+          "logo": true,
+          "nav": true
+        },
+        "footer":true
       },
-      "footer":true
-    },
-    "page-params": {
-      "_page": "home",
-      "title": "Homepage of World Fly"
+      "page-params": {
+        "_page": "home",
+        "title": "Homepage of World Fly"
+      }
+    }
+  },
+  "projects":{
+    "data": null,
+    "page": {
+      "page-blocks": {
+        "header": {
+          "nav": true
+        },
+        "footer":true
+      },
+      "page-params": {
+        "_page": "page",
+        "title": "Projects of World Fly"
+      }
     }
   }
+
 }

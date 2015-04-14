@@ -16,7 +16,48 @@ app.get('/', function (req, res) {
 });
 
 app.get('/assest/data.json', function(req,res){
-    res.status(200).sendFile(__dirname + '/assest/data.json');
+    //res.status(200).sendFile(__dirname + '/assest/data.json');
+    res.status(200).json({
+        "data": {
+            "ipCountry": process.env.HTTP_CF_IPCOUNTRY || 'en'
+        },
+        "home":{
+            "data": {
+                "year": new Date().getFullYear()
+
+            },
+            "page": {
+                "page-blocks": {
+                    "header": {
+                        "logo": true,
+                        "nav": true
+                    },
+                    "footer":true
+                },
+                "page-params": {
+                    "_page": "home",
+                    "title": "Homepage of World Fly"
+                }
+            }
+        },
+        "projects":{
+            "data": {
+                "year": new Date().getFullYear()
+            },
+            "page": {
+                "page-blocks": {
+                    "header": {
+                        "nav": true
+                    },
+                    "footer":true
+                },
+                "page-params": {
+                    "_page": "page",
+                    "title": "Projects of World Fly"
+                }
+            }
+        }
+    });
 });
 
 require('http').createServer(app).listen(app.get('port'), function () {

@@ -1,18 +1,5 @@
 (function Bootstrap(window, Promise) {
 
-    /* Promises
-     */
-    if (typeof Promise.prototype.done !== 'function') {
-        Promise.prototype.done = function (onFulfilled, onRejected) {
-            var self = arguments.length ? this.then.apply(this, arguments) : this
-            self.then(null, function (err) {
-                setTimeout(function () {
-                    throw err
-                }, 0)
-            })
-        }
-    }
-
     var request = function (url) {
         return new Promise(function (resolve, reject) {
             var request = new XMLHttpRequest();

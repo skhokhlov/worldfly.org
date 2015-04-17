@@ -20,7 +20,7 @@ var yr = yr || require('yate/lib/runtime.js');
     var M = new yr.Module();
 
     //  var static : scalar
-    M.v0 = "//get.worldfly.org/storage/main/images";
+    M.v0 = "https://get.worldfly.org/storage/main/images";
 
     var j0 = [ 0, 'page', 0, 'page-params' ];
 
@@ -70,7 +70,7 @@ var yr = yr || require('yate/lib/runtime.js');
         r0 += "<head lang=\"" + "en" + "\">";
         r0 += "<meta charset=\"" + "utf-8" + "\"/>";
         r0 += "<title>" + nodeset2xml( ( m.n(j3, m.v('v1', c0.doc.root)) ) ) + "</title>";
-        r0 += "<link rel=\"" + "stylesheet" + "\" href=\"" + "//fonts.googleapis.com/css?family=Open+Sans&amp;subset=latin" + "\"/>";
+        r0 += "<link rel=\"" + "stylesheet" + "\" href=\"" + "https://fonts.googleapis.com/css?family=Open+Sans&amp;subset=latin" + "\"/>";
         r0 += "<link rel=\"" + "stylesheet" + "\" href=\"" + "/public/app.css" + "\"/>";
         r0 += "</head>";
         r0 += "<body";
@@ -178,7 +178,7 @@ var yr = yr || require('yate/lib/runtime.js');
         r0 += closeAttrs(a0);
         if (cmpSN("home", m.v('v2', c0.doc.root))) {
             r0 += "<img class=\"" + "b-logo__image b-logo__image_home" + "\" src=\"" + scalar2attrvalue( ( m.v('v0', c0.doc.root) ) ) + "/b-logo_index_black.svg" + "\" alt=\"" + "World Fly" + "\"/>";
-            r0 += "<img class=\"" + "b-logo__slogan" + "\" src=\"" + "//get.worldfly.org/brands/worldfly/anything_is_possible.svg" + "\" alt=\"" + "Anything is possible" + "\"/>";
+            r0 += "<img class=\"" + "b-logo__slogan" + "\" src=\"" + "https://get.worldfly.org/brands/worldfly/anything_is_possible.svg" + "\" alt=\"" + "Anything is possible" + "\"/>";
         } else if (cmpSN("page", m.v('v2', c0.doc.root))) {
             r0 += "<img class=\"" + "b-logo__image b-logo__image_page" + "\" src=\"" + scalar2attrvalue( ( m.v('v0', c0.doc.root) ) ) + "/b-logo_index_black.svg" + "\" alt=\"" + "World Fly" + "\"/>";
         } else {

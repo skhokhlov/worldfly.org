@@ -6,7 +6,7 @@ var express = require('express'),
 app.set('port', process.env.PORT || 3000);
 
 
-app.use('/public', express.static(__dirname + '/app/public'));
+app.use('/public', express.static(__dirname + '/public'));
 
 
 app.get('/', function (req, res) {
@@ -19,7 +19,7 @@ app.get('/assest/data.json', function(req,res){
     //res.status(200).sendFile(__dirname + '/assest/data.json');
     res.status(200).json({
         "data": {
-            "ipCountry": process.env.HTTP_CF_IPCOUNTRY || 'en'
+            "ipCountry": req.ips
         },
         "home":{
             "data": {

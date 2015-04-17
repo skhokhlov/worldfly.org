@@ -8,7 +8,7 @@ var gulp = require('gulp'),
 gulp.task('yate', function(){
     gulp.src(['app/app.yate'])
         .pipe(shell([
-            './node_modules/.bin/yate <%= file.path %> > app/public/app.yate.js'
+            './node_modules/.bin/yate <%= file.path %> > public/app.yate.js'
         ]));
 });
 
@@ -16,7 +16,7 @@ gulp.task('css', function(){
     gulp.src(['app/app.styl'])
         .pipe(stylus())
         .pipe(csso())
-        .pipe(gulp.dest('app/public'));
+        .pipe(gulp.dest('public'));
 });
 
 gulp.task('js', function(){
@@ -28,11 +28,11 @@ gulp.task('js', function(){
         //.pipe(jshint())
         //.pipe(jshint.reporter('default'))
         .pipe(uglify())
-        .pipe(gulp.dest('app/public'));
+        .pipe(gulp.dest('public'));
 
     gulp.src(['node_modules/yate/lib/runtime.js'])
         .pipe(uglify())
-        .pipe(gulp.dest('app/public'));
+        .pipe(gulp.dest('public'));
 
 });
 

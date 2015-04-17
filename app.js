@@ -57,7 +57,18 @@ app.get('/assest/data.json', function (req, res) {
                         "nav": true
                     },
                     "body": {
-                        "projects": [
+                        "projects": true
+                    },
+                    "footer": true
+                },
+                "page-params": {
+                    "_page": "page",
+                    "title": "Projects of World Fly",
+                    "header": "Projects"
+                },
+                "projects":{
+                    "list": {
+                        "project": [
                             {
                                 "title": "Gewefope",
                                 "link": [
@@ -106,14 +117,7 @@ app.get('/assest/data.json', function (req, res) {
                                 "description": "Closed. Science handbook of articles on aerospace engineering."
                             }
                         ]
-
-                    },
-                    "footer": true
-                },
-                "page-params": {
-                    "_page": "page",
-                    "title": "Projects of World Fly",
-                    "header": "Projects"
+                    }
                 }
             }
         }

@@ -60,6 +60,22 @@ var yr = yr || require('yate/lib/runtime.js');
 
     var j13 = [ 0, 'footer' ];
 
+    var j14 = [ 0, 'data', 0, 'year' ];
+
+    var j15 = [ 0, 'body' ];
+
+    var j16 = [ 0, 'page', 0, 'projects' ];
+
+    var j17 = [ 0, 'list', 0, 'project' ];
+
+    var j18 = [ 0, 'link' ];
+
+    var j19 = [ 0, 'href' ];
+
+    var j20 = [ 0, 'separator' ];
+
+    var j21 = [ 0, 'description' ];
+
     // match /
     M.t0 = function t0(m, c0, i0, l0, a0) {
         var r0 = '';
@@ -266,13 +282,118 @@ var yr = yr || require('yate/lib/runtime.js');
         }
         a0.a[ "class" ] = new yr.scalarAttr(r1);
         r0 += closeAttrs(a0);
-        r0 += "<p>" + "2015 © World Fly" + "</p>";
+        r0 += "<p>" + nodeset2xml( ( m.s(j14, c0.doc.root) ) ) + " © World Fly" + "</p>";
         r0 += "</div>";
 
         return r0;
     };
     M.t9.j = j13;
     M.t9.a = 0;
+
+    // match .body : block
+    M.t10 = function t10(m, c0, i0, l0, a0) {
+        var r0 = '';
+        var current = [ c0 ];
+
+        r0 += closeAttrs(a0);
+        r0 += "<div";
+        a0.a = {
+            'class': new yr.scalarAttr("b-body")
+        };
+        a0.s = 'div';
+        r0 += m.a(m, 0, m.s(j7, c0), 'block-content', a0)
+        r0 += closeAttrs(a0);
+        r0 += "</div>";
+
+        return r0;
+    };
+    M.t10.j = j15;
+    M.t10.a = 0;
+
+    // match .body : block-content
+    M.t11 = function t11(m, c0, i0, l0, a0) {
+        var r0 = '';
+        var current = [ c0 ];
+
+        r0 += closeAttrs(a0);
+        r0 += "<div class=\"" + "b-body__content" + "\">";
+        r0 += "<h1 class=\"" + "b-body__title" + "\">" + nodeset2xml( ( m.n(j12, m.v('v1', c0.doc.root)) ) ) + "</h1>";
+        r0 += m.a(m, 0, selectNametest('*', c0, []), 'block', a0)
+        r0 += "</div>";
+
+        return r0;
+    };
+    M.t11.j = j15;
+    M.t11.a = 0;
+
+    // match .projects : block-content
+    M.t12 = function t12(m, c0, i0, l0, a0) {
+        var r0 = '';
+        var current = [ c0 ];
+
+        r0 += m.a(m, 0, m.s(j16, c0.doc.root), '', a0)
+
+        return r0;
+    };
+    M.t12.j = j8;
+    M.t12.a = 0;
+
+    // match .projects
+    M.t13 = function t13(m, c0, i0, l0, a0) {
+        var r0 = '';
+        var current = [ c0 ];
+
+        r0 += closeAttrs(a0);
+        r0 += "<div";
+        a0.a = {
+            'class': new yr.scalarAttr("b-list")
+        };
+        a0.s = 'div';
+        r0 += m.a(m, 0, m.s(j7, c0), 'list', a0)
+        r0 += closeAttrs(a0);
+        r0 += "</div>";
+
+        return r0;
+    };
+    M.t13.j = j8;
+    M.t13.a = 0;
+
+    // match .projects : list
+    M.t14 = function t14(m, c0, i0, l0, a0) {
+        var r0 = '';
+        var current = [ c0 ];
+
+        r0 += m.a(m, 0, m.s(j17, c0), '', a0)
+
+        return r0;
+    };
+    M.t14.j = j8;
+    M.t14.a = 0;
+
+    // match .project
+    M.t15 = function t15(m, c0, i0, l0, a0) {
+        var r0 = '';
+        var current = [ c0 ];
+
+        r0 += closeAttrs(a0);
+        r0 += "<div class=\"" + "b-list__item" + "\">";
+        r0 += "<h2 class=\"" + "b-list__item__title" + "\">" + nodeset2xml( ( selectNametest('title', c0, []) ) ) + "</h2>";
+        r0 += "<div class=\"" + "b-list__item__desrc" + "\">";
+        var items0 = selectNametest('link', c0, []);
+        for (var i1 = 0, l1 = items0.length; i1 < l1; i1++) {
+            var c1 = items0[ i1 ];
+            r0 += "<span><a href=\"" + nodeset2attrvalue( ( selectNametest('href', c1, []) ) ) + "\"><span>" + nodeset2xml( ( selectNametest('body', c1, []) ) ) + "</span></a>" + nodeset2xml( ( selectNametest('separator', c1, []) ) ) + "</span>";
+        }
+        if (simpleBoolean('description', c0)) {
+            r0 += "<p>" + nodeset2xml( ( selectNametest('description', c0, []) ) ) + "</p>";
+        }
+        r0 += "</div>";
+        r0 += "</div>";
+
+        return r0;
+    };
+    M.t15.j = j9;
+    M.t15.a = 0;
 
     M.matcher = {
         "": {
@@ -283,7 +404,11 @@ var yr = yr || require('yate/lib/runtime.js');
                 "t1"
             ],
             "project": [
+                "t15",
                 "t5"
+            ],
+            "projects": [
+                "t13"
             ]
         },
         "block": {
@@ -293,6 +418,10 @@ var yr = yr || require('yate/lib/runtime.js');
             "header": [
                 "t8",
                 "t2"
+            ],
+            "body": [
+                "t10",
+                "t2"
             ]
         },
         "block-content": {
@@ -300,6 +429,7 @@ var yr = yr || require('yate/lib/runtime.js');
                 "t3"
             ],
             "projects": [
+                "t12",
                 "t4",
                 "t3"
             ],
@@ -314,6 +444,15 @@ var yr = yr || require('yate/lib/runtime.js');
             "footer": [
                 "t9",
                 "t3"
+            ],
+            "body": [
+                "t11",
+                "t3"
+            ]
+        },
+        "list": {
+            "projects": [
+                "t14"
             ]
         }
     };

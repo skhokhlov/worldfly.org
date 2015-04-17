@@ -106,7 +106,7 @@ match .footer block-content {
         }
     )
 
-    <p>2015 © World Fly</p>
+    <p>{ /.data.year } © World Fly</p>
     </div>
 }
 
@@ -117,9 +117,40 @@ match .body block {
     </div>
 }
 
+
 match .body block-content {
     <div class="b-body__content">
         <h1 class="b-body__title">{ params.header }</h1>
         apply .* block
     </div>
+}
+
+
+match .projects block-content {
+    apply /.page.projects
+}
+
+match .projects {
+    <div class="b-list">
+    apply . list
+    </div>
+}
+
+match .projects list {
+    apply .list.project
+}
+
+match .project {
+    <div class="b-list__item">
+        <h2 class="b-list__item__title">{ .title }</h2>
+        <div class="b-list__item__desrc">
+            for .link {
+                <span><a href="{ .href }"><span>{ .body }</span></a>{ .separator }</span>
+            }
+            if .description {
+                <p>{ .description }</p>
+            }
+        </div>
+  </div>
+
 }

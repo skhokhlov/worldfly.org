@@ -3,7 +3,8 @@ var gulp = require('gulp'),
     shell = require('gulp-shell'),
     stylus = require('gulp-stylus'),
     uglify = require('gulp-uglify'),
-    jshint = require('gulp-jshint');
+    jshint = require('gulp-jshint'),
+    htmlmin = require('gulp-htmlmin');
 
 gulp.task('yate', function(){
     gulp.src(['app/app.yate'])
@@ -36,6 +37,15 @@ gulp.task('js', function(){
 
 });
 
+gulp.task('html', function() {
+    gulp.src('app/app.html')
+        .pipe(htmlmin({
+            collapseWhitespace: true,
+            removeComments: true
+        }))
+        .pipe(gulp.dest('public'));
+});
 
 
-gulp.task('default', ['yate', 'js', 'css']);
+
+gulp.task('default', ['yate', 'js', 'css', 'html']);

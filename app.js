@@ -11,7 +11,7 @@ app.use('/public', express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) {
     //checkHost(req.hostname, res, 'https://www.worldfly.org/', function(){
-    res.status(200).sendFile(__dirname + '/app/app.html');
+    res.status(200).sendFile(__dirname + '/public/app.html');
     //})
 });
 

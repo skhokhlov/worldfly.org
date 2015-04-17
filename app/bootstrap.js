@@ -43,9 +43,9 @@
     var BlobRender = function () {
         if (window.wf.BlobContent.load === 3) {
             //MyBlob([window.wf.BlobContent.zeptojs], 'text/javascript', 'zepto.js');
-            MyBlob([window.wf.BlobContent.runtimejs], 'text/javascript', 'runtime.js');
-            MyBlob([window.wf.BlobContent.appyatejs], 'text/javascript', 'app.yate.js');
-            MyBlob([window.wf.BlobContent.appjs], 'text/javascript', 'app.js');
+            MyBlob([window.wf.BlobContent.runtimejs, window.wf.BlobContent.appyatejs, window.wf.BlobContent.appjs], 'text/javascript', 'js');
+            //MyBlob([window.wf.BlobContent.appyatejs], 'text/javascript', 'app.yate.js');
+            //MyBlob([window.wf.BlobContent.appjs], 'text/javascript', 'app.js');
         }
     };
 

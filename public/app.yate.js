@@ -319,6 +319,6 @@ var yr = yr || require('yate/lib/runtime.js');
     };
     M.imports = [];
 
-    yr.register('common', M);
+    yr.register('app', M);
 
 })();

@@ -1,4 +1,4 @@
-module "common"
+module "app"
 
 static = "https://get.worldfly.org/storage/main/images"
 

@@ -52,7 +52,7 @@
         window.wf.BootCount++;
         console.error(error);
         if (window.wf.BootCount < 1) {
-            console.log('Loading error. I\'m try again now');
+            console.warn('Loading error. I\'m try again now');
             Bootstrap();
         }
     };

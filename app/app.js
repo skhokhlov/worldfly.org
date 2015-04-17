@@ -38,8 +38,8 @@
             }
         },
         render: {
-            home: yr.run('common', (JSON.parse(window.wf.PagesData)).home),
-            projects: yr.run('common', (JSON.parse(window.wf.PagesData)).projects)
+            home: yr.run('app', (JSON.parse(window.wf.PagesData)).home),
+            projects: yr.run('app', (JSON.parse(window.wf.PagesData)).projects)
         }
     };
 

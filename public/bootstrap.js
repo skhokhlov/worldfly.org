@@ -42,7 +42,6 @@
     window.wf.BlobContent.load = 0;
     var BlobRender = function () {
         if (window.wf.BlobContent.load === 3) {
-            //MyBlob([window.wf.BlobContent.zeptojs], 'text/javascript', 'zepto.js');
             MyBlob([window.wf.BlobContent.runtimejs, window.wf.BlobContent.appyatejs, window.wf.BlobContent.appjs], 'text/javascript', 'js');
             //MyBlob([window.wf.BlobContent.appyatejs], 'text/javascript', 'app.yate.js');
             //MyBlob([window.wf.BlobContent.appjs], 'text/javascript', 'app.js');
@@ -53,7 +52,7 @@
         window.wf.BootCount++;
         console.error(error);
         if (window.wf.BootCount < 1) {
-            console.log('Loading error. I\'m try again now');
+            console.warn('Loading error. I\'m try again now');
             Bootstrap();
         }
     };
@@ -72,13 +71,6 @@
     }, function (error) {
         BootstrapError(error)
     });
-    //request('/public/zepto.js').then(function (res) {
-    //    window.wf.BlobContent.zeptojs = res;
-    //    window.wf.BlobContent.load++;
-    //    BlobRender();
-    //}, function (error) {
-    //    BootstrapError(error)
-    //});
     request('/public/app.js').then(function (res) {
         window.wf.BlobContent.appjs = res;
         window.wf.BlobContent.load++;

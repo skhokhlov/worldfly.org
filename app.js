@@ -21,13 +21,13 @@ app.get('/projects', function (req, res) {
     //})
 });
 
-app.get('/assest/data.json', function(req,res){
+app.get('/assest/data.json', function (req, res) {
     //res.status(200).sendFile(__dirname + '/assest/data.json');
     res.status(200).json({
         "data": {
             "ipCountry": req.ips
         },
-        "home":{
+        "home": {
             "data": {
                 "year": new Date().getFullYear()
 
@@ -38,7 +38,7 @@ app.get('/assest/data.json', function(req,res){
                         "logo": true,
                         "nav": true
                     },
-                    "footer":true
+                    "footer": true
                 },
                 "page-params": {
                     "_page": "home",
@@ -46,20 +46,74 @@ app.get('/assest/data.json', function(req,res){
                 }
             }
         },
-        "projects":{
+        "projects": {
             "data": {
                 "year": new Date().getFullYear()
             },
             "page": {
                 "page-blocks": {
                     "header": {
+                        "logo": true,
                         "nav": true
                     },
-                    "footer":true
+                    "body": {
+                        "projects": [
+                            {
+                                "title": "Gewefope",
+                                "link": [
+                                    {
+                                        "href": "https://github.com/gewefope/gewefope",
+                                        "body": "Github",
+                                        "separator": ". "
+                                    },
+                                    {
+                                        "href": "https://debug.gewefope.com",
+                                        "body": "Website",
+                                        "separator": "."
+                                    }
+                                ],
+                                "description": "In development. Partly open source. Fully customizable weather forecast."
+                            },
+                            {
+                                "title": "Greengrocery",
+                                "link": [
+                                    {
+                                        "href": "https://github.com/skhokhlov/greengrocery",
+                                        "body": "Github",
+                                        "separator": "."
+                                    }
+                                ],
+                                "description": "Open Source CMS on asp.net. To get started you just need to open your browser. One of the most simple and fast content management systems."
+                            },
+                            {
+                                "title": "Blog about IT",
+                                "description": "Closed."
+                            },
+                            {
+                                "title": "Collection of articles on aviation and astronautics",
+                                "description": "Closed."
+                            },
+                            {
+                                "title": "News of aviation and astronautics",
+                                "description": "Closed. The most interesting news of aviation and astronautics."
+                            },
+                            {
+                                "title": "Photo Album",
+                                "description": "Closed."
+                            },
+                            {
+                                "title": "Encyclopedia of aviation and astronautics",
+                                "description": "Closed. Science handbook of articles on aerospace engineering."
+                            }
+                        ]
+
+                    },
+                    "footer": true
                 },
                 "page-params": {
                     "_page": "page",
-                    "title": "Projects of World Fly"
+                    "title": "Projects of World Fly",
+                    "header": "Projects"
                 }
             }
         }

@@ -109,3 +109,17 @@ match .footer block-content {
     <p>2015 © World Fly</p>
     </div>
 }
+
+
+match .body block {
+    <div class="b-body">
+    apply . block-content
+    </div>
+}
+
+match .body block-content {
+    <div class="b-body__content">
+        <h1 class="b-body__title">{ params.header }</h1>
+        apply .* block
+    </div>
+}

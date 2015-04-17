@@ -47,5 +47,26 @@ gulp.task('html', function() {
 });
 
 
+gulp.task('js-dev', function(){
+    //gulp.src(['app.js'])
+    //    .pipe(jshint())
+    //    .pipe(jshint.reporter('default'));
 
-gulp.task('default', ['yate', 'js', 'css', 'html']);
+    gulp.src(['app/bootstrap.js','app/app.js'])
+        //.pipe(jshint())
+        //.pipe(jshint.reporter('default'))
+        .pipe(gulp.dest('public'));
+
+    gulp.src(['node_modules/yate/lib/runtime.js'])
+        .pipe(gulp.dest('public'));
+
+});
+
+gulp.task('html-dev', function() {
+    gulp.src('app/app.html')
+        .pipe(gulp.dest('public'));
+});
+
+
+gulp.task('production', ['yate', 'js', 'css', 'html']);
+gulp.task('default', ['yate', 'js-dev', 'css', 'html-dev']);

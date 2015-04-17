@@ -12,16 +12,18 @@
         },
         navigation: function (){
             if (document.getElementsByClassName('b-nav__link_home')[0] !== undefined){
-                document.getElementsByClassName('b-nav__link_home')[0].addEventListener('click', function (){
+                document.getElementsByClassName('b-nav__link_home')[0].addEventListener('click', function (event){
                     history.pushState({page: 'home'}, 'Home page of World Fly', '/');
                     app.pages.home();
+                    event.preventDefault();
                     return false;
                 });
             }
 
-            document.getElementsByClassName('b-nav__link_projects')[0].addEventListener('click', function (){
+            document.getElementsByClassName('b-nav__link_projects')[0].addEventListener('click', function (event){
                 history.pushState({page: 'projects'}, 'Projects of World Fly', '/projects');
                 app.pages.projects();
+                event.preventDefault();
                 return false;
             });
         },

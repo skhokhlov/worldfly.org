@@ -15,6 +15,12 @@ app.get('/', function (req, res) {
     //})
 });
 
+app.get('/projects', function (req, res) {
+    //checkHost(req.hostname, res, 'https://www.worldfly.org/', function(){
+    res.status(200).sendFile(__dirname + '/public/app.html');
+    //})
+});
+
 app.get('/assest/data.json', function(req,res){
     //res.status(200).sendFile(__dirname + '/assest/data.json');
     res.status(200).json({

@@ -7,7 +7,7 @@
                 wf.app.pages.home();
             } else if (window.location.pathname === '/projects') {
                 history.replaceState({page: 'projects'}, 'Projects of World Fly', '/projects');
-                app.pages.projects();
+                wf.app.pages.projects();
             }
         },
         navigation: function (){

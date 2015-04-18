@@ -1,25 +1,34 @@
 'use strict';
 
 var express = require('express'),
-    app = express();
+    app = express(),
+    debug = process.env.DEBUG || true;
 
 app.set('port', process.env.PORT || 3000);
 
 
 app.use('/public', express.static(__dirname + '/public'));
 
+if (debug) {
+    app.get('/', function (req, res) {
+        res.status(200).sendFile(__dirname + '/public/app.html');
+    });
+    app.get('/projects', function (req, res) {
+        res.status(200).sendFile(__dirname + '/public/app.html');
+    });
+} else {
+    app.get('/', function (req, res) {
+        checkHost(req.hostname, res, 'https://www.worldfly.org/', function () {
+            res.status(200).sendFile(__dirname + '/public/app.html');
+        })
+    });
+    app.get('/projects', function (req, res) {
+        checkHost(req.hostname, res, 'https://www.worldfly.org/projects', function () {
+            res.status(200).sendFile(__dirname + '/public/app.html');
+        })
+    });
+}
 
-app.get('/', function (req, res) {
-    //checkHost(req.hostname, res, 'https://www.worldfly.org/', function(){
-    res.status(200).sendFile(__dirname + '/public/app.html');
-    //})
-});
-
-app.get('/projects', function (req, res) {
-    //checkHost(req.hostname, res, 'https://www.worldfly.org/', function(){
-    res.status(200).sendFile(__dirname + '/public/app.html');
-    //})
-});
 
 app.get('/assest/data.json', function (req, res) {
     res.status(200).json(dataResponse);
@@ -30,20 +39,20 @@ require('http').createServer(app).listen(app.get('port'), function () {
 });
 
 
-//var checkHost = function () {
-//    //var host = arguments[0],
-//    //    response = arguments[1],
-//    //    errorRedirect = arguments[2],
-//    //    successCallback = arguments[3]
-//    //    ;
-//
-//    if (host == 'worldfly.info' || host == 'www.worldfly.info' || host == 'worldfly.org') {
-//        response.redirect(301, errorRedirect);
-//    } else {
-//        successCallback();
-//    }
-//
-//};
+function checkHost(host, response, errorRedirect, successCallback) {
+    //var host = arguments[0],
+    //    response = arguments[1],
+    //    errorRedirect = arguments[2],
+    //    successCallback = arguments[3]
+    //    ;
+
+    if (host == 'worldfly.info' || host == 'www.worldfly.info' || host == 'worldfly.org') {
+        response.redirect(301, errorRedirect);
+    } else {
+        successCallback();
+    }
+
+}
 
 var _data = {
     "year": new Date().getFullYear()

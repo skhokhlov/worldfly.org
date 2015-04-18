@@ -159,10 +159,10 @@ match .project {
         </div>
         <div class="b-list__item__desrc">
             for .link {
-                <span><a href="{ .href }"><span>{ .body }</span></a>{ .separator }</span>
+                <span><a class="b-list__item__desrc__link" href="{ .href }"><span>{ .body }</span></a>{ .separator }</span>
             }
-            if .description {
-                <p>{ .description }</p>
+            for .description {
+                <p>{ . }</p>
             }
         </div>
   </div>

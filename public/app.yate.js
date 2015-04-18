@@ -402,10 +402,12 @@ var yr = yr || require('yate/lib/runtime.js');
         var items0 = selectNametest('link', c0, []);
         for (var i1 = 0, l1 = items0.length; i1 < l1; i1++) {
             var c1 = items0[ i1 ];
-            r0 += "<span><a href=\"" + nodeset2attrvalue( ( selectNametest('href', c1, []) ) ) + "\"><span>" + nodeset2xml( ( selectNametest('body', c1, []) ) ) + "</span></a>" + nodeset2xml( ( selectNametest('separator', c1, []) ) ) + "</span>";
+            r0 += "<span><a class=\"" + "b-list__item__desrc__link" + "\" href=\"" + nodeset2attrvalue( ( selectNametest('href', c1, []) ) ) + "\"><span>" + nodeset2xml( ( selectNametest('body', c1, []) ) ) + "</span></a>" + nodeset2xml( ( selectNametest('separator', c1, []) ) ) + "</span>";
         }
-        if (simpleBoolean('description', c0)) {
-            r0 += "<p>" + nodeset2xml( ( selectNametest('description', c0, []) ) ) + "</p>";
+        var items0 = selectNametest('description', c0, []);
+        for (var i1 = 0, l1 = items0.length; i1 < l1; i1++) {
+            var c1 = items0[ i1 ];
+            r0 += "<p>" + nodeset2xml( ( m.s(j7, c1) ) ) + "</p>";
         }
         r0 += "</div>";
         r0 += "</div>";

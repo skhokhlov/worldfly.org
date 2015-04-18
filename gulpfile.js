@@ -9,7 +9,8 @@ var gulp = require('gulp'),
 gulp.task('yate', function(){
     gulp.src(['app/app.yate'])
         .pipe(shell([
-            './node_modules/.bin/yate <%= file.path %> > public/app.yate.js'
+            './node_modules/.bin/yate <%= file.path %> > public/app.yate.js',
+            './node_modules/gulp-uglify/node_modules/uglify-js/bin/uglifyjs public/app.yate.js -o public/app.yate.js'
         ]));
 });
 
@@ -47,6 +48,14 @@ gulp.task('html', function() {
 });
 
 
+gulp.task('yate-dev', function(){
+    gulp.src(['app/app.yate'])
+        .pipe(shell([
+            './node_modules/.bin/yate <%= file.path %> > public/app.yate.js'
+        ]));
+});
+
+
 gulp.task('js-dev', function(){
     //gulp.src(['app.js'])
     //    .pipe(jshint())
@@ -69,4 +78,4 @@ gulp.task('html-dev', function() {
 
 
 gulp.task('production', ['yate', 'js', 'css', 'html']);
-gulp.task('default', ['yate', 'js-dev', 'css', 'html-dev']);
+gulp.task('default', ['yate-dev', 'js-dev', 'css', 'html-dev']);

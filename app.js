@@ -71,6 +71,10 @@ app.get('/assest/data.json', function (req, res) {
                         "project": [
                             {
                                 "title": "Gewefope",
+                                "years": {
+                                    "begin": 2013,
+                                    "end": "∞"
+                                },
                                 "link": [
                                     {
                                         "href": "https://github.com/gewefope/gewefope",
@@ -87,6 +91,10 @@ app.get('/assest/data.json', function (req, res) {
                             },
                             {
                                 "title": "Greengrocery",
+                                "years": {
+                                    "begin": 2012,
+                                    "end": "∞"
+                                },
                                 "link": [
                                     {
                                         "href": "https://github.com/skhokhlov/greengrocery",
@@ -98,22 +106,41 @@ app.get('/assest/data.json', function (req, res) {
                             },
                             {
                                 "title": "Blog about IT",
+                                "years": {
+                                    "begin": 2012
+                                },
                                 "description": "Closed."
                             },
                             {
                                 "title": "Collection of articles on aviation and astronautics",
+                                "years": {
+                                    "begin": 2008,
+                                    "end": 2013
+                                },
                                 "description": "Closed."
                             },
                             {
                                 "title": "News of aviation and astronautics",
+                                "years": {
+                                    "begin": 2008,
+                                    "end": 2012
+                                },
                                 "description": "Closed. The most interesting news of aviation and astronautics."
                             },
                             {
                                 "title": "Photo Album",
+                                "years": {
+                                    "begin": 2008,
+                                    "end": 2013
+                                },
                                 "description": "Closed."
                             },
                             {
                                 "title": "Encyclopedia of aviation and astronautics",
+                                "years": {
+                                    "begin": 2007,
+                                    "end": 2013
+                                },
                                 "description": "Closed. Science handbook of articles on aerospace engineering."
                             }
                         ]

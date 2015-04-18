@@ -68,13 +68,19 @@ var yr = yr || require('yate/lib/runtime.js');
 
     var j17 = [ 0, 'list', 0, 'project' ];
 
-    var j18 = [ 0, 'link' ];
+    var j18 = [ 0, 'years' ];
 
-    var j19 = [ 0, 'href' ];
+    var j19 = [ 0, 'years', 0, 'begin' ];
 
-    var j20 = [ 0, 'separator' ];
+    var j20 = [ 0, 'years', 0, 'end' ];
 
-    var j21 = [ 0, 'description' ];
+    var j21 = [ 0, 'link' ];
+
+    var j22 = [ 0, 'href' ];
+
+    var j23 = [ 0, 'separator' ];
+
+    var j24 = [ 0, 'description' ];
 
     // match /
     M.t0 = function t0(m, c0, i0, l0, a0) {
@@ -282,7 +288,7 @@ var yr = yr || require('yate/lib/runtime.js');
         }
         a0.a[ "class" ] = new yr.scalarAttr(r1);
         r0 += closeAttrs(a0);
-        r0 += "<p>" + nodeset2xml( ( m.s(j14, c0.doc.root) ) ) + " © World Fly" + "</p>";
+        r0 += "<p>" + "2008—" + nodeset2xml( ( m.s(j14, c0.doc.root) ) ) + " © World Fly" + "</p>";
         r0 += "</div>";
 
         return r0;
@@ -377,7 +383,21 @@ var yr = yr || require('yate/lib/runtime.js');
 
         r0 += closeAttrs(a0);
         r0 += "<div class=\"" + "b-list__item" + "\">";
+        r0 += "<div class=\"" + "b-list__item__head" + "\">";
         r0 += "<h2 class=\"" + "b-list__item__title" + "\">" + nodeset2xml( ( selectNametest('title', c0, []) ) ) + "</h2>";
+        if (simpleBoolean('years', c0)) {
+            r0 += "<span class=\"" + "b-list__item__years" + "\">";
+            r0 += "<span class=\"" + "b-list__item__years__begin" + "\">" + nodeset2xml( ( m.s(j19, c0) ) ) + "</span>";
+            if (nodeset2boolean( m.s(j20, c0) )) {
+                if (cmpSN("∞", m.s(j20, c0))) {
+                    r0 += "<span class=\"" + "b-list__item__dash" + "\">" + "—" + "</span><span class=\"" + "b-list__item__years__end_big" + "\">" + nodeset2xml( ( m.s(j20, c0) ) ) + "</span>";
+                } else {
+                    r0 += "<span class=\"" + "b-list__item__dash" + "\">" + "—" + "</span><span class=\"" + "b-list__item__years__end" + "\">" + nodeset2xml( ( m.s(j20, c0) ) ) + "</span>";
+                }
+            }
+            r0 += "</span>";
+        }
+        r0 += "</div>";
         r0 += "<div class=\"" + "b-list__item__desrc" + "\">";
         var items0 = selectNametest('link', c0, []);
         for (var i1 = 0, l1 = items0.length; i1 < l1; i1++) {

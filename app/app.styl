@@ -73,6 +73,9 @@ a
       display block
       margin 0 auto
 
+    &_page
+      width 150px
+
   &__slogan
     width 400px
     margin-top -35px
@@ -83,8 +86,22 @@ a
 .b-list
   padding 0 15pt
 
-  &__item__desrc
-    padding 0 9pt
+  &__item
+
+    &__title
+      display inline-block
+
+    &__years
+      display inline-block
+      padding-left 1.2em
+      color #6C6C6C
+
+      &__end
+        &_big
+          font-size 1.2em
+
+    &__desrc
+      padding 0 9pt
 
 .b-footer
   text-align right

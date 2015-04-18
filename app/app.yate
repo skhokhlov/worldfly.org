@@ -106,7 +106,7 @@ match .footer block-content {
         }
     )
 
-    <p>{ /.data.year } © World Fly</p>
+    <p>2008—{ /.data.year } © World Fly</p>
     </div>
 }
 
@@ -142,7 +142,21 @@ match .projects list {
 
 match .project {
     <div class="b-list__item">
-        <h2 class="b-list__item__title">{ .title }</h2>
+        <div class="b-list__item__head">
+            <h2 class="b-list__item__title">{ .title }</h2>
+            if .years {
+                <span class="b-list__item__years">
+                    <span class="b-list__item__years__begin">{ .years.begin }</span>
+                    if .years.end {
+                        if .years.end == "∞" {
+                            <span class="b-list__item__dash">—</span><span class="b-list__item__years__end_big">{ .years.end }</span>
+                        } else {
+                            <span class="b-list__item__dash">—</span><span class="b-list__item__years__end">{ .years.end }</span>
+                        }
+                    }
+                </span>
+            }
+        </div>
         <div class="b-list__item__desrc">
             for .link {
                 <span><a href="{ .href }"><span>{ .body }</span></a>{ .separator }</span>

@@ -1,10 +1,10 @@
 (function(yr,window,document){
 
-    window.app = {
+    window.wf.app = {
         launch: function (){
             if (window.location.pathname === '/') {
                 history.replaceState({page: 'home'}, 'Home page of World Fly', '/');
-                app.pages.home();
+                wf.app.pages.home();
             } else if (window.location.pathname === '/projects') {
                 history.replaceState({page: 'projects'}, 'Projects of World Fly', '/projects');
                 app.pages.projects();
@@ -14,7 +14,7 @@
             if (document.getElementsByClassName('b-nav__link_home')[0] !== undefined){
                 document.getElementsByClassName('b-nav__link_home')[0].addEventListener('click', function (event){
                     history.pushState({page: 'home'}, 'Home page of World Fly', '/');
-                    app.pages.home();
+                    wf.app.pages.home();
                     event.preventDefault();
                     return false;
                 });
@@ -22,7 +22,7 @@
 
             document.getElementsByClassName('b-nav__link_projects')[0].addEventListener('click', function (event){
                 history.pushState({page: 'projects'}, 'Projects of World Fly', '/projects');
-                app.pages.projects();
+                wf.app.pages.projects();
                 event.preventDefault();
                 return false;
             });
@@ -30,13 +30,13 @@
         pages:{
             home: function (){
                 document.title = 'Home page of World Fly';
-                document.getElementsByTagName('html')[0].innerHTML = app.render.home;
-                app.navigation();
+                document.getElementsByTagName('html')[0].innerHTML = wf.app.render.home;
+                wf.app.navigation();
             },
             projects: function (){
                 document.title = 'Projects of World Fly';
-                document.getElementsByTagName('html')[0].innerHTML = app.render.projects;
-                app.navigation();
+                document.getElementsByTagName('html')[0].innerHTML = wf.app.render.projects;
+                wf.app.navigation();
             }
         },
         render: {
@@ -47,13 +47,13 @@
 
     window.addEventListener('popstate', function (event) {
         if (event.state.page === 'home') {
-            app.pages.home();
+            wf.app.pages.home();
         } else if (event.state.page == 'projects') {
-            app.pages.projects();
+            wf.app.pages.projects();
         }
     });
 
-    app.launch();
+    wf.app.launch();
 
     //document.getElementsByTagName('html')[0].innerHTML = yr.run('common', JSON.parse(window.wf.PagesData));
 })(yr, window, document);

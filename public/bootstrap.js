@@ -41,7 +41,7 @@
 
     window.wf.BlobContent.load = 0;
     var BlobRender = function () {
-        if (window.wf.BlobContent.load === 3) {
+        if (window.wf.BlobContent.load === 4) {
             MyBlob([window.wf.BlobContent.runtimejs, window.wf.BlobContent.appyatejs, window.wf.BlobContent.appjs], 'text/javascript', 'js');
             //MyBlob([window.wf.BlobContent.appyatejs], 'text/javascript', 'app.yate.js');
             //MyBlob([window.wf.BlobContent.appjs], 'text/javascript', 'app.js');
@@ -82,6 +82,8 @@
 
     request('/assest/data.json').then(function (res) {
         window.wf.PagesData = res;
+        window.wf.BlobContent.load++;
+        BlobRender();
     }, function () {
         BootstrapError(error);
     });

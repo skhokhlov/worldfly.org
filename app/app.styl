@@ -2,9 +2,12 @@
   //font 13pt 'EB Garamond', 'serif'
   font 13pt 'Open Sans', sans-serif
 
+
+
 a
   color #08c
   text-decoration underline
+
 
 
 .b-body
@@ -14,6 +17,7 @@ a
 
   &__content
     text-align left
+
 
 
 .b-header
@@ -82,7 +86,6 @@ a
 
 
 
-
 .b-list
   padding 0 15pt
 
@@ -103,6 +106,8 @@ a
     &__desrc
       padding 0 9pt
 
+
+
 .b-footer
   text-align right
   font-size 11pt
@@ -113,6 +118,30 @@ a
     color #000
     right 30px
 
+
+
+.b-loader
+  position relative
+  display inline-block
+  overflow hidden
+  -webkit-transform translate(0, 0)
+
+  &__object
+    position absolute
+    top 0
+    left 0
+    right 0
+    bottom 0
+    opacity 0.4
+    background url('/public/images/loader.svg')
+    background-size 100% 100%
+    transform translateZ(0)
+    animation spin 1s infinite linear
+
+  &_f
+    width 100px
+    position absolute
+    margin auto
 
 
 @keyframes FadeOut
@@ -126,3 +155,19 @@ a
     opacity 0
   100%
     opacity 1
+
+
+
+@keyframes spin
+  0%
+    -webkit-transform rotate(0deg)
+    -moz-transform rotate(0deg)
+    -ms-transform rotate(0deg)
+    -o-transform rotate(0deg)
+    transform rotate(0deg)
+  100%
+    -webkit-transform rotate(360deg)
+    -moz-transform rotate(360deg)
+    -ms-transform rotate(360deg)
+    -o-transform rotate(360deg)
+    transform rotate(360deg)

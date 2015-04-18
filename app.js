@@ -7,9 +7,8 @@ var express = require('express'),
 app.set('port', process.env.PORT || 3000);
 
 
-app.use('/public', express.static(__dirname + '/public'));
-
 if (debug) {
+    app.use('/public', express.static(__dirname + '/public'));
     app.get('/', function (req, res) {
         res.status(200).sendFile(__dirname + '/public/app.html');
     });
@@ -17,6 +16,7 @@ if (debug) {
         res.status(200).sendFile(__dirname + '/public/app.html');
     });
 } else {
+    app.use('/public', express.static(__dirname + '/public', {maxAge: 604800000}));
     app.get('/', function (req, res) {
         checkHost(req.hostname, res, 'https://www.worldfly.org/', function () {
             res.status(200).sendFile(__dirname + '/public/app.html');

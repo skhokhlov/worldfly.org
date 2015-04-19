@@ -4,7 +4,8 @@ var gulp = require('gulp'),
     stylus = require('gulp-stylus'),
     uglify = require('gulp-uglify'),
     jshint = require('gulp-jshint'),
-    htmlmin = require('gulp-htmlmin');
+    htmlmin = require('gulp-htmlmin'),
+    autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('yate', function(){
     gulp.src(['app/app.yate'])
@@ -17,6 +18,9 @@ gulp.task('yate', function(){
 gulp.task('css', function(){
     gulp.src(['app/app.styl'])
         .pipe(stylus())
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions']
+        }))
         .pipe(csso())
         .pipe(gulp.dest('public'));
 });

@@ -2,29 +2,42 @@
 
 var express = require('express'),
     app = express(),
-    debug = process.env.DEBUG || true;
+    yr = require(__dirname + '/node_modules/yate/lib/runtime.js'),
+    debug = process.env.DEBUG || 'true';
 
 app.set('port', process.env.PORT || 3000);
 
 
-if (debug) {
+if (debug === 'true') {
     app.use('/public', express.static(__dirname + '/public'));
+
     app.get('/', function (req, res) {
         res.status(200).sendFile(__dirname + '/public/app.html');
     });
+
     app.get('/projects', function (req, res) {
         res.status(200).sendFile(__dirname + '/public/app.html');
     });
 } else {
     app.use('/public', express.static(__dirname + '/public', {maxAge: 604800000}));
+
     app.get('/', function (req, res) {
         checkHost(req.hostname, res, 'https://www.worldfly.org/', function () {
-            res.status(200).sendFile(__dirname + '/public/app.html');
+            if (req.query._escaped_fragment_ == '' || req.query.nojs == 'true') {
+                res.send(render.home);
+            }else {
+                res.status(200).sendFile(__dirname + '/public/app.html');
+            }
         })
     });
+
     app.get('/projects', function (req, res) {
         checkHost(req.hostname, res, 'https://www.worldfly.org/projects', function () {
-            res.status(200).sendFile(__dirname + '/public/app.html');
+            if (req.query._escaped_fragment_ == '' || req.query.nojs == 'true') {
+                res.send(render.projects);
+            }else {
+                res.status(200).sendFile(__dirname + '/public/app.html');
+            }
         })
     });
 }
@@ -192,4 +205,10 @@ var dataResponse = {
             }
         }
     }
+};
+
+require(__dirname + '/public/app.yate.js');
+var render = {
+    "home": yr.run('app', dataResponse.home),
+    "projects": yr.run('app', dataResponse.projects)
 };

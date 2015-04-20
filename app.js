@@ -8,43 +8,35 @@ var express = require('express'),
 app.set('port', process.env.PORT || 3000);
 
 
-if (debug === 'true') {
-    app.use('/public', express.static(__dirname + '/public'));
+app.use('/public', express.static(__dirname + '/public', {maxAge: ((debug === 'true') ? 1000 : 604800000)}));
 
-    app.get('/', function (req, res) {
-        res.status(200).sendFile(__dirname + '/public/app.html');
-    });
+app.get('/', function (req, res) {
+    if(hostAvailability(req.hostname)){
+        if (req.query._escaped_fragment_ == '' || req.query.nojs == 'true') {
+            res.send(render.home);
+        } else {
+            res.status(200).sendFile(__dirname + '/public/app.html');
+        }
+    } else {
+        res.redirect(301, 'https://www.worldfly.org/');
+    }
+});
 
-    app.get('/projects', function (req, res) {
-        res.status(200).sendFile(__dirname + '/public/app.html');
-    });
-} else {
-    app.use('/public', express.static(__dirname + '/public', {maxAge: 604800000}));
-
-    app.get('/', function (req, res) {
-        checkHost(req.hostname, res, 'https://www.worldfly.org/', function () {
-            if (req.query._escaped_fragment_ == '' || req.query.nojs == 'true') {
-                res.send(render.home);
-            }else {
-                res.status(200).sendFile(__dirname + '/public/app.html');
-            }
-        })
-    });
-
-    app.get('/projects', function (req, res) {
-        checkHost(req.hostname, res, 'https://www.worldfly.org/projects', function () {
-            if (req.query._escaped_fragment_ == '' || req.query.nojs == 'true') {
-                res.send(render.projects);
-            }else {
-                res.status(200).sendFile(__dirname + '/public/app.html');
-            }
-        })
-    });
-}
+app.get('/projects', function (req, res) {
+    if(hostAvailability(req.hostname)){
+        if (req.query._escaped_fragment_ == '' || req.query.nojs == 'true') {
+            res.send(render.projects);
+        } else {
+            res.status(200).sendFile(__dirname + '/public/app.html');
+        }
+    } else {
+        res.redirect(301, 'https://www.worldfly.org/projects');
+    }
+});
 
 
 app.get('/assest/data.json', function (req, res) {
-    res.status(200).json(dataResponse);
+    res.status(200).set('cache-control', 'public, max-age=10').json(dataResponse);
 });
 
 require('http').createServer(app).listen(app.get('port'), function () {
@@ -52,19 +44,8 @@ require('http').createServer(app).listen(app.get('port'), function () {
 });
 
 
-function checkHost(host, response, errorRedirect, successCallback) {
-    //var host = arguments[0],
-    //    response = arguments[1],
-    //    errorRedirect = arguments[2],
-    //    successCallback = arguments[3]
-    //    ;
-
-    if (host == 'worldfly.info' || host == 'www.worldfly.info' || host == 'worldfly.org') {
-        response.redirect(301, errorRedirect);
-    } else {
-        successCallback();
-    }
-
+function hostAvailability(host){
+    return !(host === 'worldfly.info' || host === 'www.worldfly.info' || host === 'worldfly.org');
 }
 
 var _data = {

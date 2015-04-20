@@ -2,13 +2,12 @@
 
 var express = require('express'),
     app = express(),
-    yr = require(__dirname + '/node_modules/yate/lib/runtime.js'),
-    debug = process.env.DEBUG || 'true';
+    yr = require(__dirname + '/node_modules/yate/lib/runtime.js');
 
 app.set('port', process.env.PORT || 3000);
 
 
-app.use('/public', express.static(__dirname + '/public', {maxAge: ((debug === 'true') ? 1000 : 604800000)}));
+app.use('/public', express.static(__dirname + '/public', {maxAge: ((process.env.DEBUG === 'true') ? 1000 : 604800000)}));
 
 app.get('/', function (req, res) {
     if(hostAvailability(req.hostname)){

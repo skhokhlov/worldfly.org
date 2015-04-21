@@ -62,21 +62,21 @@
         window.wf.BlobContent.load++;
         BlobRender();
     }, function (error) {
-        BootstrapError(error)
+        BootstrapError(error);
     });
     request('/public/app.yate.js').then(function (res) {
         window.wf.BlobContent.appyatejs = res;
         window.wf.BlobContent.load++;
         BlobRender();
     }, function (error) {
-        BootstrapError(error)
+        BootstrapError(error);
     });
     request('/public/app.js').then(function (res) {
         window.wf.BlobContent.appjs = res;
         window.wf.BlobContent.load++;
         BlobRender();
     }, function (error) {
-        BootstrapError(error)
+        BootstrapError(error);
     });
 
 
@@ -84,7 +84,7 @@
         window.wf.PagesData = res;
         window.wf.BlobContent.load++;
         BlobRender();
-    }, function () {
+    }, function (error) {
         BootstrapError(error);
     });
 

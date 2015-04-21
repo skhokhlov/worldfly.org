@@ -31,8 +31,8 @@ gulp.task('js', function(){
     //    .pipe(jshint.reporter('default'));
 
     gulp.src(['app/bootstrap.js','app/app.js'])
-        //.pipe(jshint())
-        //.pipe(jshint.reporter('default'))
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'))
         .pipe(uglify())
         .pipe(gulp.dest('public'));
 
@@ -66,8 +66,8 @@ gulp.task('js-dev', function(){
     //    .pipe(jshint.reporter('default'));
 
     gulp.src(['app/bootstrap.js','app/app.js'])
-        //.pipe(jshint())
-        //.pipe(jshint.reporter('default'))
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'))
         .pipe(gulp.dest('public'));
 
     gulp.src(['node_modules/yate/lib/runtime.js'])

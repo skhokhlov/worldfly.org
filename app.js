@@ -10,7 +10,7 @@ app.set('port', process.env.PORT || 3000);
 app.use('/public', express.static(__dirname + '/public', {maxAge: ((process.env.DEBUG === 'true') ? 1000 : 604800000)}));
 
 app.get('/', function (req, res) {
-    if(hostAvailability(req.hostname)){
+    if (hostAvailability(req.hostname)) {
         if (req.query._escaped_fragment_ == '' || req.query.nojs == 'true') {
             res.send(render.home);
         } else {
@@ -22,7 +22,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/projects', function (req, res) {
-    if(hostAvailability(req.hostname)){
+    if (hostAvailability(req.hostname)) {
         if (req.query._escaped_fragment_ == '' || req.query.nojs == 'true') {
             res.send(render.projects);
         } else {
@@ -38,12 +38,34 @@ app.get('/assest/data.json', function (req, res) {
     res.status(200).set('cache-control', 'public, max-age=10').json(dataResponse);
 });
 
+app.get('/robots.txt', function (req, res) {
+    res.set('Content-type', 'text/plain').send('User-Agent: *\nAllow: /\n\nSitemap: https://www.worldfly.org/sitemap.xml\nHost: https://www.WorldFly.org');
+});
+
+app.get('/sitemap.xml', function (req, res) {
+    res.set('Content-type', 'application/xml').send('<?xml version="1.0" encoding="UTF-8"?>\n' +
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" ' +
+    'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ' +
+    'xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">\n' +
+    '<url> \n' +
+    '<loc>https://www.worldfly.org/</loc> \n' +
+    '<lastmod>2015-4-20T13:29:09+00:00</lastmod> \n' +
+    '<changefreq>monthly</changefreq> \n' +
+    '</url> \n' +
+    '<url> \n' +
+    '<loc>https://www.worldfly.org/projects</loc> \n' +
+    '<lastmod>2015-4-20T13:29:09+00:00</lastmod> \n' +
+    '<changefreq>monthly</changefreq> \n' +
+    '</url> \n' +
+    '</urlset>');
+});
+
 require('http').createServer(app).listen(app.get('port'), function () {
     console.log('Server listening on port ' + app.get('port'));
 });
 
 
-function hostAvailability(host){
+function hostAvailability(host) {
     return !(host === 'worldfly.info' || host === 'www.worldfly.info' || host === 'worldfly.org');
 }
 

@@ -43,7 +43,7 @@ app.get('/assest/data.json', function (req, res) {
 });
 
 app.get('/robots.txt', function (req, res) {
-    res.set('Content-type', 'text/plain').send('User-Agent: *\nAllow: /\n\nSitemap: https://www.worldfly.org/sitemap.xml\nHost: https://www.WorldFly.org');
+    res.set('Content-type', 'text/plain').send(process.env.DEBUG === 'true' ? 'User-Agent: *\nDisallow: /' : 'User-Agent: *\nDisallow: ?*\nAllow: /\n\nSitemap: https://www.worldfly.org/sitemap.xml\nHost: https://www.WorldFly.org');
 });
 
 app.get('/sitemap.xml', function (req, res) {
@@ -67,6 +67,19 @@ app.get('/sitemap.xml', function (req, res) {
 require('http').createServer(app).listen(app.get('port'), function () {
     console.log('Server listening on port ' + app.get('port'));
 });
+
+
+require(__dirname + '/public/app.yate.js');
+var render = {
+    "nojs": {
+        "home": yr.run('app', getData('nojs').home),
+        "projects": yr.run('app', getData('nojs').projects)
+    },
+    "js":{
+        "home": yr.run('app', getData().home),
+        "projects": yr.run('app', getData().projects)
+    }
+};
 
 
 function hostAvailability(host) {
@@ -215,17 +228,3 @@ function getData (env){
         }
     };
 }
-
-
-
-require(__dirname + '/public/app.yate.js');
-var render = {
-    "nojs": {
-        "home": yr.run('app', getData('nojs').home),
-        "projects": yr.run('app', getData('nojs').projects)
-    },
-    "js":{
-        "home": yr.run('app', getData().home),
-        "projects": yr.run('app', getData().projects)
-    }
-};

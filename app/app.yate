@@ -5,6 +5,14 @@ static = "https://get.worldfly.org/storage/main/images"
 params = /.page.page-params
 page = params._page
 
+func url(url) {
+    if  /.data.nojs == "true" {
+        @href = "{ url }?nojs=true"
+    } else {
+        @href = "{ url}"
+    }
+}
+
 match / {
     <html>
         <head lang="en">
@@ -75,10 +83,16 @@ match .nav block-content {
     )
 
     if page == "home" {
-        <a class="b-nav__link b-nav__link_projects" href="/projects">Projects</a>
+        <a class="b-nav__link b-nav__link_projects">
+        url("/projects")
+        <span>Projects</span></a>
     } else {
-        <a class="b-nav__link b-nav__link_home" href="/">Home</a>
-        <a class="b-nav__link b-nav__link_active b-nav__link_projects" href="/projects">Projects</a>
+        <a class="b-nav__link b-nav__link_home">
+        url("/")
+        <span>Home</span></a>
+        <a class="b-nav__link b-nav__link_active b-nav__link_projects">
+        url("/projects")
+        <span>Projects</span></a>
     }
     </div>
 }

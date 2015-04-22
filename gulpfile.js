@@ -43,10 +43,11 @@ gulp.task('js', function(){
 });
 
 gulp.task('html', function() {
-    gulp.src('app/app.html')
+    gulp.src(['app/app.html', 'app/404.html'])
         .pipe(htmlmin({
             collapseWhitespace: true,
-            removeComments: true
+            removeComments: true,
+            minifyCSS: true
         }))
         .pipe(gulp.dest('public'));
 });

@@ -64,6 +64,10 @@ app.get('/sitemap.xml', function (req, res) {
     '</urlset>');
 });
 
+app.use(function(req, res, next) {
+    res.status(404).sendFile(__dirname + '/public/404.html');
+});
+
 require('http').createServer(app).listen(app.get('port'), function () {
     console.log('Server listening on port ' + app.get('port'));
 });

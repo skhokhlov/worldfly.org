@@ -1,1 +1,100 @@
-!function t(n,o){var e=function(t){return new o(function(n,o){var e=new XMLHttpRequest;e.open("GET",t,!0),e.onload=function(){200===e.status?n(e.response):o(Error(e.statusText))},e.onerror=function(){o(Error("Network Error"))},e.send(null)})},a=function(t,o,e){n.URL=n.URL||n.webkitURL;var a=new Blob(t,{type:o});if("text/css"===o){var r=document.createElement("link");r.id=e,r.rel="stylesheet",r.href=n.URL.createObjectURL(a),document.head.appendChild(r)}else if("text/javascript"===o){var i=document.createElement("script");i.id=e,i.src=n.URL.createObjectURL(a),document.head.appendChild(i)}};n.wf.BlobContent.load=0;var r=function(){4===n.wf.BlobContent.load&&a([n.wf.BlobContent.runtimejs,n.wf.BlobContent.appyatejs,n.wf.BlobContent.appjs],"text/javascript","js")},i=function(o){n.wf.BootCount++,console.error(o),n.wf.BootCount<1&&(console.warn("Loading error. I'm try again now"),t())};e("/public/runtime.js").then(function(t){n.wf.BlobContent.runtimejs=t,n.wf.BlobContent.load++,r()},function(t){i(t)}),e("/public/app.yate.js").then(function(t){n.wf.BlobContent.appyatejs=t,n.wf.BlobContent.load++,r()},function(t){i(t)}),e("/public/app.js").then(function(t){n.wf.BlobContent.appjs=t,n.wf.BlobContent.load++,r()},function(t){i(t)}),e("/assest/data.json").then(function(t){n.wf.PagesData=t,n.wf.BlobContent.load++,r()},function(t){i(t)})}(window,Promise);
+(function Bootstrap(window, Promise) {
+
+    var request = function (url) {
+        return new Promise(function (resolve, reject) {
+            var request = new XMLHttpRequest();
+            request.open('GET', url, true);
+            request.onload = function () {
+                if (request.status === 200) {
+                    resolve(request.response);
+                } else {
+                    reject(Error(request.statusText));
+                }
+            };
+            request.onerror = function () {
+                reject(Error("Network Error"));
+            };
+            request.send(null);
+        });
+    };
+
+    var MyBlob = function (content, type, id) {
+        window.URL = window.URL || window.webkitURL;
+
+        var blob = new Blob(content, {type: type});
+
+        if (type === 'text/css') {
+            var link = document.createElement('link');
+            link.id = id;
+            link.rel = 'stylesheet';
+            link.href = window.URL.createObjectURL(blob);
+            document.head.appendChild(link);
+        } else if (type === 'text/javascript') {
+            var script = document.createElement('script');
+            script.id = id;
+            script.src = window.URL.createObjectURL(blob);
+            document.head.appendChild(script);
+        }
+    };
+
+    //window.wf = {};
+
+    window.wf.BlobContent.load = 0;
+    var BlobRender = function () {
+        if (window.wf.BlobContent.load === 4) {
+            MyBlob([window.wf.BlobContent.runtimejs, window.wf.BlobContent.appyatejs, window.wf.BlobContent.appjs], 'text/javascript', 'js');
+            //MyBlob([window.wf.BlobContent.appyatejs], 'text/javascript', 'app.yate.js');
+            //MyBlob([window.wf.BlobContent.appjs], 'text/javascript', 'app.js');
+        }
+    };
+
+    var BootstrapError = function (error) {
+        window.wf.BootCount++;
+        console.error(error);
+        if (window.wf.BootCount < 1) {
+            console.warn('Loading error. I\'m try again now');
+            Bootstrap();
+        }
+    };
+
+    request('/public/runtime.js').then(function (res) {
+        window.wf.BlobContent.runtimejs = res;
+        window.wf.BlobContent.load++;
+        BlobRender();
+    }, function (error) {
+        BootstrapError(error);
+    });
+    request('/public/app.yate.js').then(function (res) {
+        window.wf.BlobContent.appyatejs = res;
+        window.wf.BlobContent.load++;
+        BlobRender();
+    }, function (error) {
+        BootstrapError(error);
+    });
+    request('/public/app.js').then(function (res) {
+        window.wf.BlobContent.appjs = res;
+        window.wf.BlobContent.load++;
+        BlobRender();
+    }, function (error) {
+        BootstrapError(error);
+    });
+
+
+    request('/assest/data.json').then(function (res) {
+        window.wf.PagesData = res;
+        window.wf.BlobContent.load++;
+        BlobRender();
+    }, function (error) {
+        BootstrapError(error);
+    });
+
+    //console.log(data);
+
+    //request('/public/app.js').then(function (response) {
+    //    MyBlob([response], 'text/javascript');
+    //}, function (error) {
+    //    console.error("Ошибка!", error);
+    //});
+
+
+})(window, Promise);

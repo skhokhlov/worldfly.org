@@ -4,7 +4,9 @@
   "description": "The worldfly.org website",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "DEBUG=true node app.js",
+    "build": "grunt"
   },
   "author": "Sergey Khokhlov",
   "license": "Copyright",

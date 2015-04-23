@@ -8,7 +8,7 @@ request = request('http://localhost:3000');
 describe('router', function () {
 
     describe('methods', function () {
-        it('should return right status code on /', function (done) {
+        it('should return correct status code on /', function (done) {
             var cb = after(3, done);
 
             request
@@ -24,7 +24,7 @@ describe('router', function () {
                 .expect(404, cb);
         });
 
-        it('should return right status code on /projects', function (done) {
+        it('should return correct status code on /projects', function (done) {
             var cb = after(3, done);
 
             request
@@ -40,7 +40,7 @@ describe('router', function () {
                 .expect(404, cb);
         });
 
-        it('should return right status code on a nonexistent page', function (done) {
+        it('should return correct status code on a nonexistent page', function (done) {
             var cb = after(3, done);
 
             request
@@ -59,19 +59,15 @@ describe('router', function () {
 
     describe('accessibility', function () {
         it('should return rendered page on /?nojs=true', function (done) {
-            var cb = after(1, done);
-
             request
                 .get('/?nojs=true')
-                .expect(200, cb);
+                .expect(200, done);
         });
 
         it('should return rendered page on /projects?nojs=true', function (done) {
-            var cb = after(1, done);
-
             request
                 .get('/projects?nojs=true')
-                .expect(200, cb);
+                .expect(200, done);
         });
     });
 

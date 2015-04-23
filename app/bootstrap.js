@@ -39,12 +39,10 @@
 
     //window.wf = {};
 
-    window.wf.BlobContent.load = 0;
+    var blobContentLoad = 0;
     var BlobRender = function () {
-        if (window.wf.BlobContent.load === 4) {
+        if (blobContentLoad === 4) {
             MyBlob([window.wf.BlobContent.runtimejs, window.wf.BlobContent.appyatejs, window.wf.BlobContent.appjs], 'text/javascript', 'js');
-            //MyBlob([window.wf.BlobContent.appyatejs], 'text/javascript', 'app.yate.js');
-            //MyBlob([window.wf.BlobContent.appjs], 'text/javascript', 'app.js');
         }
     };
 
@@ -59,42 +57,32 @@
 
     request('/public/runtime.js').then(function (res) {
         window.wf.BlobContent.runtimejs = res;
-        window.wf.BlobContent.load++;
+        blobContentLoad++;
         BlobRender();
     }, function (error) {
         BootstrapError(error);
     });
     request('/public/app.yate.js').then(function (res) {
         window.wf.BlobContent.appyatejs = res;
-        window.wf.BlobContent.load++;
+        blobContentLoad++;
         BlobRender();
     }, function (error) {
         BootstrapError(error);
     });
     request('/public/app.js').then(function (res) {
         window.wf.BlobContent.appjs = res;
-        window.wf.BlobContent.load++;
+        blobContentLoad++;
         BlobRender();
     }, function (error) {
         BootstrapError(error);
     });
-
 
     request('/assest/data.json').then(function (res) {
         window.wf.PagesData = res;
-        window.wf.BlobContent.load++;
+        blobContentLoad++;
         BlobRender();
     }, function (error) {
         BootstrapError(error);
     });
-
-    //console.log(data);
-
-    //request('/public/app.js').then(function (response) {
-    //    MyBlob([response], 'text/javascript');
-    //}, function (error) {
-    //    console.error("Ошибка!", error);
-    //});
-
 
 })(window, Promise);

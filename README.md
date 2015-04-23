@@ -16,25 +16,25 @@ Make a website as easy scalable, fast, one-page application with the templating 
     https://github.com/joyent/node/wiki/Installation
 
 2. Check out the repository:
-```
-git clone git@github.com:skhokhlov/worldfly.org.git
-cd worldfly.org
-```
+    ```
+    git clone git@github.com:skhokhlov/worldfly.org.git
+    cd worldfly.org
+    ```
 
 3. Install node dependencies:
-```
-npm install
-```
+    ```
+    npm install
+    ```
 
 ## Build and run the app
 1. Build assets
-```
-gulp
-```
+    ```
+    gulp
+    ```
 2. Run app
-```
-npm start
-```
+    ```
+    npm start
+    ```
 
 After you can check running the app by hitting the following URLs:
 * [http://localhost:3000/](http://localhost:3000/)

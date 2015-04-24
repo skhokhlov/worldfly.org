@@ -1,7 +1,7 @@
-(function(yr,window,document){
+(function (yr, window, document) {
 
     window.wf.app = {
-        launch: function (){
+        launch: function () {
             if (window.location.pathname === '/') {
                 history.replaceState({page: 'home'}, 'Home page of World Fly', '/');
                 wf.app.pages.home();
@@ -10,9 +10,9 @@
                 wf.app.pages.projects();
             }
         },
-        navigation: function (){
-            if (document.getElementsByClassName('b-nav__link_home')[0] !== undefined){
-                document.getElementsByClassName('b-nav__link_home')[0].addEventListener('click', function (event){
+        navigation: function () {
+            if (document.getElementsByClassName('b-nav__link_home')[0] !== undefined) {
+                document.getElementsByClassName('b-nav__link_home')[0].addEventListener('click', function (event) {
                     history.pushState({page: 'home'}, 'Home page of World Fly', '/');
                     wf.app.pages.home();
                     event.preventDefault();
@@ -20,20 +20,20 @@
                 });
             }
 
-            document.getElementsByClassName('b-nav__link_projects')[0].addEventListener('click', function (event){
+            document.getElementsByClassName('b-nav__link_projects')[0].addEventListener('click', function (event) {
                 history.pushState({page: 'projects'}, 'Projects of World Fly', '/projects');
                 wf.app.pages.projects();
                 event.preventDefault();
                 return false;
             });
         },
-        pages:{
-            home: function (){
+        pages: {
+            home: function () {
                 document.title = 'Home page of World Fly';
                 document.getElementsByTagName('html')[0].innerHTML = wf.app.render.home;
                 wf.app.navigation();
             },
-            projects: function (){
+            projects: function () {
                 document.title = 'Projects of World Fly';
                 document.getElementsByTagName('html')[0].innerHTML = wf.app.render.projects;
                 wf.app.navigation();

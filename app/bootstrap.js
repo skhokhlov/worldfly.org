@@ -1,5 +1,20 @@
 (function Bootstrap(window, Promise) {
 
+    /**
+     * Test for Blob contructor
+     * @returns {boolean}
+     */
+    var blobTest = function () {
+        try {
+            return !!new Blob();
+        } catch (e) {
+            return false;
+        }
+    };
+
+    //If client don't support Blob URLs or JSON he wiil be redirected to version without js
+    if (!blobTest() && !('JSON' in window && 'parse' in JSON && 'stringify' in JSON)) window.location = window.location.href + '?nojs=true';
+
     var request = function (url) {
         return new Promise(function (resolve, reject) {
             var request = new XMLHttpRequest();

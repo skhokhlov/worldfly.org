@@ -4,7 +4,7 @@ The worldfly.org website
 You can try last version on https://debug.worldfly.org
 
 ##Idea
-Make a website as easy scalable, fast, one-page application with the templating and good search engine optimization using BEM methodology.
+Make a website as easy scalable, fast, one-page application with the templating and good search engine optimization using [BEM methodology](https://en.bem.info/method/).
 
 * Templating: [Yate](https://github.com/pasaran/yate)
 * CSS pre-processor: [Stylus](https://github.com/stylus/stylus)

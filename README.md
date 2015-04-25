@@ -1,5 +1,5 @@
-# worldfly.org
-The [worldfly.org](worldfly.org) website
+#worldfly.org
+The [worldfly.org](https://www.worldfly.org) website
 
 You can try last version on https://debug.worldfly.org
 

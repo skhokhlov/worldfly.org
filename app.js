@@ -7,7 +7,7 @@ var express = require('express'),
 app.set('port', process.env.PORT || 3000);
 
 
-app.use('/public', express.static(__dirname + '/public', {maxAge: ((process.env.DEBUG === 'true') ? 15000 : 604800000)}));
+app.use('/public', express.static(__dirname + '/public', {maxAge: ((process.env.DEBUG === 'false') ? 604800000 : 15000)}));
 
 app.get('/', function (req, res) {
     if (hostAvailability(req.hostname)) {
@@ -43,7 +43,7 @@ app.get('/assest/data.json', function (req, res) {
 });
 
 app.get('/robots.txt', function (req, res) {
-    res.set('Content-type', 'text/plain').send(process.env.DEBUG === 'true' ? 'User-Agent: *\nDisallow: /' : 'User-Agent: *\nDisallow: ?*\nAllow: /\n\nSitemap: https://www.worldfly.org/sitemap.xml\nHost: https://www.WorldFly.org');
+    res.set('Content-type', 'text/plain').send(process.env.DEBUG === 'false' ? 'User-Agent: *\nDisallow: ?*\nAllow: /\n\nSitemap: https://www.worldfly.org/sitemap.xml\nHost: https://www.WorldFly.org' : 'User-Agent: *\nDisallow: /');
 });
 
 app.get('/sitemap.xml', function (req, res) {
@@ -64,7 +64,7 @@ app.get('/sitemap.xml', function (req, res) {
     '</urlset>');
 });
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.status(404).sendFile(__dirname + '/public/404.html');
 });
 
@@ -79,7 +79,7 @@ var render = {
         "home": yr.run('app', getData('nojs').home),
         "projects": yr.run('app', getData('nojs').projects)
     },
-    "js":{
+    "js": {
         "home": yr.run('app', getData().home),
         "projects": yr.run('app', getData().projects)
     }
@@ -90,10 +90,11 @@ function hostAvailability(host) {
     return !(host === 'worldfly.info' || host === 'www.worldfly.info' || host === 'worldfly.org');
 }
 
-function getData (env){
+function getData(env) {
     var _data = {
         "year": new Date().getFullYear(),
-        "nojs": (env === 'nojs' ? "true" : "false")
+        "nojs": (env === 'nojs' ? "true" : "false"),
+        "debug": process.env.DEBUG
     };
     return {
         "home": {

@@ -9,7 +9,7 @@ func url(url) {
     if  /.data.nojs == "true" {
         @href = "{ url }?nojs=true"
     } else {
-        @href = "{ url}"
+        @href = "{ url }"
     }
 }
 
@@ -23,6 +23,11 @@ match / {
         </head>
         <body>
             apply .page
+            if  /.data.nojs == "true" {
+            <div class="i-stat">
+                <noscript><img src="//mc.yandex.ru/watch/206275" style="position:absolute; left:-9999px;" /></noscript>
+            </div>
+            }
         </body>
     </html>
 }

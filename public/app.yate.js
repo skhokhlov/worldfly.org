@@ -114,6 +114,11 @@ var yr = yr || require('yate/lib/runtime.js');
         a0.s = 'body';
         r0 += m.a(m, 0, selectNametest('page', c0, []), '', a0)
         r0 += closeAttrs(a0);
+        if (cmpSN("true", m.s(j2, c0.doc.root))) {
+            r0 += "<div class=\"" + "i-stat" + "\">";
+            r0 += "<noscript><img src=\"" + "//mc.yandex.ru/watch/206275" + "\" style=\"" + "position:absolute; left:-9999px;" + "\"/></noscript>";
+            r0 += "</div>";
+        }
         r0 += "</body>";
         r0 += "</html>";
 

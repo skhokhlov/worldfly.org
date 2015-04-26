@@ -7,7 +7,7 @@ var express = require('express'),
 app.set('port', process.env.PORT || 3000);
 
 
-app.use('/public', express.static(__dirname + '/public', {maxAge: ((process.env.DEBUG === 'true') ? 1000 : 604800000)}));
+app.use('/public', express.static(__dirname + '/public', {maxAge: ((process.env.DEBUG === 'true') ? 15000 : 604800000)}));
 
 app.get('/', function (req, res) {
     if (hostAvailability(req.hostname)) {

@@ -152,7 +152,7 @@ function getData (env){
                                         "separator": ". "
                                     },
                                     {
-                                        "href": "https://debug.gewefope.com",
+                                        "href": "https://gewefope.worldfly.org",
                                         "body": "Website",
                                         "separator": "."
                                     }

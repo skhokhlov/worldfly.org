@@ -25,7 +25,7 @@
             request.send(null);
         });
     },
-    
+
     MyBlob = function (content, type, id) {
         window.URL = window.URL || window.webkitURL;
 
@@ -44,6 +44,7 @@
             document.head.appendChild(script);
         }
     },
+
     blobContent = {},
     blobContentLoad = 0,
 

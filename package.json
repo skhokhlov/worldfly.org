@@ -2,6 +2,10 @@
   "name": "worldfly-org",
   "version": "0.2.3",
   "description": "The worldfly.org website",
+  "repository" :{
+    "type" : "git",
+    "url" : "https://github.com/skhokhlov/worldfly.org.git"
+  },
   "main": "app.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha test",

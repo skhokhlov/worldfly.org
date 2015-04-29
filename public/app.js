@@ -48,7 +48,7 @@
     window.addEventListener('popstate', function (event) {
         if (event.state.page === 'home') {
             app.pages.home();
-        } else if (event.state.page == 'projects') {
+        } else if (event.state.page === 'projects') {
             app.pages.projects();
         }
     });

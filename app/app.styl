@@ -124,27 +124,20 @@ a
 
 
 .b-loader
-  position relative
-  display inline-block
   overflow hidden
   -webkit-transform translate(0, 0)
 
   &__object
-    position absolute
-    top 0
-    left 0
-    right 0
-    bottom 0
     background url('/public/images/loader.svg')
     background-size 100% 100%
     transform translateZ(0)
     animation spin 1s infinite linear
     width 100px
     height 100px
+    display block
 
   &_f
     width 100px
-    position absolute
     margin auto
 
 

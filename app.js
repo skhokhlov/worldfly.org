@@ -7,7 +7,7 @@ var express = require('express'),
 app.set('port', process.env.PORT || 3000);
 
 
-app.use('/public', express.static(__dirname + '/public', {maxAge: ((process.env.DEBUG === 'false') ? 604800000 : 15000)}));
+app.use('/public', express.static(__dirname + '/public', {index: false, maxAge: ((process.env.DEBUG === 'false') ? 604800000 : 15000)}));
 
 app.get('/', function (req, res) {
     if (hostAvailability(req.hostname)) {
@@ -136,12 +136,15 @@ function getData(env) {
                         "project": [
                             {
                                 "title": "WalletMap",
+                                "id": "WalletMap",
                                 "years": {
                                     "begin": 2015
-                                }
+                                },
+                                "description": "An idea."
                             },
                             {
                                 "title": "Gewefope",
+                                "id": "Gewefope",
                                 "years": {
                                     "begin": 2013,
                                     "end": "∞"
@@ -165,6 +168,7 @@ function getData(env) {
                             },
                             {
                                 "title": "Greengrocery",
+                                "id": "Greengrocery",
                                 "years": {
                                     "begin": 2012,
                                     "end": "∞"

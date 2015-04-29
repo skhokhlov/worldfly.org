@@ -81,19 +81,21 @@ var yr = yr || require('yate/lib/runtime.js');
 
     var j18 = [ 0, 'list', 0, 'project' ];
 
-    var j19 = [ 0, 'years' ];
+    var j19 = [ 0, 'id' ];
 
-    var j20 = [ 0, 'years', 0, 'begin' ];
+    var j20 = [ 0, 'years' ];
 
-    var j21 = [ 0, 'years', 0, 'end' ];
+    var j21 = [ 0, 'years', 0, 'begin' ];
 
-    var j22 = [ 0, 'link' ];
+    var j22 = [ 0, 'years', 0, 'end' ];
 
-    var j23 = [ 0, 'href' ];
+    var j23 = [ 0, 'link' ];
 
-    var j24 = [ 0, 'separator' ];
+    var j24 = [ 0, 'href' ];
 
-    var j25 = [ 0, 'description' ];
+    var j25 = [ 0, 'separator' ];
+
+    var j26 = [ 0, 'description' ];
 
     // match /
     M.t0 = function t0(m, c0, i0, l0, a0) {
@@ -421,17 +423,25 @@ var yr = yr || require('yate/lib/runtime.js');
         var current = [ c0 ];
 
         r0 += closeAttrs(a0);
-        r0 += "<div class=\"" + "b-list__item" + "\">";
+        r0 += "<div";
+        a0.a = {
+            'class': new yr.scalarAttr("b-list__item")
+        };
+        a0.s = 'div';
+        if (simpleBoolean('id', c0)) {
+            a0.a[ "id" ] = new yr.scalarAttr(nodeset2scalar( (selectNametest('id', c0, [])) ));
+        }
+        r0 += closeAttrs(a0);
         r0 += "<div class=\"" + "b-list__item__head" + "\">";
         r0 += "<h2 class=\"" + "b-list__item__title" + "\">" + nodeset2xml( ( selectNametest('title', c0, []) ) ) + "</h2>";
         if (simpleBoolean('years', c0)) {
             r0 += "<span class=\"" + "b-list__item__years" + "\">";
-            r0 += "<span class=\"" + "b-list__item__years__begin" + "\">" + nodeset2xml( ( m.s(j20, c0) ) ) + "</span>";
-            if (nodeset2boolean( m.s(j21, c0) )) {
-                if (cmpSN("∞", m.s(j21, c0))) {
-                    r0 += "<span class=\"" + "b-list__item__dash" + "\">" + "—" + "</span><span class=\"" + "b-list__item__years__end_big" + "\">" + nodeset2xml( ( m.s(j21, c0) ) ) + "</span>";
+            r0 += "<span class=\"" + "b-list__item__years__begin" + "\">" + nodeset2xml( ( m.s(j21, c0) ) ) + "</span>";
+            if (nodeset2boolean( m.s(j22, c0) )) {
+                if (cmpSN("∞", m.s(j22, c0))) {
+                    r0 += "<span class=\"" + "b-list__item__dash" + "\">" + "—" + "</span><span class=\"" + "b-list__item__years__end_big" + "\">" + nodeset2xml( ( m.s(j22, c0) ) ) + "</span>";
                 } else {
-                    r0 += "<span class=\"" + "b-list__item__dash" + "\">" + "—" + "</span><span class=\"" + "b-list__item__years__end" + "\">" + nodeset2xml( ( m.s(j21, c0) ) ) + "</span>";
+                    r0 += "<span class=\"" + "b-list__item__dash" + "\">" + "—" + "</span><span class=\"" + "b-list__item__years__end" + "\">" + nodeset2xml( ( m.s(j22, c0) ) ) + "</span>";
                 }
             }
             r0 += "</span>";

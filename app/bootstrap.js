@@ -2,9 +2,9 @@
 
     /**
      * Browser tests
-     * If client don't support Blob URLs or JSON he wiil be redirected to version without js
+     * If client don't support Promises or Blob URLs or JSON he wiil be redirected to version without js
      */
-    if (!new Blob() && !('JSON' in window && 'parse' in JSON && 'stringify' in JSON)) {
+    if (!new Promise(function(){}) && !new Blob() && !('JSON' in window && 'parse' in JSON && 'stringify' in JSON)) {
         window.location = window.location.href + '?nojs=true';
     }
 
@@ -30,6 +30,7 @@
                 request.send(null);
             });
         },
+
         /**
          * Construct Blob with current params and append it to document.head
          * @param content
@@ -63,10 +64,12 @@
          * Runs MyBlob function after loading everything
          */
         blobRender = function () {
+            blobContentLoad++;
             if (blobContentLoad === 4) {
                 MyBlob([blobContent.runtimejs, blobContent.appyatejs, blobContent.appjs], 'text/javascript', 'js');
             }
         },
+
         /**
          * Runs actions for error bootstrapping
          * @param error
@@ -74,15 +77,18 @@
         bootstrapError = function (error) {
             window.wf.BootCount++;
             console.error(error);
-            if (window.wf.BootCount < 1) {
+            if (window.wf.BootCount <= 1) {
                 console.warn('Loading error. I\'m try again now');
-                Bootstrap();
+                Bootstrap(window);
+            } else {
+                console.error('Unexpected error run the application.');
+                console.log('Redirect to nojs version');
+                window.location = window.location.href + '?nojs=true';
             }
         };
 
     request('/public/runtime.js').then(function (res) {
         blobContent.runtimejs = res;
-        blobContentLoad++;
         blobRender();
     }, function (error) {
         bootstrapError(error);
@@ -90,7 +96,6 @@
 
     request('/public/app.yate.js').then(function (res) {
         blobContent.appyatejs = res;
-        blobContentLoad++;
         blobRender();
     }, function (error) {
         bootstrapError(error);
@@ -98,7 +103,6 @@
 
     request('/public/app.js').then(function (res) {
         blobContent.appjs = res;
-        blobContentLoad++;
         blobRender();
     }, function (error) {
         bootstrapError(error);
@@ -106,7 +110,6 @@
 
     request('/assest/data.json').then(function (res) {
         window.wf.PagesData = res;
-        blobContentLoad++;
         blobRender();
     }, function (error) {
         bootstrapError(error);

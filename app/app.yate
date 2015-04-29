@@ -161,6 +161,9 @@ match .projects list {
 
 match .project {
     <div class="b-list__item">
+        if .id {
+            @id = ( .id )
+        }
         <div class="b-list__item__head">
             <h2 class="b-list__item__title">{ .title }</h2>
             if .years {

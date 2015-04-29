@@ -1,19 +1,12 @@
-(function Bootstrap(window, Promise) {
+(function Bootstrap(window) {
 
     /**
-     * Test for Blob contructor
-     * @returns {boolean}
-     */
-    var blobTest = function () {
-        try {
-            return !!new Blob();
-        } catch (e) {
-            return false;
-        }
-    };
-
-    //If client don't support Blob URLs or JSON he wiil be redirected to version without js
-    if (!blobTest() && !('JSON' in window && 'parse' in JSON && 'stringify' in JSON)) window.location = window.location.href + '?nojs=true';
+    * Browser tests
+    * If client don't support Blob URLs or JSON he wiil be redirected to version without js
+    */
+    if (!new Blob() && !('JSON' in window && 'parse' in JSON && 'stringify' in JSON)) {
+      window.location = window.location.href + '?nojs=true';
+    }
 
     var request = function (url) {
         return new Promise(function (resolve, reject) {
@@ -31,9 +24,9 @@
             };
             request.send(null);
         });
-    };
-
-    var MyBlob = function (content, type, id) {
+    },
+    
+    MyBlob = function (content, type, id) {
         window.URL = window.URL || window.webkitURL;
 
         var blob = new Blob(content, {type: type});
@@ -50,18 +43,17 @@
             script.src = window.URL.createObjectURL(blob);
             document.head.appendChild(script);
         }
-    };
+    },
+    blobContent = {},
+    blobContentLoad = 0,
 
-    //window.wf = {};
-
-    var blobContentLoad = 0;
-    var BlobRender = function () {
+    BlobRender = function () {
         if (blobContentLoad === 4) {
-            MyBlob([window.wf.BlobContent.runtimejs, window.wf.BlobContent.appyatejs, window.wf.BlobContent.appjs], 'text/javascript', 'js');
+            MyBlob([blobContent.runtimejs, blobContent.appyatejs, blobContent.appjs], 'text/javascript', 'js');
         }
-    };
+    },
 
-    var BootstrapError = function (error) {
+    BootstrapError = function (error) {
         window.wf.BootCount++;
         console.error(error);
         if (window.wf.BootCount < 1) {
@@ -71,21 +63,21 @@
     };
 
     request('/public/runtime.js').then(function (res) {
-        window.wf.BlobContent.runtimejs = res;
+        blobContent.runtimejs = res;
         blobContentLoad++;
         BlobRender();
     }, function (error) {
         BootstrapError(error);
     });
     request('/public/app.yate.js').then(function (res) {
-        window.wf.BlobContent.appyatejs = res;
+        blobContent.appyatejs = res;
         blobContentLoad++;
         BlobRender();
     }, function (error) {
         BootstrapError(error);
     });
     request('/public/app.js').then(function (res) {
-        window.wf.BlobContent.appjs = res;
+        blobContent.appjs = res;
         blobContentLoad++;
         BlobRender();
     }, function (error) {
@@ -100,4 +92,4 @@
         BootstrapError(error);
     });
 
-})(window, Promise);
+})(window);

@@ -5,7 +5,8 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     jshint = require('gulp-jshint'),
     htmlmin = require('gulp-htmlmin'),
-    autoprefixer = require('gulp-autoprefixer');
+    autoprefixer = require('gulp-autoprefixer'),
+    marked = require('gulp-marked');
 
 gulp.task('yate', function(){
     gulp.src(['app/app.yate'])
@@ -53,13 +54,27 @@ gulp.task('html', function() {
 });
 
 
+gulp.task('markdown', function() {
+  gulp.src('./projects/*.md')
+    .pipe(marked({
+        gfm: true,
+        tables: true,
+        breaks: false,
+        pedantic: false,
+        sanitize: true,
+        smartLists: true,
+        smartypants: false
+    }))
+    .pipe(gulp.dest('./projects/'))
+});
+
+
 gulp.task('yate-dev', function(){
     gulp.src(['app/app.yate'])
         .pipe(shell([
             './node_modules/.bin/yate <%= file.path %> > public/app.yate.js'
         ]));
 });
-
 
 gulp.task('js-dev', function(){
     //gulp.src(['app.js'])
@@ -82,5 +97,5 @@ gulp.task('html-dev', function() {
 });
 
 
-gulp.task('production', ['yate', 'js', 'css', 'html']);
-gulp.task('default', ['yate-dev', 'js-dev', 'css', 'html-dev']);
+gulp.task('production', ['yate', 'js', 'css', 'html', 'markdown']);
+gulp.task('default', ['yate-dev', 'js-dev', 'css', 'html-dev', 'markdown']);

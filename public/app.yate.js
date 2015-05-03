@@ -453,10 +453,8 @@ var yr = yr || require('yate/lib/runtime.js');
             var c1 = items0[ i1 ];
             r0 += "<span><a class=\"" + "b-list__item__desrc__link" + "\" href=\"" + nodeset2attrvalue( ( selectNametest('href', c1, []) ) ) + "\"><span>" + nodeset2xml( ( selectNametest('body', c1, []) ) ) + "</span></a>" + nodeset2xml( ( selectNametest('separator', c1, []) ) ) + "</span>";
         }
-        var items0 = selectNametest('description', c0, []);
-        for (var i1 = 0, l1 = items0.length; i1 < l1; i1++) {
-            var c1 = items0[ i1 ];
-            r0 += "<p>" + nodeset2xml( ( m.s(j8, c1) ) ) + "</p>";
+        if (simpleBoolean('description', c0)) {
+            r0 += simpleScalar('description', c0);
         }
         r0 += "</div>";
         r0 += "</div>";

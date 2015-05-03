@@ -183,9 +183,13 @@ match .project {
             for .link {
                 <span><a class="b-list__item__desrc__link" href="{ .href }"><span>{ .body }</span></a>{ .separator }</span>
             }
-            for .description {
-                <p>{ . }</p>
+            if .description {
+                html(.description)
             }
+
+            // for .description {
+            //     <p>{ . }</p>
+            // }
         </div>
   </div>
 

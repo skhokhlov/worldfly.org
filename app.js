@@ -90,6 +90,13 @@ function hostAvailability(host) {
     return !(host === 'worldfly.info' || host === 'www.worldfly.info' || host === 'worldfly.org');
 }
 
+function getFile(path) {
+  return require('fs').readFileSync(path, {encoding: 'utf-8'}, function (err, data) {
+    if (err) throw err;
+    return data;
+  });
+}
+
 function getData(env) {
     var _data = {
         "year": new Date().getFullYear(),
@@ -140,7 +147,7 @@ function getData(env) {
                                 "years": {
                                     "begin": 2015
                                 },
-                                "description": "An idea."
+                                "description": getFile('projects/walletmap.html')
                             },
                             {
                                 "title": "Gewefope",
@@ -161,10 +168,7 @@ function getData(env) {
                                         "separator": "."
                                     }
                                 ],
-                                "description": [
-                                    "In development. Partly open source.",
-                                    "Fully customizable weather forecast."
-                                ]
+                                "description": getFile('projects/gewefope.html')
                             },
                             {
                                 "title": "Greengrocery",
@@ -180,17 +184,14 @@ function getData(env) {
                                         "separator": "."
                                     }
                                 ],
-                                "description": [
-                                    "Open Source CMS on asp.net.",
-                                    "To get started you just need to open your browser. One of the most simple and fast content management systems."
-                                ]
+                                "description": getFile('projects/greengrocery.html')
                             },
                             {
                                 "title": "Blog about IT",
                                 "years": {
                                     "begin": 2012
                                 },
-                                "description": "Closed."
+                                "description": getFile('projects/blog_about_it.html')
                             },
                             {
                                 "title": "Collection of articles on aviation and astronautics",
@@ -198,7 +199,7 @@ function getData(env) {
                                     "begin": 2008,
                                     "end": 2013
                                 },
-                                "description": "Closed."
+                                "description": getFile('projects/collection_of_articles_on_aviation_and_astronautics.html')
                             },
                             {
                                 "title": "News of aviation and astronautics",
@@ -206,10 +207,7 @@ function getData(env) {
                                     "begin": 2008,
                                     "end": 2012
                                 },
-                                "description": [
-                                    "Closed.",
-                                    "The most interesting news of aviation and astronautics."
-                                ]
+                                "description": getFile('projects/news_of_aviation_and_astronautics.html')
                             },
                             {
                                 "title": "Photo Album",
@@ -217,7 +215,7 @@ function getData(env) {
                                     "begin": 2008,
                                     "end": 2013
                                 },
-                                "description": "Closed."
+                                "description": getFile('projects/photo_album.html')
                             },
                             {
                                 "title": "Encyclopedia of aviation and astronautics",
@@ -225,10 +223,7 @@ function getData(env) {
                                     "begin": 2007,
                                     "end": 2013
                                 },
-                                "description": [
-                                    "Closed.",
-                                    "Science handbook of articles on aerospace engineering."
-                                ]
+                                "description": getFile('projects/encyclopedia_of_aviation_and_astronautics.html')
                             }
                         ]
                     }

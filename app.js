@@ -69,6 +69,7 @@ app.use(function (req, res, next) {
 });
 
 require('http').createServer(app).listen(app.get('port'), function () {
+    console.info('DEBUG environment is set to ' + ((process.env.DEBUG === 'true') || (process.env.DEBUG == null) ? true : false));
     console.log('Server listening on port ' + app.get('port'));
 });
 
@@ -147,7 +148,7 @@ function getData(env) {
                                 "years": {
                                     "begin": 2015
                                 },
-                                "description": getFile('projects/walletmap.html')
+                                "description": getFile('projects/build/walletmap.html')
                             },
                             {
                                 "title": "Gewefope",
@@ -168,7 +169,7 @@ function getData(env) {
                                         "separator": "."
                                     }
                                 ],
-                                "description": getFile('projects/gewefope.html')
+                                "description": getFile('projects/build/gewefope.html')
                             },
                             {
                                 "title": "Greengrocery",
@@ -184,14 +185,14 @@ function getData(env) {
                                         "separator": "."
                                     }
                                 ],
-                                "description": getFile('projects/greengrocery.html')
+                                "description": getFile('projects/build/greengrocery.html')
                             },
                             {
                                 "title": "Blog about IT",
                                 "years": {
                                     "begin": 2012
                                 },
-                                "description": getFile('projects/blog_about_it.html')
+                                "description": getFile('projects/build/blog_about_it.html')
                             },
                             {
                                 "title": "Collection of articles on aviation and astronautics",
@@ -199,7 +200,7 @@ function getData(env) {
                                     "begin": 2008,
                                     "end": 2013
                                 },
-                                "description": getFile('projects/collection_of_articles_on_aviation_and_astronautics.html')
+                                "description": getFile('projects/build/collection_of_articles_on_aviation_and_astronautics.html')
                             },
                             {
                                 "title": "News of aviation and astronautics",
@@ -207,7 +208,7 @@ function getData(env) {
                                     "begin": 2008,
                                     "end": 2012
                                 },
-                                "description": getFile('projects/news_of_aviation_and_astronautics.html')
+                                "description": getFile('projects/build/news_of_aviation_and_astronautics.html')
                             },
                             {
                                 "title": "Photo Album",
@@ -215,7 +216,7 @@ function getData(env) {
                                     "begin": 2008,
                                     "end": 2013
                                 },
-                                "description": getFile('projects/photo_album.html')
+                                "description": getFile('projects/build/photo_album.html')
                             },
                             {
                                 "title": "Encyclopedia of aviation and astronautics",
@@ -223,7 +224,7 @@ function getData(env) {
                                     "begin": 2007,
                                     "end": 2013
                                 },
-                                "description": getFile('projects/encyclopedia_of_aviation_and_astronautics.html')
+                                "description": getFile('projects/build/encyclopedia_of_aviation_and_astronautics.html')
                             }
                         ]
                     }

@@ -60,12 +60,12 @@ gulp.task('markdown', function() {
         gfm: true,
         tables: true,
         breaks: false,
-        pedantic: false,
+        pedantic: true,
         sanitize: true,
         smartLists: true,
-        smartypants: false
+        smartypants: true
     }))
-    .pipe(gulp.dest('./projects/'))
+    .pipe(gulp.dest('./projects/build/'))
 });
 
 

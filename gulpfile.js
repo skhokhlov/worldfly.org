@@ -45,23 +45,18 @@ gulp.task('js', function(){
 
 });
 
-gulp.task('freeze', ['html'], function(){
-    var fs = require('fs');
-    fs.readFile('public/app.html', {encoding: 'utf-8'}, function(err, data){
-        if (err) throw err;
-        var newData = data.replace('{{hashAppcss}}', '123');
-        fs.writeFile('public/app.html', newData, function(err){
-          if (err) throw err;
-        });
-    });
-});
-
 gulp.task('html', function() {
     gulp.src(['app/app.html', 'app/404.html'])
         .pipe(htmlmin({
             collapseWhitespace: true,
             removeComments: true,
             minifyCSS: true
+        }))
+        .pipe(template({
+            hashAppcss: md5File('public/app.css').substring(0,10),
+            hashAppjs: md5File('public/app.js').substring(0,10),
+            hashAppyatejs: md5File('public/app.yate.js').substring(0,10),
+            hashBootstrap: md5File('public/bootstrap.js').substring(0,10)
         }))
         .pipe(gulp.dest('public'));
 });
@@ -116,5 +111,5 @@ gulp.task('html-dev', function() {
 });
 
 
-gulp.task('production', ['yate', 'js', 'css', 'freeze', 'markdown']);
+gulp.task('production', ['yate', 'js', 'css', 'html', 'markdown']);
 gulp.task('default', ['yate-dev', 'js-dev', 'css', 'html-dev', 'markdown']);

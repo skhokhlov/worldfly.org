@@ -42,6 +42,10 @@ app.get('/assest/data.json', function (req, res) {
     res.status(200).set('cache-control', 'public, max-age=10').json(getData());
 });
 
+app.get('/favicon.ico', function (req, res) {
+    res.status(200).sendFile(__dirname + '/public/images/favicon.ico');
+});
+
 app.get('/robots.txt', function (req, res) {
     res.set('Content-type', 'text/plain').send(process.env.DEBUG === 'false' ? 'User-Agent: *\nDisallow: ?*\nAllow: /\n\nSitemap: https://www.worldfly.org/sitemap.xml\nHost: https://www.WorldFly.org' : 'User-Agent: *\nDisallow: /');
 });

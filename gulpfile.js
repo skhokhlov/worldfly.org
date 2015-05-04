@@ -6,7 +6,9 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     htmlmin = require('gulp-htmlmin'),
     autoprefixer = require('gulp-autoprefixer'),
-    marked = require('gulp-marked');
+    marked = require('gulp-marked'),
+    template = require('gulp-template'),
+    md5File = require('md5-file');
 
 gulp.task('yate', function(){
     gulp.src(['app/app.yate'])
@@ -41,6 +43,17 @@ gulp.task('js', function(){
         .pipe(uglify())
         .pipe(gulp.dest('public'));
 
+});
+
+gulp.task('freeze', ['html'], function(){
+    var fs = require('fs');
+    fs.readFile('public/app.html', {encoding: 'utf-8'}, function(err, data){
+        if (err) throw err;
+        var newData = data.replace('{{hashAppcss}}', '123');
+        fs.writeFile('public/app.html', newData, function(err){
+          if (err) throw err;
+        });
+    });
 });
 
 gulp.task('html', function() {
@@ -93,9 +106,15 @@ gulp.task('js-dev', function(){
 
 gulp.task('html-dev', function() {
     gulp.src(['app/app.html', 'app/404.html'])
+        .pipe(template({
+            hashAppcss: md5File('public/app.css').substring(0,10),
+            hashAppjs: md5File('public/app.js').substring(0,10),
+            hashAppyatejs: md5File('public/app.yate.js').substring(0,10),
+            hashBootstrap: md5File('public/bootstrap.js').substring(0,10)
+        }))
         .pipe(gulp.dest('public'));
 });
 
 
-gulp.task('production', ['yate', 'js', 'css', 'html', 'markdown']);
+gulp.task('production', ['yate', 'js', 'css', 'freeze', 'markdown']);
 gulp.task('default', ['yate-dev', 'js-dev', 'css', 'html-dev', 'markdown']);

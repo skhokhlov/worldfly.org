@@ -94,14 +94,14 @@
         bootstrapError(error);
     });
 
-    request('/public/app.yate.js').then(function (res) {
+    request('/public/app.yate.js?hash=' + wf.hash.appyatejs).then(function (res) {
         blobContent.appyatejs = res;
         blobRender();
     }, function (error) {
         bootstrapError(error);
     });
 
-    request('/public/app.js').then(function (res) {
+    request('/public/app.js?hash=' + wf.hash.appjs).then(function (res) {
         blobContent.appjs = res;
         blobRender();
     }, function (error) {

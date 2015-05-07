@@ -17,6 +17,7 @@ match / {
     <html>
         <head lang="en">
             <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <title>{ params.title }</title>
             <link id="favicon" type="image/x-icon" rel="shortcut icon" href="/public/images/favicon.ico"/>
             <link id="png16favicon" rel="icon" href="/public/images/favicon16.png" sizes="16x16"/>

@@ -106,6 +106,7 @@ var yr = yr || require('yate/lib/runtime.js');
         r0 += "<html>";
         r0 += "<head lang=\"" + "en" + "\">";
         r0 += "<meta charset=\"" + "utf-8" + "\"/>";
+        r0 += "<meta name=\"" + "viewport" + "\" content=\"" + "width=device-width, initial-scale=1" + "\"/>";
         r0 += "<title>" + nodeset2xml( ( m.n(j4, m.v('v1', c0.doc.root)) ) ) + "</title>";
         r0 += "<link id=\"" + "favicon" + "\" type=\"" + "image/x-icon" + "\" rel=\"" + "shortcut icon" + "\" href=\"" + "/public/images/favicon.ico" + "\"/>";
         r0 += "<link id=\"" + "png16favicon" + "\" rel=\"" + "icon" + "\" href=\"" + "/public/images/favicon16.png" + "\" sizes=\"" + "16x16" + "\"/>";

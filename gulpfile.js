@@ -10,7 +10,7 @@ var gulp = require('gulp'),
     template = require('gulp-template'),
     md5File = require('md5-file');
 
-gulp.task('yate', function(){
+gulp.task('yate', function () {
     gulp.src(['app/app.yate'])
         .pipe(shell([
             './node_modules/.bin/yate <%= file.path %> > public/app.yate.js',
@@ -18,7 +18,7 @@ gulp.task('yate', function(){
         ]));
 });
 
-gulp.task('css', function(){
+gulp.task('css', function () {
     gulp.src(['app/app.styl'])
         .pipe(stylus())
         .pipe(autoprefixer({
@@ -28,12 +28,12 @@ gulp.task('css', function(){
         .pipe(gulp.dest('public'));
 });
 
-gulp.task('js', function(){
+gulp.task('js', function () {
     //gulp.src(['app.js'])
     //    .pipe(jshint())
     //    .pipe(jshint.reporter('default'));
 
-    gulp.src(['app/bootstrap.js','app/app.js'])
+    gulp.src(['app/bootstrap.js', 'app/app.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
         .pipe(uglify())
@@ -45,51 +45,52 @@ gulp.task('js', function(){
 
 });
 
-gulp.task('html', function() {
+gulp.task('html', function () {
     gulp.src(['app/app.html', 'app/404.html'])
+        .pipe(template({
+            hashAppcss: md5File('public/app.css').substring(0, 10),
+            hashAppjs: md5File('public/app.js').substring(0, 10),
+            hashAppyatejs: md5File('public/app.yate.js').substring(0, 10),
+            hashBootstrap: md5File('public/bootstrap.js').substring(0, 10),
+            hashRuntime: md5File('public/runtime.js').substring(0, 10)
+        }))
         .pipe(htmlmin({
             collapseWhitespace: true,
             removeComments: true,
             minifyCSS: true
         }))
-        .pipe(template({
-            hashAppcss: md5File('public/app.css').substring(0,10),
-            hashAppjs: md5File('public/app.js').substring(0,10),
-            hashAppyatejs: md5File('public/app.yate.js').substring(0,10),
-            hashBootstrap: md5File('public/bootstrap.js').substring(0,10)
-        }))
         .pipe(gulp.dest('public'));
 });
 
 
-gulp.task('markdown', function() {
-  gulp.src('./projects/*.md')
-    .pipe(marked({
-        gfm: true,
-        tables: true,
-        breaks: false,
-        pedantic: true,
-        sanitize: true,
-        smartLists: true,
-        smartypants: true
-    }))
-    .pipe(gulp.dest('./projects/build/'))
+gulp.task('markdown', function () {
+    gulp.src('./projects/*.md')
+        .pipe(marked({
+            gfm: true,
+            tables: true,
+            breaks: false,
+            pedantic: true,
+            sanitize: true,
+            smartLists: true,
+            smartypants: true
+        }))
+        .pipe(gulp.dest('./projects/build/'))
 });
 
 
-gulp.task('yate-dev', function(){
+gulp.task('yate-dev', function () {
     gulp.src(['app/app.yate'])
         .pipe(shell([
             './node_modules/.bin/yate <%= file.path %> > public/app.yate.js'
         ]));
 });
 
-gulp.task('js-dev', function(){
+gulp.task('js-dev', function () {
     //gulp.src(['app.js'])
     //    .pipe(jshint())
     //    .pipe(jshint.reporter('default'));
 
-    gulp.src(['app/bootstrap.js','app/app.js'])
+    gulp.src(['app/bootstrap.js', 'app/app.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
         .pipe(gulp.dest('public'));
@@ -99,17 +100,41 @@ gulp.task('js-dev', function(){
 
 });
 
-gulp.task('html-dev', function() {
+gulp.task('html-dev', function () {
     gulp.src(['app/app.html', 'app/404.html'])
         .pipe(template({
-            hashAppcss: md5File('public/app.css').substring(0,10),
-            hashAppjs: md5File('public/app.js').substring(0,10),
-            hashAppyatejs: md5File('public/app.yate.js').substring(0,10),
-            hashBootstrap: md5File('public/bootstrap.js').substring(0,10)
+            hashAppcss: md5File('public/app.css').substring(0, 10),
+            hashAppjs: md5File('public/app.js').substring(0, 10),
+            hashAppyatejs: md5File('public/app.yate.js').substring(0, 10),
+            hashBootstrap: md5File('public/bootstrap.js').substring(0, 10),
+            hashRuntime: md5File('public/runtime.js').substring(0, 10)
         }))
         .pipe(gulp.dest('public'));
 });
 
 
-gulp.task('production', ['yate', 'js', 'css', 'html', 'markdown']);
-gulp.task('default', ['yate-dev', 'js-dev', 'css', 'html-dev', 'markdown']);
+gulp.task('production', ['yate', 'js', 'css', 'html', 'markdown'], function () {
+    //gulp.src('public/app.html')
+    //    .pipe(template({
+    //        hashAppcss: md5File('public/app.css').substring(0, 10),
+    //        hashAppjs: md5File('public/app.js').substring(0, 10),
+    //        hashAppyatejs: md5File('public/app.yate.js').substring(0, 10),
+    //        hashBootstrap: md5File('public/bootstrap.js').substring(0, 10),
+    //        hashRuntime: md5File('public/runtime.js').substring(0, 10)
+    //    }))
+    //    .pipe(gulp.dest('public'));
+});
+
+gulp.task('default', ['yate-dev', 'js-dev', 'css', 'html-dev', 'markdown'], function () {
+//    gulp.src('public/app.html')
+//        .pipe(template({
+//            hashAppcss: md5File('public/app.css').substring(0, 10),
+//            hashAppjs: md5File('public/app.js').substring(0, 10),
+//            hashAppyatejs: md5File('public/app.yate.js').substring(0, 10),
+//            hashBootstrap: md5File('public/bootstrap.js').substring(0, 10),
+//            hashRuntime: md5File('public/runtime.js').substring(0, 10)
+//        }))
+//        .pipe(gulp.dest('public'));
+});
+
+

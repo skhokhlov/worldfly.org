@@ -6,7 +6,7 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     htmlmin = require('gulp-htmlmin'),
     autoprefixer = require('gulp-autoprefixer'),
-    marked = require('gulp-marked'),
+    marked = require('gulp-markdown'),
     template = require('gulp-template'),
     md5File = require('md5-file');
 

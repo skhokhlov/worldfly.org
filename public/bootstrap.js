@@ -87,7 +87,7 @@
             }
         };
 
-    request('/public/runtime.js').then(function (res) {
+    request('/public/runtime.js?hash=' + wf.hash.appruntime).then(function (res) {
         blobContent.runtimejs = res;
         blobRender();
     }).catch(function (error) {

@@ -2,25 +2,40 @@
 
     var app = {
         /**
+         * Add click listener on elements with current class name
+         * @param className
+         * @param func
+         */
+        addClickListener: function(className, func){
+            var elements = document.getElementsByClassName(className),
+                i = elements.length;
+
+            while (i--){
+                elements[i].addEventListener('click', func);
+            }
+        },
+        /**
          * Enabling cross page navigation
          */
         navigation: function () {
             //Checking for b-nav__link_home element on page. For example on homepage this element is undefined.
-            if (document.getElementsByClassName('b-nav__link_home')[0] !== undefined) {
-                document.getElementsByClassName('b-nav__link_home')[0].addEventListener('click', function (event) {
+            if (!!document.getElementsByClassName('b-nav__link_home')) {
+                app.addClickListener('b-nav__link_home', function (event) {
                     history.pushState({page: 'home'}, 'Home page of World Fly', '/');
-                    app.pages.home();
+                        app.pages.home();
+                        event.preventDefault();
+                        return false;
+                });
+            }
+
+            if (!!document.getElementsByClassName('b-nav__link_projects')) {
+                app.addClickListener('b-nav__link_projects', function (event) {
+                    history.pushState({page: 'projects'}, 'Projects of World Fly', '/projects');
+                    app.pages.projects();
                     event.preventDefault();
                     return false;
                 });
             }
-
-            document.getElementsByClassName('b-nav__link_projects')[0].addEventListener('click', function (event) {
-                history.pushState({page: 'projects'}, 'Projects of World Fly', '/projects');
-                app.pages.projects();
-                event.preventDefault();
-                return false;
-            });
         },
         pages: {
             /**
@@ -28,7 +43,7 @@
              */
             home: function () {
                 document.title = 'Home page of World Fly';
-                document.getElementsByTagName('html')[0].innerHTML = app.render.home;
+                document.getElementsByClassName('b-layout')[0].innerHTML = app.render.home;
                 app.navigation();
             },
             /**
@@ -36,7 +51,7 @@
              */
             projects: function () {
                 document.title = 'Projects of World Fly';
-                document.getElementsByTagName('html')[0].innerHTML = app.render.projects;
+                document.getElementsByClassName('b-layout')[0].innerHTML = app.render.projects;
                 app.navigation();
             }
         },

@@ -113,28 +113,25 @@ gulp.task('html-dev', function () {
 });
 
 
-gulp.task('production', ['yate', 'js', 'css', 'html', 'markdown'], function () {
-    //gulp.src('public/app.html')
-    //    .pipe(template({
-    //        hashAppcss: md5File('public/app.css').substring(0, 10),
-    //        hashAppjs: md5File('public/app.js').substring(0, 10),
-    //        hashAppyatejs: md5File('public/app.yate.js').substring(0, 10),
-    //        hashBootstrap: md5File('public/bootstrap.js').substring(0, 10),
-    //        hashRuntime: md5File('public/runtime.js').substring(0, 10)
-    //    }))
-    //    .pipe(gulp.dest('public'));
-});
+gulp.task('production', ['yate', 'js', 'css', 'html', 'markdown']);
 
-gulp.task('default', ['yate-dev', 'js-dev', 'css', 'html-dev', 'markdown'], function () {
-//    gulp.src('public/app.html')
-//        .pipe(template({
-//            hashAppcss: md5File('public/app.css').substring(0, 10),
-//            hashAppjs: md5File('public/app.js').substring(0, 10),
-//            hashAppyatejs: md5File('public/app.yate.js').substring(0, 10),
-//            hashBootstrap: md5File('public/bootstrap.js').substring(0, 10),
-//            hashRuntime: md5File('public/runtime.js').substring(0, 10)
-//        }))
-//        .pipe(gulp.dest('public'));
-});
+gulp.task('default', ['yate-dev', 'js-dev', 'css', 'html-dev', 'markdown']);
 
 
+//gulp.task('freeze', appendHash());
+//
+//function appendHash() {
+//    require('fs').readFile('public/app.html', {encoding: 'utf-8'}, function(err, data){
+//        if (err) throw err;
+//        var sData = data.toString();
+//        var rData = sData.replace('<%= hashAppcss %>', md5File('public/app.css').substring(0, 10))
+//            .replace('<%= hashAppjs %>', md5File('public/app.js').substring(0, 10))
+//            .replace('<%= hashAppyatejs %>', md5File('public/app.yate.js').substring(0, 10))
+//            .replace('<%= hashRuntime %>', md5File('public/runtime.js').substring(0, 10))
+//            .replace('<%= hashBootstrap %>', md5File('public/runtime.js').substring(0, 10));
+//
+//        require('fs').writeFileSync('public/app.html', rData, {encoding: 'utf-8'},function (err) {
+//            if (err) throw err;
+//        });
+//    });
+//}

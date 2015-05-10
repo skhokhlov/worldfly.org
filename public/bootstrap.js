@@ -4,7 +4,7 @@
      * Browser tests
      * If client don't support Promises or Blob URLs or JSON he wiil be redirected to version without js
      */
-    if (!new Promise(function(){}) && !new Blob() && !('JSON' in window && 'parse' in JSON && 'stringify' in JSON)) {
+    if (!new XMLHttpRequest() && !new Promise(function(){}) && !new Blob() && !('JSON' in window && 'parse' in JSON && 'stringify' in JSON)) {
         window.location = window.location.href + '?nojs=true';
     }
 

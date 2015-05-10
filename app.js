@@ -39,7 +39,7 @@ app.get('/projects', function (req, res) {
 
 
 app.get('/assest/data.json', function (req, res) {
-    res.status(200).set('cache-control', 'public, max-age=10').json(getData());
+    res.status(200).set('cache-control', 'public, max-age=120').json(getData());
 });
 
 app.get('/favicon.ico', function (req, res) {

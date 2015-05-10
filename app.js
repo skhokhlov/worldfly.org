@@ -47,7 +47,7 @@ app.get('/favicon.ico', function (req, res) {
 });
 
 app.get('/robots.txt', function (req, res) {
-    res.set('Content-type', 'text/plain').send(process.env.DEBUG === 'false' ? 'User-Agent: *\nDisallow: ?*\nAllow: /\n\nSitemap: https://www.worldfly.org/sitemap.xml\nHost: https://www.WorldFly.org' : 'User-Agent: *\nDisallow: /');
+    res.set('Content-type', 'text/plain').send(process.env.DEBUG === 'false' ? 'User-Agent: *\nDisallow: /?nojs=true\nDisallow: /projects?nojs=true\nAllow: /\nAllow: /projects\n\nSitemap: https://www.worldfly.org/sitemap.xml\nHost: https://www.WorldFly.org' : 'User-Agent: *\nDisallow: /');
 });
 
 app.get('/sitemap.xml', function (req, res) {

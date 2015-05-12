@@ -57,12 +57,12 @@ app.get('/sitemap.xml', function (req, res) {
     'xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">\n' +
     '<url> \n' +
     '<loc>https://www.worldfly.org/</loc> \n' +
-    '<lastmod>2015-4-20T13:29:09+00:00</lastmod> \n' +
+    '<lastmod>2015-5-11T13:29:09+00:00</lastmod> \n' +
     '<changefreq>monthly</changefreq> \n' +
     '</url> \n' +
     '<url> \n' +
     '<loc>https://www.worldfly.org/projects</loc> \n' +
-    '<lastmod>2015-4-20T13:29:09+00:00</lastmod> \n' +
+    '<lastmod>2015-5-11T13:29:09+00:00</lastmod> \n' +
     '<changefreq>monthly</changefreq> \n' +
     '</url> \n' +
     '</urlset>');

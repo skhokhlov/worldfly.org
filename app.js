@@ -68,12 +68,18 @@ app.get('/sitemap.xml', function (req, res) {
     '</urlset>');
 });
 
+
+app.get('/info', function(req,res){
+    res.send(require('os').hostname());
+});
+
+
 app.use(function (req, res, next) {
     res.status(404).sendFile(__dirname + '/public/404.html');
 });
 
 require('http').createServer(app).listen(app.get('port'), function () {
-    console.info('DEBUG environment is set to ' + ((process.env.DEBUG === 'true') || (process.env.DEBUG == null) ? true : false));
+    console.info('DEBUG environment is set to ' + (!!((process.env.DEBUG === 'true') || (process.env.DEBUG == null))));
     console.log('Server listening on port ' + app.get('port'));
 });
 

@@ -153,6 +153,21 @@ function getData(env) {
                     "list": {
                         "project": [
                             {
+                                "title": "Yamomof",
+                                "id": "Yamomof",
+                                "years": {
+                                    "begin": 2015
+                                },
+                                "link": [
+                                    {
+                                        "href": "https://github.com/skhokhlov/yamomof",
+                                        "body": "Github",
+                                        "separator": ". "
+                                    }
+                                ],
+                                "description": getFile('projects/build/yamomof.html')
+                            },
+                            {
                                 "title": "WalletMap",
                                 "id": "WalletMap",
                                 "years": {

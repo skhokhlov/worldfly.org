@@ -72,12 +72,19 @@
         }
     });
 
+    var hash = window.location.hash || "";
+
     if (window.location.pathname === '/') {
-        history.replaceState({page: 'home'}, 'Home page of World Fly', '/');
+        history.replaceState({page: 'home'}, 'Home page of World Fly', '/' + !!hash ? hash : null);
         app.pages.home();
+
     } else if (window.location.pathname === '/projects') {
-        history.replaceState({page: 'projects'}, 'Projects of World Fly', '/projects');
+        history.replaceState({page: 'projects'}, 'Projects of World Fly', '/projects' + !!hash ? hash : null);
         app.pages.projects();
+
+        if (!!hash) {
+            window.scrollTo(0, document.querySelector(hash).offsetTop);
+        }
     }
 
 })(yr, window, document);

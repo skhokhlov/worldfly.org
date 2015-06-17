@@ -1,5 +1,7 @@
 (function (yr, window, document) {
 
+    var hash = window.location.hash || "";
+
     var app = {
         /**
          * Add click listener on elements with current class name
@@ -65,6 +67,9 @@
                     el.innerHTML = app.render.projects;
                     el.style.opacity = 1;
                     app.navigation();
+                    if (!!hash) {
+                        window.scrollTo(0, document.querySelector(hash).offsetTop);
+                    }
                 }, 200);
 
             }
@@ -86,7 +91,6 @@
         }
     });
 
-    var hash = window.location.hash || "";
 
     if (window.location.pathname === '/') {
         history.replaceState({page: 'home'}, 'Home page of World Fly', '/' + !!hash ? hash : null);
@@ -96,9 +100,6 @@
         history.replaceState({page: 'projects'}, 'Projects of World Fly', '/projects' + !!hash ? hash : null);
         app.pages.projects();
 
-        if (!!hash) {
-            window.scrollTo(0, document.querySelector(hash).offsetTop);
-        }
     }
 
 })(yr, window, document);

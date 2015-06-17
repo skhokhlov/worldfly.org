@@ -42,17 +42,31 @@
              * Actions for activating homepage
              */
             home: function () {
-                document.title = 'Home page of World Fly';
-                document.getElementsByClassName('b-layout')[0].innerHTML = app.render.home;
-                app.navigation();
+                document.title = 'Homepage of World Fly';
+                var el = document.getElementsByClassName('b-layout')[0];
+                el.style.opacity = 0;
+
+                setTimeout(function(){
+                    el.innerHTML = app.render.home;
+                    el.style.opacity = 1;
+                    app.navigation();
+                }, 200);
+
             },
             /**
              * Actions for activating projects page
              */
             projects: function () {
                 document.title = 'Projects of World Fly';
-                document.getElementsByClassName('b-layout')[0].innerHTML = app.render.projects;
-                app.navigation();
+                var el = document.getElementsByClassName('b-layout')[0];
+                el.style.opacity = 0;
+
+                setTimeout(function(){
+                    el.innerHTML = app.render.projects;
+                    el.style.opacity = 1;
+                    app.navigation();
+                }, 200);
+
             }
         },
         render: {

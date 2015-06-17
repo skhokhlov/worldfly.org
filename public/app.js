@@ -1,1 +1,104 @@
-!function(e,t,o){var a={addClickListener:function(e,t){for(var a=o.getElementsByClassName(e),n=a.length;n--;)a[n].addEventListener("click",t)},navigation:function(){o.getElementsByClassName("b-nav__link_home")&&a.addClickListener("b-nav__link_home",function(e){return history.pushState({page:"home"},"Home page of World Fly","/"),a.pages.home(),e.preventDefault(),!1}),o.getElementsByClassName("b-nav__link_projects")&&a.addClickListener("b-nav__link_projects",function(e){return history.pushState({page:"projects"},"Projects of World Fly","/projects"),a.pages.projects(),e.preventDefault(),!1})},pages:{home:function(){o.title="Home page of World Fly",o.getElementsByClassName("b-layout")[0].innerHTML=a.render.home,a.navigation()},projects:function(){o.title="Projects of World Fly",o.getElementsByClassName("b-layout")[0].innerHTML=a.render.projects,a.navigation()}},render:{home:e.run("app",JSON.parse(t.wf.PagesData).home),projects:e.run("app",JSON.parse(t.wf.PagesData).projects)}};t.addEventListener("popstate",function(e){"home"===e.state.page?a.pages.home():"projects"===e.state.page&&a.pages.projects()});var n=t.location.hash||"";"/"===t.location.pathname?(history.replaceState({page:"home"},"Home page of World Fly",n),a.pages.home()):"/projects"===t.location.pathname&&(history.replaceState({page:"projects"},"Projects of World Fly",n),a.pages.projects(),n&&t.scrollTo(0,o.querySelector(n).offsetTop))}(yr,window,document);
+(function (yr, window, document) {
+
+    var app = {
+        /**
+         * Add click listener on elements with current class name
+         * @param className
+         * @param func
+         */
+        addClickListener: function(className, func){
+            var elements = document.getElementsByClassName(className),
+                i = elements.length;
+
+            while (i--){
+                elements[i].addEventListener('click', func);
+            }
+        },
+        /**
+         * Enabling cross page navigation
+         */
+        navigation: function () {
+            //Checking for b-nav__link_home element on page. For example on homepage this element is undefined.
+            if (!!document.getElementsByClassName('b-nav__link_home')) {
+                app.addClickListener('b-nav__link_home', function (event) {
+                    history.pushState({page: 'home'}, 'Home page of World Fly', '/');
+                        app.pages.home();
+                        event.preventDefault();
+                        return false;
+                });
+            }
+
+            if (!!document.getElementsByClassName('b-nav__link_projects')) {
+                app.addClickListener('b-nav__link_projects', function (event) {
+                    history.pushState({page: 'projects'}, 'Projects of World Fly', '/projects');
+                    app.pages.projects();
+                    event.preventDefault();
+                    return false;
+                });
+            }
+        },
+        pages: {
+            /**
+             * Actions for activating homepage
+             */
+            home: function () {
+                document.title = 'Homepage of World Fly';
+                var el = document.getElementsByClassName('b-layout')[0];
+                el.style.opacity = 0;
+
+                setTimeout(function(){
+                    el.innerHTML = app.render.home;
+                    el.style.opacity = 1;
+                    app.navigation();
+                }, 200);
+
+            },
+            /**
+             * Actions for activating projects page
+             */
+            projects: function () {
+                document.title = 'Projects of World Fly';
+                var el = document.getElementsByClassName('b-layout')[0];
+                el.style.opacity = 0;
+
+                setTimeout(function(){
+                    el.innerHTML = app.render.projects;
+                    el.style.opacity = 1;
+                    app.navigation();
+                }, 200);
+
+            }
+        },
+        render: {
+            home: yr.run('app', (JSON.parse(window.wf.PagesData)).home),
+            projects: yr.run('app', (JSON.parse(window.wf.PagesData)).projects)
+        }
+    };
+
+    /**
+     * Actions for back and forward buttons navigation
+     */
+    window.addEventListener('popstate', function (event) {
+        if (event.state.page === 'home') {
+            app.pages.home();
+        } else if (event.state.page === 'projects') {
+            app.pages.projects();
+        }
+    });
+
+    var hash = window.location.hash || "";
+
+    if (window.location.pathname === '/') {
+        history.replaceState({page: 'home'}, 'Home page of World Fly', '/' + !!hash ? hash : null);
+        app.pages.home();
+
+    } else if (window.location.pathname === '/projects') {
+        history.replaceState({page: 'projects'}, 'Projects of World Fly', '/projects' + !!hash ? hash : null);
+        app.pages.projects();
+
+        if (!!hash) {
+            window.scrollTo(0, document.querySelector(hash).offsetTop);
+        }
+    }
+
+})(yr, window, document);

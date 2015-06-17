@@ -7,7 +7,10 @@ var express = require('express'),
 app.set('port', process.env.PORT || 3000);
 
 
-app.use('/public', express.static(__dirname + '/public', {index: false, maxAge: ((process.env.DEBUG === 'false') ? 15552000000 : 15000)}));
+app.use('/public', express.static(__dirname + '/public', {
+    index: false,
+    maxAge: ((process.env.DEBUG === 'false') ? 15552000000 : 15000)
+}));
 
 app.get('/', function (req, res) {
     if (hostAvailability(req.hostname)) {
@@ -37,9 +40,70 @@ app.get('/projects', function (req, res) {
     }
 });
 
+app.get('/contrast', function (req, res) {
+    if (hostAvailability(req.hostname)) {
+        if (req.query._escaped_fragment_ == '') {
+            res.send(render.js.projects);
+        } else if (req.query.nojs == 'true') {
+            res.send(render.nojs.projects);
+        } else {
+            res.status(200).sendFile(__dirname + '/public/app.html');
+        }
+    } else {
+        res.redirect(301, 'https://www.worldfly.org/contrast');
+    }
+});
+
 
 app.get('/assest/data.json', function (req, res) {
     res.status(200).set('cache-control', 'public, max-age=120').json(getData());
+});
+
+app.get('/assest/photos.json', function (req, res) {
+
+    var options = {
+        host: 'api.flickr.com',
+        path: '/services/rest/?method=flickr.photosets.getPhotos&api_key=' + process.env.FLICKR_KEY + '&photoset_id=72157654279469768&format=json&nojsoncallback=1'
+    };
+
+    require('https').request(options, function (response) {
+        var str = '';
+
+        response.on('data', function (chunk) {
+            str += chunk;
+        });
+
+        response.on('end', function () {
+
+            str = JSON.parse(str);
+
+            if (!(str.stat === 'fail')) {
+                var i = str.photoset.photo.length,
+                    r = {
+                        photo: []
+                    };
+
+                while (i--) {
+                    var url = 'https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_n.jpg';
+
+                    r.photo.push({
+                        title: str.photoset.photo[i].title,
+                        url: url.replace('{farm-id}', str.photoset.photo[i].farm)
+                            .replace('{server-id}', str.photoset.photo[i].server)
+                            .replace('{id}', str.photoset.photo[i].id)
+                            .replace('{secret}', str.photoset.photo[i].secret)
+                    });
+                }
+
+                res.status(200).set('cache-control', 'public, max-age=120').json(r);
+
+            } else {
+                res.status(200).json({error: true});
+            }
+
+        });
+    }).end();
+
 });
 
 app.get('/favicon.ico', function (req, res) {
@@ -69,7 +133,7 @@ app.get('/sitemap.xml', function (req, res) {
 });
 
 
-app.get('/info', function(req,res){
+app.get('/info', function (req, res) {
     res.send(require('os').hostname());
 });
 
@@ -102,10 +166,10 @@ function hostAvailability(host) {
 }
 
 function getFile(path) {
-  return require('fs').readFileSync(path, {encoding: 'utf-8'}, function (err, data) {
-    if (err) throw err;
-    return data;
-  });
+    return require('fs').readFileSync(path, {encoding: 'utf-8'}, function (err, data) {
+        if (err) throw err;
+        return data;
+    });
 }
 
 function getData(env) {

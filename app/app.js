@@ -76,6 +76,23 @@
 
                 }, 200);
 
+            },
+
+            contrast: function () {
+                var Request = new XMLHttpRequest();
+                Request.open('GET', '/assest/photos.json', true);
+                Request.onload = function () {
+                    if (Request.status === 200) {
+
+
+                    } else {
+                        Error(Request.statusText);
+                    }
+                };
+                Request.onerror = function () {
+                    reject(Error("Network Error"));
+                };
+                Request.send(null);
             }
         },
         render: {

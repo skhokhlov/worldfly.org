@@ -47,7 +47,7 @@ app.get('/contrast', function (req, res) {
         } else if (req.query.nojs == 'true') {
             res.send(render.nojs.projects);
         } else {
-            res.status(200).sendFile(__dirname + '/public/app.html');
+            res.status(200).sendFile(__dirname + '/public/contrast.html');
         }
     } else {
         res.redirect(301, 'https://www.worldfly.org/contrast');

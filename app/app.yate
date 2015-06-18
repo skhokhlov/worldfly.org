@@ -195,3 +195,26 @@ match .project {
   </div>
 
 }
+
+
+// Contrast project
+
+match .photos block-content {
+    apply /.page.photos
+}
+
+match .c-photos {
+    <div class="b-list-photo">
+        apply . list
+    </div>
+}
+
+match .c-photos list {
+    apply .list.photos
+}
+
+match .photo {
+    <div class="b-list-photo__item">
+        <img src="{ .url }" alt="{ .title }" />
+    </div>
+}

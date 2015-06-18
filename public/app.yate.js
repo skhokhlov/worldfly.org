@@ -97,6 +97,18 @@ var yr = yr || require('yate/lib/runtime.js');
 
     var j26 = [ 0, 'description' ];
 
+    var j27 = [ 0, 'photos' ];
+
+    var j28 = [ 0, 'page', 0, 'photos' ];
+
+    var j29 = [ 0, 'c-photos' ];
+
+    var j30 = [ 0, 'list', 0, 'photos' ];
+
+    var j31 = [ 0, 'photo' ];
+
+    var j32 = [ 0, 'url' ];
+
     // match /
     M.t0 = function t0(m, c0, i0, l0, a0) {
         var r0 = '';
@@ -465,6 +477,65 @@ var yr = yr || require('yate/lib/runtime.js');
     M.t15.j = j10;
     M.t15.a = 0;
 
+    // match .photos : block-content
+    M.t16 = function t16(m, c0, i0, l0, a0) {
+        var r0 = '';
+        var current = [ c0 ];
+
+        r0 += m.a(m, 0, m.s(j28, c0.doc.root), '', a0)
+
+        return r0;
+    };
+    M.t16.j = j27;
+    M.t16.a = 0;
+
+    // match .c-photos
+    M.t17 = function t17(m, c0, i0, l0, a0) {
+        var r0 = '';
+        var current = [ c0 ];
+
+        r0 += closeAttrs(a0);
+        r0 += "<div";
+        a0.a = {
+            'class': new yr.scalarAttr("b-list-photo")
+        };
+        a0.s = 'div';
+        r0 += m.a(m, 0, m.s(j8, c0), 'list', a0)
+        r0 += closeAttrs(a0);
+        r0 += "</div>";
+
+        return r0;
+    };
+    M.t17.j = j29;
+    M.t17.a = 0;
+
+    // match .c-photos : list
+    M.t18 = function t18(m, c0, i0, l0, a0) {
+        var r0 = '';
+        var current = [ c0 ];
+
+        r0 += m.a(m, 0, m.s(j30, c0), '', a0)
+
+        return r0;
+    };
+    M.t18.j = j29;
+    M.t18.a = 0;
+
+    // match .photo
+    M.t19 = function t19(m, c0, i0, l0, a0) {
+        var r0 = '';
+        var current = [ c0 ];
+
+        r0 += closeAttrs(a0);
+        r0 += "<div class=\"" + "b-list-photo__item" + "\">";
+        r0 += "<img src=\"" + nodeset2attrvalue( ( selectNametest('url', c0, []) ) ) + "\" alt=\"" + nodeset2attrvalue( ( selectNametest('title', c0, []) ) ) + "\"/>";
+        r0 += "</div>";
+
+        return r0;
+    };
+    M.t19.j = j31;
+    M.t19.a = 0;
+
     M.matcher = {
         "": {
             "": [
@@ -479,6 +550,12 @@ var yr = yr || require('yate/lib/runtime.js');
             ],
             "projects": [
                 "t13"
+            ],
+            "c-photos": [
+                "t17"
+            ],
+            "photo": [
+                "t19"
             ]
         },
         "block": {
@@ -518,11 +595,18 @@ var yr = yr || require('yate/lib/runtime.js');
             "body": [
                 "t11",
                 "t3"
+            ],
+            "photos": [
+                "t16",
+                "t3"
             ]
         },
         "list": {
             "projects": [
                 "t14"
+            ],
+            "c-photos": [
+                "t18"
             ]
         }
     };

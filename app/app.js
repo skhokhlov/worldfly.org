@@ -1,8 +1,10 @@
 (function (yr, window, document) {
 
-    var hash = window.location.hash || "";
+    var hash = window.location.hash || "",
+        _data = JSON.parse(window.wf.PagesData);
 
     var app = {
+
         /**
          * Add click listener on elements with current class name
          * @param className
@@ -76,28 +78,12 @@
 
                 }, 200);
 
-            },
-
-            contrast: function () {
-                var Request = new XMLHttpRequest();
-                Request.open('GET', '/assest/photos.json', true);
-                Request.onload = function () {
-                    if (Request.status === 200) {
-
-
-                    } else {
-                        Error(Request.statusText);
-                    }
-                };
-                Request.onerror = function () {
-                    reject(Error("Network Error"));
-                };
-                Request.send(null);
             }
+
         },
         render: {
-            home: yr.run('app', (JSON.parse(window.wf.PagesData)).home),
-            projects: yr.run('app', (JSON.parse(window.wf.PagesData)).projects)
+            home: yr.run('app', _data.home),
+            projects: yr.run('app', _data.projects)
         }
     };
 
@@ -122,5 +108,6 @@
         app.pages.projects();
 
     }
+
 
 })(yr, window, document);

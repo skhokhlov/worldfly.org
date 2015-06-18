@@ -19,7 +19,7 @@ gulp.task('yate', function () {
 });
 
 gulp.task('css', function () {
-    gulp.src(['app/app.styl'])
+    gulp.src(['app/app.styl', 'app/contrast/contrast.styl'])
         .pipe(stylus())
         .pipe(autoprefixer({
             browsers: ['last 2 versions']
@@ -33,7 +33,7 @@ gulp.task('js', function () {
     //    .pipe(jshint())
     //    .pipe(jshint.reporter('default'));
 
-    gulp.src(['app/bootstrap.js', 'app/app.js'])
+    gulp.src(['app/bootstrap.js', 'app/app.js', 'app/contrast/contrast.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
         .pipe(uglify())
@@ -46,13 +46,15 @@ gulp.task('js', function () {
 });
 
 gulp.task('html', function () {
-    gulp.src(['app/app.html', 'app/404.html'])
+    gulp.src(['app/app.html', 'app/404.html', 'app/contrast/contrast.html'])
         .pipe(template({
             hashAppcss: md5File('public/app.css').substring(0, 10),
             hashAppjs: md5File('public/app.js').substring(0, 10),
             hashAppyatejs: md5File('public/app.yate.js').substring(0, 10),
             hashBootstrap: md5File('public/bootstrap.js').substring(0, 10),
-            hashRuntime: md5File('public/runtime.js').substring(0, 10)
+            hashRuntime: md5File('public/runtime.js').substring(0, 10),
+            hashContrastCss: md5File('public/contrast.css').substring(0, 10),
+            hashContrastJs: md5File('public/contrast.js').substring(0, 10)
         }))
         .pipe(htmlmin({
             collapseWhitespace: true,
@@ -90,7 +92,7 @@ gulp.task('js-dev', function () {
     //    .pipe(jshint())
     //    .pipe(jshint.reporter('default'));
 
-    gulp.src(['app/bootstrap.js', 'app/app.js'])
+    gulp.src(['app/bootstrap.js', 'app/app.js', 'app/contrast/contrast.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
         .pipe(gulp.dest('public'));
@@ -101,13 +103,15 @@ gulp.task('js-dev', function () {
 });
 
 gulp.task('html-dev', function () {
-    gulp.src(['app/app.html', 'app/404.html'])
+    gulp.src(['app/app.html', 'app/404.html', 'app/contrast/contrast.html'])
         .pipe(template({
             hashAppcss: md5File('public/app.css').substring(0, 10),
             hashAppjs: md5File('public/app.js').substring(0, 10),
             hashAppyatejs: md5File('public/app.yate.js').substring(0, 10),
             hashBootstrap: md5File('public/bootstrap.js').substring(0, 10),
-            hashRuntime: md5File('public/runtime.js').substring(0, 10)
+            hashRuntime: md5File('public/runtime.js').substring(0, 10),
+            hashContrastCss: md5File('public/contrast.css').substring(0, 10),
+            hashContrastJs: md5File('public/contrast.js').substring(0, 10)
         }))
         .pipe(gulp.dest('public'));
 });

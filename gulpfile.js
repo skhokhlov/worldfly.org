@@ -11,7 +11,7 @@ var gulp = require('gulp'),
     md5File = require('md5-file');
 
 gulp.task('yate', function () {
-    gulp.src(['app/app.yate'])
+    gulp.src(['app/main/app.yate'])
         .pipe(shell([
             './node_modules/.bin/yate <%= file.path %> > public/app.yate.js',
             './node_modules/gulp-uglify/node_modules/uglify-js/bin/uglifyjs public/app.yate.js -o public/app.yate.js'
@@ -19,7 +19,7 @@ gulp.task('yate', function () {
 });
 
 gulp.task('css', function () {
-    gulp.src(['app/app.styl', 'app/contrast/contrast.styl'])
+    gulp.src(['app/main/app.styl', 'app/contrast/contrast.styl'])
         .pipe(stylus())
         .pipe(autoprefixer({
             browsers: ['last 2 versions']
@@ -33,7 +33,7 @@ gulp.task('js', function () {
     //    .pipe(jshint())
     //    .pipe(jshint.reporter('default'));
 
-    gulp.src(['app/bootstrap.js', 'app/app.js', 'app/contrast/contrast.js'])
+    gulp.src(['app/main/bootstrap.js', 'app/main/app.js', 'app/contrast/contrast.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
         .pipe(uglify())
@@ -46,7 +46,7 @@ gulp.task('js', function () {
 });
 
 gulp.task('html', function () {
-    gulp.src(['app/app.html', 'app/404.html', 'app/contrast/contrast.html'])
+    gulp.src(['app/main/app.html', 'app/404.html', 'app/contrast/contrast.html'])
         .pipe(template({
             hashAppcss: md5File('public/app.css').substring(0, 10),
             hashAppjs: md5File('public/app.js').substring(0, 10),
@@ -81,7 +81,7 @@ gulp.task('markdown', function () {
 
 
 gulp.task('yate-dev', function () {
-    gulp.src(['app/app.yate'])
+    gulp.src(['app/main/app.yate'])
         .pipe(shell([
             './node_modules/.bin/yate <%= file.path %> > public/app.yate.js'
         ]));
@@ -92,7 +92,7 @@ gulp.task('js-dev', function () {
     //    .pipe(jshint())
     //    .pipe(jshint.reporter('default'));
 
-    gulp.src(['app/bootstrap.js', 'app/app.js', 'app/contrast/contrast.js'])
+    gulp.src(['app/main/bootstrap.js', 'app/main/app.js', 'app/contrast/contrast.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
         .pipe(gulp.dest('public'));
@@ -103,7 +103,7 @@ gulp.task('js-dev', function () {
 });
 
 gulp.task('html-dev', function () {
-    gulp.src(['app/app.html', 'app/404.html', 'app/contrast/contrast.html'])
+    gulp.src(['app/main/app.html', 'app/404.html', 'app/contrast/contrast.html'])
         .pipe(template({
             hashAppcss: md5File('public/app.css').substring(0, 10),
             hashAppjs: md5File('public/app.js').substring(0, 10),

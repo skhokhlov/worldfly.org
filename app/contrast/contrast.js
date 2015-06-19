@@ -15,14 +15,16 @@
     Request.onload = function () {
         if (Request.status === 200) {
             var r = JSON.parse(Request.responseText),
-                l = r.photo.length;
+                l = r.photo.length,
+                t = '<figure class="b-list__item"><figcaption class="b-list__desrc">{title}</figcaption><img src="{src}" alt="{title}" class="b-list__photo"/></figure>',
+                img = '';
 
             for (var i = 0; i < l; i++) {
-                var img = document.createElement('img');
-                img.src = r.photo[i].url.replace('{size}', '');
-                img.className = 'b-list__item';
-                el.appendChild(img);
+                img += t.replace('{src}', r.photo[i].url.replace('{size}', ''))
+                    .replace(new RegExp('{title}', 'g'), r.photo[i].title);
+
             }
+            el.innerHTML = img;
 
         } else {
             throw new Error(Request.statusText);

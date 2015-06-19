@@ -217,6 +217,18 @@ function getData(env) {
                     "list": {
                         "project": [
                             {
+                                "title": "Contrast",
+                                "id": "Contrast",
+                                "link": [
+                                    {
+                                        "href": "/contrast",
+                                        "body": "Website",
+                                        "separator": ". "
+                                    }
+                                ],
+                                "description": getFile('projects/build/contrast.html')
+                            },
+                            {
                                 "title": "Yamomof",
                                 "id": "Yamomof",
                                 "years": {

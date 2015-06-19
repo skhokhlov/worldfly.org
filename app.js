@@ -80,25 +80,25 @@ app.get('/assest/photos.json', function (req, res) {
             if (!(str.stat === 'fail')) {
                 var i = str.photoset.photo.length,
                     r = {
-                        photo: []
+                        photo: new Array(i)
                     };
 
                 while (i--) {
-                    var url = 'https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_n.jpg';
+                    var url = 'https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}{size}.jpg';
 
-                    r.photo.push({
+                    r.photo[i] = {
                         title: str.photoset.photo[i].title,
                         url: url.replace('{farm-id}', str.photoset.photo[i].farm)
                             .replace('{server-id}', str.photoset.photo[i].server)
                             .replace('{id}', str.photoset.photo[i].id)
                             .replace('{secret}', str.photoset.photo[i].secret)
-                    });
+                    };
                 }
 
                 res.status(200).set('cache-control', 'public, max-age=120').json(r);
 
             } else {
-                res.status(200).json({error: true});
+                res.status(200).json({fail: true});
             }
 
         });

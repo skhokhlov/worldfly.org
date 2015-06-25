@@ -9,7 +9,7 @@
   "main": "app.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha test",
-    "start": "DEBUG=true node app.js",
+    "start": "DEBUG=true node server.js",
     "build": "gulp"
   },
   "author": "Sergey Khokhlov",

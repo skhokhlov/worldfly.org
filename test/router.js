@@ -2,7 +2,7 @@ var after = require('after');
 //var express = require('../app.js'),
 var request = require('supertest');
 
-require('../app.js');
+require('../server.js');
 request = request('http://localhost:3000');
 
 describe('router', function () {

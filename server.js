@@ -4,6 +4,8 @@ var express = require('express'),
     app = express(),
     path = __dirname;
 
+global.path = __dirname;
+
 app.set('port', process.env.PORT || 3000);
 
 

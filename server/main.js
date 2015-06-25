@@ -1,6 +1,7 @@
-module.exports = function (app, path) {
-    var yr = require(path + '/node_modules/yate/lib/runtime.js'),
-        hostAvailability = require('./hostAvailability.js');
+module.exports = function (app) {
+    var path = global.path,
+        yr = require(path + '/node_modules/yate/lib/runtime.js'),
+        hostAvailability = require('./lib.js').hostAvailability;
 
 
     app.get('/', function (req, res) {

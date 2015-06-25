@@ -1,7 +1,10 @@
-module.exports = function (app, path) {
-    app.get('/contrast', function (req, res) {
-        if (require('./hostAvailability.js')(req.hostname)) {
+module.exports = function (app) {
+    var path = global.path,
+        lib = require('./lib.js');
 
+    app.get('/contrast', function (req, res) {
+        //if (require('./hostAvailability.js')(req.hostname)) {
+        if (lib.hostAvailability(req.hostname)) {
             var options = {
                 host: 'api.flickr.com',
                 path: '/services/rest/?method=flickr.photosets.getPhotos&api_key=' + process.env.FLICKR_KEY + '&photoset_id=72157654279469768&format=json&nojsoncallback=1'
@@ -16,7 +19,12 @@ module.exports = function (app, path) {
 
                 response.on('end', function () {
 
-                    str = JSON.parse(str);
+                    try {
+                        str = JSON.parse(str);
+                    } catch (e){
+                        //TODO: change to 500
+                        lib.sendError.s503(res);
+                    }
 
                     if (!(str.stat === 'fail')) {
                         var i = str.photoset.photo.length,
@@ -60,7 +68,8 @@ module.exports = function (app, path) {
 
 
                     } else {
-                        res.status(503).sendFile(path + '/public/503.html');
+                        lib.sendError.s503(res);
+                        //res.status(503).sendFile(path + '/public/503.html');
                     }
 
                 });

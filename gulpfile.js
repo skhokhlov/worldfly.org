@@ -46,7 +46,7 @@ gulp.task('js', function () {
 });
 
 gulp.task('html', function () {
-    gulp.src(['app/main/app.html', 'app/404.html', 'app/contrast/contrast.html'])
+    gulp.src(['app/main/app.html', 'app/404.html', 'app/contrast/contrast.html', 'app/503.html'])
         .pipe(template({
             hashAppcss: md5File('public/app.css').substring(0, 10),
             hashAppjs: md5File('public/app.js').substring(0, 10),
@@ -103,7 +103,7 @@ gulp.task('js-dev', function () {
 });
 
 gulp.task('html-dev', function () {
-    gulp.src(['app/main/app.html', 'app/404.html', 'app/contrast/contrast.html'])
+    gulp.src(['app/main/app.html', 'app/404.html', 'app/contrast/contrast.html', 'app/503.html'])
         .pipe(template({
             hashAppcss: md5File('public/app.css').substring(0, 10),
             hashAppjs: md5File('public/app.js').substring(0, 10),

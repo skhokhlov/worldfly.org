@@ -36,8 +36,6 @@ module.exports = function (app, path) {
                             };
                         }
 
-                        //success(r);
-
                         require('fs').readFile(path + '/public/contrast.html', {encoding: 'utf-8'}, function (err, data) {
                             if (err) {
                                 throw err;
@@ -58,72 +56,17 @@ module.exports = function (app, path) {
                                 res.status(200).send(data.replace('{content}', img));
                             }
 
-                            //res.status(200).send(data.replace('{content}', 'Content!'));
                         });
 
-                        //return r;
 
                     } else {
-                        res.status(503).send('HTTP 503');
-                        //error();
-                        //return {fail: true};
-                        //    res.status(200).json({fail: true});
+                        res.status(503).sendFile(path + '/public/503.html');
                     }
 
                 });
             }).end();
 
-
-
-            request(function (res) {
-                res.status(503).send('HTTP 503');
-            }, function (r, res) {
-                require('fs').readFile(path + '/public/contrast.html', {encoding: 'utf-8'}, function (err, data) {
-                    if (err) {
-                        throw err;
-                    }
-
-
-                    if (r.fail == null) {
-
-                        var l = r.photo.length,
-                            t = '<figure class="b-list__item"><figcaption class="b-list__desrc">{title}</figcaption><img src="{src}" alt="{title}" class="b-list__photo"/></figure>',
-                            img = '';
-
-                        for (var i = 0; i < l; i++) {
-                            img += t.replace('{src}', r.photo[i].url.replace('{size}', ''))
-                                .replace(new RegExp('{title}', 'g'), r.photo[i].title);
-                        }
-
-                        res.status(200).send(data.replace('{content}', img));
-                    }
-
-                    //res.status(200).send(data.replace('{content}', 'Content!'));
-                });
-            });
-
-
-            //res.status(200).sendFile(path + '/public/contrast.html');
-
-        } else {
-            res.redirect(301, 'https://www.worldfly.org/contrast');
         }
     });
-
-    //app.get('/assest/photos.json', function (req, res) {
-    //
-    //    request(function (res) {
-    //        res.status(200).json({fail: true});
-    //    }, function (data, res) {
-    //        res.status(200).set('cache-control', 'public, max-age=120').json(data);
-    //    });
-    //
-    //
-    //});
-
-
-    function request(error, success) {
-
-    }
 
 };

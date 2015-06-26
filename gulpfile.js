@@ -8,7 +8,8 @@ var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
     marked = require('gulp-markdown'),
     template = require('gulp-template'),
-    md5File = require('md5-file');
+    md5File = require('md5-file'),
+    yate = require('yate');
 
 gulp.task('yate', function () {
     gulp.src(['app/main/app.yate'])
@@ -114,6 +115,33 @@ gulp.task('html-dev', function () {
             hashContrastJs: md5File('public/contrast.js').substring(0, 10)
         }))
         .pipe(gulp.dest('public'));
+});
+
+
+gulp.task('error', function () {
+    gulp.src('app/error/error.yate')
+        .pipe(shell([
+            './node_modules/.bin/yate <%= file.path %> > public/error/error.yate.js'
+        ]))
+        .pipe(run());
+
+    function run() {
+        var yr = require('./node_modules/yate/lib/runtime.js');
+
+        require(__dirname + '/public/error/error.yate.js');
+
+        require('fs').writeFile('public/error/404.html', yr.run('error', {
+            code: 404,
+            title: 'Not Found'
+        }), function (err) {
+            if (err) {
+                throw err;
+            }
+        });
+
+        return 0;
+
+    }
 });
 
 

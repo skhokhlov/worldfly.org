@@ -1,6 +1,6 @@
 module.exports = function (app) {
-    var path = global.path,
-        yr = require(path + '/node_modules/yate/lib/runtime.js'),
+    var dirname = global.dirname,
+        yr = require(dirname + '/node_modules/yate/lib/runtime.js'),
         hostAvailability = require('./lib.js').hostAvailability;
 
 
@@ -11,7 +11,7 @@ module.exports = function (app) {
             } else if (req.query.nojs == 'true') {
                 res.send(render.nojs.home);
             } else {
-                res.status(200).sendFile(path + '/public/app.html');
+                res.status(200).sendFile(dirname + '/public/app.html');
             }
         } else {
             res.redirect(301, 'https://www.worldfly.org/');
@@ -25,7 +25,7 @@ module.exports = function (app) {
             } else if (req.query.nojs == 'true') {
                 res.send(render.nojs.projects);
             } else {
-                res.status(200).sendFile(path + '/public/app.html');
+                res.status(200).sendFile(dirname + '/public/app.html');
             }
         } else {
             res.redirect(301, 'https://www.worldfly.org/projects');
@@ -36,7 +36,7 @@ module.exports = function (app) {
         res.status(200).set('cache-control', 'public, max-age=120').json(getData());
     });
 
-    require(path + '/public/app.yate.js');
+    require(dirname + '/public/app.yate.js');
     var render = {
         "nojs": {
             "home": yr.run('app', getData('nojs').home),

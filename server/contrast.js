@@ -1,5 +1,5 @@
 module.exports = function (app) {
-    var path = global.path,
+    var dirname = global.dirname,
         lib = require('./lib.js');
 
     app.get('/contrast', function (req, res) {
@@ -44,7 +44,7 @@ module.exports = function (app) {
                             };
                         }
 
-                        require('fs').readFile(path + '/public/contrast.html', {encoding: 'utf-8'}, function (err, data) {
+                        require('fs').readFile(dirname + '/public/contrast.html', {encoding: 'utf-8'}, function (err, data) {
                             if (err) {
                                 throw err;
                             }

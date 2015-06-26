@@ -2,25 +2,25 @@
 
 var express = require('express'),
     app = express(),
-    path = __dirname;
+    dirname = __dirname;
 
-global.path = __dirname;
+global.dirname = dirname;
 
 app.set('port', process.env.PORT || 3000);
 
 
-app.use('/public', express.static(__dirname + '/public', {
+app.use('/public', express.static(dirname + '/public', {
     index: false,
     maxAge: ((process.env.DEBUG === 'false') ? 15552000000 : 15000)
 }));
 
 
-require('./server/main.js')(app, path);
+require('./server/main.js')(app);
 
-require('./server/contrast.js')(app, path);
+require('./server/contrast.js')(app);
 
 app.get('/favicon.ico', function (req, res) {
-    res.status(200).sendFile(__dirname + '/public/images/favicon.ico');
+    res.status(200).sendFile(dirname + '/public/images/favicon.ico');
 });
 
 app.get('/robots.txt', function (req, res) {
@@ -47,7 +47,7 @@ app.get('/sitemap.xml', function (req, res) {
 
 
 app.use(function (req, res, next) {
-    res.status(404).sendFile(__dirname + '/public/404.html');
+    res.status(404).sendFile(dirname + '/public/404.html');
 });
 
 require('http').createServer(app).listen(app.get('port'), function () {

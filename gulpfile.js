@@ -119,6 +119,13 @@ gulp.task('html-dev', function () {
 
 
 gulp.task('error', function () {
+    gulp.src('app/error/error.css')
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions']
+        }))
+        .pipe(csso())
+        .pipe(gulp.dest('public/error'));
+
     var yr = require('./node_modules/yate/lib/runtime.js');
 
 
@@ -127,7 +134,7 @@ gulp.task('error', function () {
             new Error(err);
         }
 
-        writeError({
+        writeFile({
             code: 404,
             title: 'Not Found',
             description: '<p>The requested resource was not found.</p>' +
@@ -135,14 +142,14 @@ gulp.task('error', function () {
             '<p>If you believe that something should be here, <a href="mailto:support@worldfly.info">&#32;please let us know: support@worldfly.info</a>.</p>'
         });
 
-        writeError({
+        writeFile({
             code: 500,
             title: 'Internal Server Error',
             description: '<p>The server is unable to process request.</p> ' +
             '<p>You can <a href="mailto:support@worldfly.info">&#32;tell us about it: support@worldfly.info</a>.</p>'
         });
 
-        writeError({
+        writeFile({
             code: 503,
             title: 'Service Unavailable',
             description: '<p>The server is temporarily unable to process requests.</p> ' +
@@ -150,7 +157,7 @@ gulp.task('error', function () {
         });
     });
 
-    function writeError (options){
+    function writeFile (options){
         require(__dirname + '/public/error/error.yate.js');
         require('fs').writeFile('public/error/' + options.code + '.html', yr.run('error', options), function (err) {
             if (err) {
@@ -164,7 +171,7 @@ gulp.task('error', function () {
 
 gulp.task('production', ['yate', 'js', 'css', 'html', 'markdown', 'error'], function () {
     var date = new Date();
-    return gulp.src(['./*/*/*', './*/*', './*'])
+    return gulp.src(['./*/*/*/*', './*/*/*', './*/*', './*'])
         .pipe(zip('release_' + date.getFullYear() + '.' + date.getMonth() + '.' + date.getDate() + '_' + date.getHours() + ':' + date.getMinutes() + '.zip'))
         .pipe(gulp.dest('./'));
 });

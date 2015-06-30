@@ -22,8 +22,7 @@ module.exports = function (app) {
                     try {
                         str = JSON.parse(str);
                     } catch (e){
-                        //TODO: change to 500
-                        lib.sendError.s503(res);
+                        lib.sendError.s500(res);
                     }
 
                     if (!(str.stat === 'fail')) {

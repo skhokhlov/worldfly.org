@@ -1,12 +1,14 @@
 module "error"
 
 match / {
+html('<!doctype html>')
 <html>
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="robots" content="noindex, nofollow"/>
     <title>{ .code } { .title } - World Fly</title>
+    html('<link href="/public/error/error.css" rel="stylesheet" />')
 </head>
 <body class="b-page">
 <div class="b-header">
@@ -21,11 +23,9 @@ match / {
     <h1 class="b-content__errorname">{ .title }</h1>
 
     <div class="b-content__descr">
-        <p>The requested resource was not found.</p>
-
-        <p>You can skip <a href="/">to the main page</a>.</p>
-
-        <p>If you think that something should be here, <a href="mailto:support@worldfly.info">&#32;please let us know:support@worldfly.info</a>.</p>
+        if .description {
+            html(.description)
+        }
     </div>
 </div>
 <div class="b-footer">

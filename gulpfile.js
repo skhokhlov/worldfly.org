@@ -8,8 +8,7 @@ var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
     marked = require('gulp-markdown'),
     template = require('gulp-template'),
-    md5File = require('md5-file'),
-    yate = require('yate');
+    md5File = require('md5-file');
 
 gulp.task('yate', function () {
     gulp.src(['app/main/app.yate'])
@@ -119,35 +118,51 @@ gulp.task('html-dev', function () {
 
 
 gulp.task('error', function () {
-    gulp.src('app/error/error.yate')
-        .pipe(shell([
-            './node_modules/.bin/yate <%= file.path %> > public/error/error.yate.js'
-        ]))
-        .pipe(run());
+    var yr = require('./node_modules/yate/lib/runtime.js');
+    require(__dirname + '/public/error/error.yate.js');
 
-    function run() {
-        var yr = require('./node_modules/yate/lib/runtime.js');
+    require("child_process").exec('./node_modules/yate/yate app/error/error.yate > public/error/error.yate.js', function(err) {
+        if (err) {
+            new Error(err);
+        }
 
-        require(__dirname + '/public/error/error.yate.js');
-
-        require('fs').writeFile('public/error/404.html', yr.run('error', {
+        writeError({
             code: 404,
-            title: 'Not Found'
-        }), function (err) {
+            title: 'Not Found',
+            description: '<p>The requested resource was not found.</p>' +
+            '<p>You can skip <a href="/">to the main page</a>.</p>' +
+            '<p>If you believe that something should be here, <a href="mailto:support@worldfly.info">&#32;please let us know: support@worldfly.info</a>.</p>'
+        });
+
+        writeError({
+            code: 500,
+            title: 'Internal Server Error',
+            description: '<p>The server is unable to process request.</p> ' +
+            '<p>You can <a href="mailto:support@worldfly.info">&#32;tell us about it: support@worldfly.info</a>.</p>'
+        });
+
+        writeError({
+            code: 503,
+            title: 'Service Unavailable',
+            description: '<p>The server is temporarily unable to process requests.</p> ' +
+            '<p>You can <a href="mailto:support@worldfly.info">&#32;tell us about it: support@worldfly.info</a>.</p>'
+        });
+    });
+
+    function writeError (options){
+        require('fs').writeFile('public/error/' + options.code + '.html', yr.run('error', options), function (err) {
             if (err) {
                 throw err;
             }
         });
-
-        return 0;
-
     }
+
 });
 
 
-gulp.task('production', ['yate', 'js', 'css', 'html', 'markdown']);
+gulp.task('production', ['yate', 'js', 'css', 'html', 'markdown', 'error']);
 
-gulp.task('default', ['yate-dev', 'js-dev', 'css', 'html-dev', 'markdown']);
+gulp.task('default', ['yate-dev', 'js-dev', 'css', 'html-dev', 'markdown', 'error']);
 
 
 //gulp.task('freeze', appendHash());

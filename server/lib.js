@@ -6,10 +6,14 @@ module.exports.hostAvailability = function (host) {
 
 module.exports.sendError = {
     s404: function (res) {
-        res.status(404).sendFile(dirname + '/public/404.html');
+        res.status(404).sendFile(dirname + '/public/error/404.html');
+    },
+
+    s500: function (res) {
+        res.status(503).sendFile(dirname + '/public/error/500.html');
     },
 
     s503: function (res) {
-        res.status(503).sendFile(dirname + '/public/503.html');
+        res.status(503).sendFile(dirname + '/public/error/503.html');
     }
 };

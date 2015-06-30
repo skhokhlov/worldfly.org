@@ -25,18 +25,22 @@ var yr = yr || require('yate/lib/runtime.js');
 
     var j2 = [ 0, 'title' ];
 
+    var j3 = [ 0, 'description' ];
+
     // match /
     M.t0 = function t0(m, c0, i0, l0, a0) {
         var r0 = '';
         var current = [ c0 ];
 
         r0 += closeAttrs(a0);
+        r0 += "<!doctype html>";
         r0 += "<html>";
         r0 += "<head>";
         r0 += "<meta charset=\"" + "utf-8" + "\"/>";
         r0 += "<meta http-equiv=\"" + "X-UA-Compatible" + "\" content=\"" + "IE=edge" + "\"/>";
         r0 += "<meta name=\"" + "robots" + "\" content=\"" + "noindex, nofollow" + "\"/>";
         r0 += "<title>" + nodeset2xml( ( selectNametest('code', c0, []) ) ) + " " + nodeset2xml( ( selectNametest('title', c0, []) ) ) + " - World Fly" + "</title>";
+        r0 += "<link href=\"/public/error/error.css\" rel=\"stylesheet\" />";
         r0 += "</head>";
         r0 += "<body class=\"" + "b-page" + "\">";
         r0 += "<div class=\"" + "b-header" + "\">";
@@ -50,9 +54,9 @@ var yr = yr || require('yate/lib/runtime.js');
         r0 += "<div class=\"" + "b-content" + "\">";
         r0 += "<h1 class=\"" + "b-content__errorname" + "\">" + nodeset2xml( ( selectNametest('title', c0, []) ) ) + "</h1>";
         r0 += "<div class=\"" + "b-content__descr" + "\">";
-        r0 += "<p>" + "The requested resource was not found." + "</p>";
-        r0 += "<p>" + "You can skip " + "<a href=\"" + "/" + "\">" + "to the main page" + "</a>" + "." + "</p>";
-        r0 += "<p>" + "If you think that something should be here, " + "<a href=\"" + "mailto:support@worldfly.info" + "\">" + " please let us know:support@worldfly.info" + "</a>" + "." + "</p>";
+        if (simpleBoolean('description', c0)) {
+            r0 += simpleScalar('description', c0);
+        }
         r0 += "</div>";
         r0 += "</div>";
         r0 += "<div class=\"" + "b-footer" + "\">";

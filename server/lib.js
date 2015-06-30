@@ -10,7 +10,7 @@ module.exports.sendError = {
     },
 
     s500: function (res) {
-        res.status(503).sendFile(dirname + '/public/error/500.html');
+        res.status(500).sendFile(dirname + '/public/error/500.html');
     },
 
     s503: function (res) {

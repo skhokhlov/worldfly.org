@@ -4,7 +4,10 @@ var express = require('express'),
     app = express(),
     dirname = __dirname;
 
+
 global.dirname = dirname;
+
+var lib = require('./server/lib.js');
 
 app.set('port', process.env.PORT || 3000);
 
@@ -47,7 +50,7 @@ app.get('/sitemap.xml', function (req, res) {
 
 
 app.use(function (req, res, next) {
-    res.status(404).sendFile(dirname + '/public/404.html');
+    lib.sendError.s404(res);
 });
 
 require('http').createServer(app).listen(app.get('port'), function () {

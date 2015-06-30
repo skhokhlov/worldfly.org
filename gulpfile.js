@@ -119,7 +119,7 @@ gulp.task('html-dev', function () {
 
 gulp.task('error', function () {
     var yr = require('./node_modules/yate/lib/runtime.js');
-    require(__dirname + '/public/error/error.yate.js');
+
 
     require("child_process").exec('./node_modules/yate/yate app/error/error.yate > public/error/error.yate.js', function(err) {
         if (err) {
@@ -150,6 +150,7 @@ gulp.task('error', function () {
     });
 
     function writeError (options){
+        require(__dirname + '/public/error/error.yate.js');
         require('fs').writeFile('public/error/' + options.code + '.html', yr.run('error', options), function (err) {
             if (err) {
                 throw err;

@@ -164,7 +164,7 @@ gulp.task('error', function () {
 
 gulp.task('production', ['yate', 'js', 'css', 'html', 'markdown', 'error'], function () {
     var date = new Date();
-    return gulp.src('./*')
+    return gulp.src(['./*/*/*', './*/*', './*'])
         .pipe(zip('release_' + date.getFullYear() + '.' + date.getMonth() + '.' + date.getDate() + '_' + date.getHours() + ':' + date.getMinutes() + '.zip'))
         .pipe(gulp.dest('./'));
 });

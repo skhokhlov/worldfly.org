@@ -3,9 +3,10 @@ node_js:
   - "0.12"
   - "iojs"
 
-
 before_install:
   - npm install -g gulp
 
 script:
   - gulp
+  - gulp production
+  - npm test

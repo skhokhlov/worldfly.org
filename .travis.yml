@@ -8,9 +8,8 @@ script:
 - gulp
 - gulp production
 - npm test
-after_success: curl --ftp-create-dirs -T release*.zip -u $FTP_USER:$FTP_PASSWORD ftp://ftp.selcdn.ru/%D0%A4%D0%B0%D0%B9%D0%BB%D1%8B/builds/build$DATE.zip
+after_success: curl --ftp-create-dirs -T release*.zip -u $FTP_USER:$FTP_PASSWORD ftp://ftp.selcdn.ru/%D0%A4%D0%B0%D0%B9%D0%BB%D1%8B/builds/worldfly.org/build$TRAVIS_BUILD_NUMBER.zip
 env:
   global:
   - secure: epAeQnW1CWmNxlXRsdEMHhnbG5JF95sirVG78PRriSsFORUMSvHV7n7ic7hHHFSQrII1caVSd5KXEoPyfboQQl2OGSbi6+vaqScomo/mWg4Sa0Xx1qKnmcYC81zpme4baf6Q/z+vTzA/nK6hQbeMxMxtJHe6LSeI6d3rCbMBwsg=
   - secure: TeAvY+Pt3Ytvrkg/fs0UlWpwrFdayYiCny+IC+OVWUby3wvzUqp/P7RFZMEAVV0lzJwitXadxOSOZtd8VBhP+0o0ANH+AbNnpscB4+KeO1HwZh3BXhNdXwVDNYmD7VR/7IOptajeR7L7dCpwFqy8W+3veRalMfJM9/SDfEXTiHA=
-  - date: date

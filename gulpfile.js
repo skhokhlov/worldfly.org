@@ -8,7 +8,8 @@ var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
     marked = require('gulp-markdown'),
     template = require('gulp-template'),
-    md5File = require('md5-file');
+    md5File = require('md5-file'),
+    zip = require('gulp-zip');
 
 gulp.task('yate', function () {
     gulp.src(['app/main/app.yate'])
@@ -161,7 +162,12 @@ gulp.task('error', function () {
 });
 
 
-gulp.task('production', ['yate', 'js', 'css', 'html', 'markdown', 'error']);
+gulp.task('production', ['yate', 'js', 'css', 'html', 'markdown', 'error'], function () {
+    var date = new Date();
+    return gulp.src('./*')
+        .pipe(zip('release_' + date.getFullYear() + '.' + date.getMonth() + '.' + date.getDate() + '_' + date.getHours() + ':' + date.getMinutes() + '.zip'))
+        .pipe(gulp.dest('./'));
+});
 
 gulp.task('default', ['yate-dev', 'js-dev', 'css', 'html-dev', 'markdown', 'error']);
 

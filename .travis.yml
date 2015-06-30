@@ -18,4 +18,4 @@ env:
     - secure: "PHzsMTF5yz0NbAqYtVf+OXJlqFhX4eVH2j7eO/HrOgmLL3tTVP8851gHTVdQjXn6AHeYbFL7xj6XSFIQtbaFVV/3u56Dk5poug8xnpIyTm3BSHT9IcG5sCPKYT3/VuqyByFZbWTyCtqiFSs4H7xtjrViGHlxblwo2HUn8Y4f+FY="
 
 after_success:
-  "curl --ftp-create-dirs -T uploadfilename -u $FTP_USER:$FTP_PASSWORD ftp://ftp.selcdn.ru/%D0%A4%D0%B0%D0%B9%D0%BB%D1%8B/build"
+  "curl --ftp-create-dirs -T release*.zip -u $FTP_USER:$FTP_PASSWORD ftp://ftp.selcdn.ru/%D0%A4%D0%B0%D0%B9%D0%BB%D1%8B/build"

@@ -39,6 +39,26 @@
         },
 
         /**
+         * Remove class name
+         * @param element
+         * @param className
+         * @returns {boolean}
+         */
+        removeClass: function (element, className) {
+            var classes = element.className.split(' ');
+
+            var index = classes.indexOf(className);
+
+            if (index === -1) {
+                return false;
+            }
+
+            classes.splice(index, 1);
+            element.className = classes.join(' ');
+
+        },
+
+        /**
          * Enabling cross page navigation
          */
         navigation: function () {
@@ -120,16 +140,7 @@
         }
     });
 
-
-    if (window.location.pathname === '/') {
-        history.replaceState({page: 'home'}, 'Home page of World Fly', '/' + !!hash ? hash : null);
-        app.pages.home();
-
-    } else if (window.location.pathname === '/projects') {
-        history.replaceState({page: 'projects'}, 'Projects of World Fly', '/projects' + !!hash ? hash : null);
-        app.pages.projects();
-
-    }
-
+    app.addClass(loader, 'b-loader_hidden');
+    app.navigation();
 
 })(yr, window, document);

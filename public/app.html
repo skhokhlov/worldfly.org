@@ -10,9 +10,9 @@
     <link id="png32favicon" rel="icon" href="/public/images/favicon32.png" sizes="32x32"/>
     <link rel="dns-prefetch" href="https://get.worldfly.org"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&subset=latin"/>
-    <link rel="stylesheet" href="/public/app.css?hash=3e9911ccfc"/>
-    <script>window.wf={BootCount:0,hash:{"appjs":"d3c816f79b","appyatejs":"ecdef7497d","appruntime": "1243c3cdfc"}};</script>
-    <script async="async" src="/public/bootstrap.js?hash=b2af740528"></script>
+    <link rel="stylesheet" href="/public/app.css?hash=<%= hashAppcss %>"/>
+    <script>window.wf={BootCount:0,hash:{"appjs":"<%= hashAppjs %>","appyatejs":"<%= hashAppyatejs %>","appruntime": "<%= hashRuntime %>"}};</script>
+    <script async="async" src="/public/bootstrap.js?hash=<%= hashBootstrap %>"></script>
 </head>
 <body>
     <div class="b-page"><div class="b-page__content"></div></div>

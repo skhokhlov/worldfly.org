@@ -1,13 +1,5 @@
 (function Bootstrap(window) {
 
-    ///**
-    // * Browser tests
-    // * If client don't support XMLHttpRequest or Promises or Blob URLs or JSON he will be redirected to version without js
-    // */
-    //if (!new XMLHttpRequest() && !new Promise(function(){}) && !new Blob() && !('JSON' in window && 'parse' in JSON && 'stringify' in JSON)) {
-    //    window.location = window.location.href + '?nojs=true';
-    //}
-
     /**
      * Make XHR GET to url
      * @param url

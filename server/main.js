@@ -42,6 +42,11 @@ module.exports = function (app) {
         "projects": yr.run('app', getData().projects)
     };
 
+    /**
+     * Render content to app.html
+     * @param render
+     * @returns {Promise}
+     */
     function renderFile(render) {
         return new Promise(function (resolve, reject) {
             require('fs').readFile(dirname + '/public/app.html', {encoding: 'utf-8'}, function (err, data) {

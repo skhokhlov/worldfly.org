@@ -48,15 +48,15 @@ gulp.task('js', function () {
 
 gulp.task('html', function () {
     gulp.src(['app/main/app.html', 'app/contrast/contrast.html'])
-        .pipe(template({
-            hashAppcss: md5File('public/app.css').substring(0, 10),
-            hashAppjs: md5File('public/app.js').substring(0, 10),
-            hashAppyatejs: md5File('public/app.yate.js').substring(0, 10),
-            hashBootstrap: md5File('public/bootstrap.js').substring(0, 10),
-            hashRuntime: md5File('public/runtime.js').substring(0, 10),
-            hashContrastCss: md5File('public/contrast.css').substring(0, 10),
-            hashContrastJs: md5File('public/contrast.js').substring(0, 10)
-        }))
+        //.pipe(template({
+        //    hashAppcss: md5File('public/app.css').substring(0, 10),
+        //    hashAppjs: md5File('public/app.js').substring(0, 10),
+        //    hashAppyatejs: md5File('public/app.yate.js').substring(0, 10),
+        //    hashBootstrap: md5File('public/bootstrap.js').substring(0, 10),
+        //    hashRuntime: md5File('public/runtime.js').substring(0, 10),
+        //    hashContrastCss: md5File('public/contrast.css').substring(0, 10),
+        //    hashContrastJs: md5File('public/contrast.js').substring(0, 10)
+        //}))
         .pipe(htmlmin({
             collapseWhitespace: true,
             removeComments: true,
@@ -105,15 +105,15 @@ gulp.task('js-dev', function () {
 
 gulp.task('html-dev', function () {
     gulp.src(['app/main/app.html', 'app/contrast/contrast.html'])
-        .pipe(template({
-            hashAppcss: md5File('public/app.css').substring(0, 10),
-            hashAppjs: md5File('public/app.js').substring(0, 10),
-            hashAppyatejs: md5File('public/app.yate.js').substring(0, 10),
-            hashBootstrap: md5File('public/bootstrap.js').substring(0, 10),
-            hashRuntime: md5File('public/runtime.js').substring(0, 10),
-            hashContrastCss: md5File('public/contrast.css').substring(0, 10),
-            hashContrastJs: md5File('public/contrast.js').substring(0, 10)
-        }))
+        //.pipe(template({
+        //    hashAppcss: md5File('public/app.css').substring(0, 10),
+        //    hashAppjs: md5File('public/app.js').substring(0, 10),
+        //    hashAppyatejs: md5File('public/app.yate.js').substring(0, 10),
+        //    hashBootstrap: md5File('public/bootstrap.js').substring(0, 10),
+        //    hashRuntime: md5File('public/runtime.js').substring(0, 10),
+        //    hashContrastCss: md5File('public/contrast.css').substring(0, 10),
+        //    hashContrastJs: md5File('public/contrast.js').substring(0, 10)
+        //}))
         .pipe(gulp.dest('public'));
 });
 
@@ -129,7 +129,7 @@ gulp.task('error', function () {
     var yr = require('./node_modules/yate/lib/runtime.js');
 
 
-    require("child_process").exec('./node_modules/yate/yate app/error/error.yate > public/error/error.yate.js', function(err) {
+    require("child_process").exec('./node_modules/yate/yate app/error/error.yate > public/error/error.yate.js', function (err) {
         if (err) {
             new Error(err);
         }
@@ -157,7 +157,7 @@ gulp.task('error', function () {
         });
     });
 
-    function writeFile (options){
+    function writeFile(options) {
         require(__dirname + '/public/error/error.yate.js');
         require('fs').writeFile('public/error/' + options.code + '.html', yr.run('error', options), function (err) {
             if (err) {
@@ -168,6 +168,30 @@ gulp.task('error', function () {
 
 });
 
+//FIXME: Файл открывается и содержимое изменяется, но запись не происходит. Можно попробовать заменить на fs.open
+gulp.task('freeze', ['html-dev'], function () {
+    require('fs').readFile('public/app.html', {encoding: 'utf-8'}, function (err, data) {
+        if (err) {
+            throw err;
+        }
+
+        var sData = data.toString();
+        var rData = sData.replace('<%= hashAppcss %>', md5File('public/app.css').substring(0, 10))
+            .replace('<%= hashAppjs %>', md5File('public/app.js').substring(0, 10))
+            .replace('<%= hashAppyatejs %>', md5File('public/app.yate.js').substring(0, 10))
+            .replace('<%= hashRuntime %>', md5File('public/runtime.js').substring(0, 10))
+            .replace('<%= hashBootstrap %>', md5File('public/runtime.js').substring(0, 10))
+            .replace('<%= hashContrastCss %>', md5File('public/contrast.css').substring(0, 10))
+            .replace('<%= hashContrastJs %>', md5File('public/contrast.js').substring(0, 10));
+
+        require('fs').writeFileSync('public/app.html', rData, {encoding: 'utf-8'}, function (err) {
+            if (err) {
+                throw err;
+            }
+        });
+    });
+});
+
 
 gulp.task('production', ['yate', 'js', 'css', 'html', 'markdown', 'error'], function () {
     var date = new Date();
@@ -176,23 +200,8 @@ gulp.task('production', ['yate', 'js', 'css', 'html', 'markdown', 'error'], func
         .pipe(gulp.dest('./'));
 });
 
-gulp.task('default', ['yate-dev', 'js-dev', 'css', 'html-dev', 'markdown', 'error']);
+gulp.task('default', ['yate-dev', 'js-dev', 'css', 'freeze', 'markdown', 'error']);
 
 
-//gulp.task('freeze', appendHash());
-//
-//function appendHash() {
-//    require('fs').readFile('public/app.html', {encoding: 'utf-8'}, function(err, data){
-//        if (err) throw err;
-//        var sData = data.toString();
-//        var rData = sData.replace('<%= hashAppcss %>', md5File('public/app.css').substring(0, 10))
-//            .replace('<%= hashAppjs %>', md5File('public/app.js').substring(0, 10))
-//            .replace('<%= hashAppyatejs %>', md5File('public/app.yate.js').substring(0, 10))
-//            .replace('<%= hashRuntime %>', md5File('public/runtime.js').substring(0, 10))
-//            .replace('<%= hashBootstrap %>', md5File('public/runtime.js').substring(0, 10));
-//
-//        require('fs').writeFileSync('public/app.html', rData, {encoding: 'utf-8'},function (err) {
-//            if (err) throw err;
-//        });
-//    });
-//}
+
+

@@ -3,7 +3,6 @@ module.exports = function (app) {
         lib = require('./lib.js');
 
     app.get('/contrast', function (req, res) {
-        //if (require('./hostAvailability.js')(req.hostname)) {
         if (lib.hostAvailability(req.hostname)) {
             var options = {
                 host: 'api.flickr.com',
@@ -69,7 +68,6 @@ module.exports = function (app) {
 
                     } else {
                         lib.sendError.s503(res);
-                        //res.status(503).sendFile(path + '/public/503.html');
                     }
 
                 });

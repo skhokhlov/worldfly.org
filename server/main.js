@@ -1,33 +1,32 @@
 module.exports = function (app) {
     var dirname = global.dirname,
         yr = require(dirname + '/node_modules/yate/lib/runtime.js'),
-        hostAvailability = require('./lib.js').hostAvailability;
+        lib = require('./lib.js');
 
 
     app.get('/', function (req, res) {
-        if (hostAvailability(req.hostname)) {
-            if (req.query._escaped_fragment_ == '') {
-                res.send(render.js.home);
-            } else if (req.query.nojs == 'true') {
-                //TODO: Change to 200
-                res.status(202).send(render.nojs.home);
-            } else {
-                res.status(200).sendFile(dirname + '/public/app.html');
-            }
+        if (lib.hostAvailability(req.hostname)) {
+            renderFile(render.home).then(function (data) {
+                res.send(data);
+
+            }).catch(function (e) {
+                lib.sendError.s500(res);
+            });
+
         } else {
             res.redirect(301, 'https://www.worldfly.org/');
         }
     });
 
     app.get('/projects', function (req, res) {
-        if (hostAvailability(req.hostname)) {
-            if (req.query._escaped_fragment_ == '') {
-                res.send(render.js.projects);
-            } else if (req.query.nojs == 'true') {
-                res.send(render.nojs.projects);
-            } else {
-                res.status(200).sendFile(dirname + '/public/app.html');
-            }
+        if (lib.hostAvailability(req.hostname)) {
+            renderFile(render.projects).then(function (data) {
+                res.send(data);
+
+            }).catch(function (e) {
+                lib.sendError.s500(res);
+            });
+
         } else {
             res.redirect(301, 'https://www.worldfly.org/projects');
         }
@@ -39,19 +38,28 @@ module.exports = function (app) {
 
     require(dirname + '/public/app.yate.js');
     var render = {
-        "nojs": {
-            "home": yr.run('app', getData('nojs').home),
-            "projects": yr.run('app', getData('nojs').projects)
-        },
-        "js": {
-            "home": yr.run('app', getData().home),
-            "projects": yr.run('app', getData().projects)
-        }
+        "home": yr.run('app', getData().home),
+        "projects": yr.run('app', getData().projects)
     };
+
+    function renderFile(render) {
+        return new Promise(function (resolve, reject) {
+            require('fs').readFile(dirname + '/public/app.html', {encoding: 'utf-8'}, function (err, data) {
+                if (err) {
+                    reject(err);
+                }
+
+                resolve(data.replace('<div class="b-page__content"></div>', render));
+
+            });
+        });
+    }
 
     function getFile(path) {
         return require('fs').readFileSync(path, {encoding: 'utf-8'}, function (err, data) {
-            if (err) throw err;
+            if (err) {
+                throw err;
+            }
             return data;
         });
     }

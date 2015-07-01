@@ -1,7 +1,8 @@
 (function (yr, window, document) {
 
     var hash = window.location.hash || "",
-        _data = JSON.parse(window.wf.PagesData);
+        _data = JSON.parse(window.wf.PagesData),
+        loader = document.getElementsByClassName('b-loader')[0];
 
     var app = {
 
@@ -18,6 +19,25 @@
                 elements[i].addEventListener('click', func);
             }
         },
+
+        /**
+         * Add class name to element
+         * @param element
+         * @param className
+         * @returns {boolean}
+         */
+        addClass: function (element, className) {
+            var classes = element.className.split(' ');
+
+            if (classes.indexOf(className) !== -1) {
+                return false;
+            }
+
+            classes.push(className);
+            element.className = classes.join(' ');
+
+        },
+
         /**
          * Enabling cross page navigation
          */
@@ -47,11 +67,12 @@
              */
             home: function () {
                 document.title = 'Homepage of World Fly';
-                var el = document.getElementsByClassName('b-layout')[0];
+                var el = document.getElementsByClassName('b-page')[0];
                 el.style.opacity = 0;
 
                 //Wait for transition
                 setTimeout(function () {
+                    app.addClass(loader, 'b-loader_hidden');
                     el.innerHTML = app.render.home;
                     el.style.opacity = 1;
                     app.navigation();
@@ -63,11 +84,12 @@
              */
             projects: function () {
                 document.title = 'Projects of World Fly';
-                var el = document.getElementsByClassName('b-layout')[0];
+                var el = document.getElementsByClassName('b-page')[0];
                 el.style.opacity = 0;
 
                 //Wait for transition
                 setTimeout(function () {
+                    app.addClass(loader, 'b-loader_hidden');
                     el.innerHTML = app.render.projects;
                     el.style.opacity = 1;
                     app.navigation();

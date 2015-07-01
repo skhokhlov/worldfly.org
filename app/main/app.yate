@@ -14,30 +14,17 @@ func url(url) {
 }
 
 match / {
-    <html>
-        <head>
-            <meta charset="utf-8"/>
-            <meta name="viewport" content="width=device-width, initial-scale=1"/>
-            <title>{ params.title }</title>
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&subset=latin"/>
-            <link rel="stylesheet" href="/public/app.css"/>
-        </head>
-        <body>
-            apply .page
-            if  /.data.nojs == "true" {
-            <div class="i-stat">
-                <noscript><img src="//mc.yandex.ru/watch/206275" style="position:absolute; left:-9999px;" /></noscript>
-            </div>
-            }
-        </body>
-    </html>
+    apply .page
+    if  /.data.nojs == "true" {
+        <div class="i-stat">
+            <noscript><img src="//mc.yandex.ru/watch/206275" style="position:absolute; left:-9999px;" /></noscript>
+        </div>
+    }
 }
 
 match .page {
-    <div class="b-page">
-        <div class="b-page__content">
-            apply .page-blocks.* block
-        </div>
+    <div class="b-page__content">
+        apply .page-blocks.* block
     </div>
 }
 

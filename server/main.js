@@ -9,7 +9,8 @@ module.exports = function (app) {
             if (req.query._escaped_fragment_ == '') {
                 res.send(render.js.home);
             } else if (req.query.nojs == 'true') {
-                res.send(render.nojs.home);
+                //TODO: Change to 200
+                res.status(202).send(render.nojs.home);
             } else {
                 res.status(200).sendFile(dirname + '/public/app.html');
             }

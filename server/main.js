@@ -7,12 +7,7 @@ module.exports = function (app) {
 
     app.get('/', function (req, res) {
         if (lib.hostAvailability(req.hostname)) {
-            renderFile(render.home).then(function (data) {
-                res.send(data);
-
-            }).catch(function (e) {
-                lib.sendError.s500(res);
-            });
+            res.send(render.home)
 
         } else {
             res.redirect(301, 'https://www.worldfly.org/');
@@ -21,12 +16,7 @@ module.exports = function (app) {
 
     app.get('/projects', function (req, res) {
         if (lib.hostAvailability(req.hostname)) {
-            renderFile(render.projects).then(function (data) {
-                res.send(data);
-
-            }).catch(function (e) {
-                lib.sendError.s500(res);
-            });
+            res.send(render.projects)
 
         } else {
             res.redirect(301, 'https://www.worldfly.org/projects');
@@ -39,9 +29,21 @@ module.exports = function (app) {
 
     require(dirname + '/public/app.yate.js');
     var render = {
-        "home": yr.run('app', dataAPI.home),
-        "projects": yr.run('app', dataAPI.projects)
+        "home": null,
+        "projects": null
     };
+
+    renderFile(yr.run('app', dataAPI.home)).then(function(data){
+        render.home = data;
+    }).catch(function(e){
+        throw new Error(e);
+    });
+
+    renderFile(yr.run('app', dataAPI.projects)).then(function(data){
+        render.projects = data;
+    }).catch(function(e){
+        throw new Error(e);
+    });
 
     /**
      * Render content to app.html
@@ -60,5 +62,5 @@ module.exports = function (app) {
             });
         });
     }
-    
+
 };

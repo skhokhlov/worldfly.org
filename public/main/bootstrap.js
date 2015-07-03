@@ -74,26 +74,24 @@
                 Bootstrap(window);
             } else {
                 console.error('Unexpected error run the application.');
-                console.log('Redirect to nojs version');
-                window.location = window.location.href + '?nojs=true';
             }
         };
 
-    request('/public/runtime.js?hash=' + wf.hash.appruntime).then(function (res) {
+    request('/public/main/runtime.js?hash=' + wf.hash.appruntime).then(function (res) {
         blobContent.runtimejs = res;
         blobRender();
     }).catch(function (error) {
         bootstrapError(error);
     });
 
-    request('/public/app.yate.js?hash=' + wf.hash.appyatejs).then(function (res) {
+    request('/public/main/app.yate.js?hash=' + wf.hash.appyatejs).then(function (res) {
         blobContent.appyatejs = res;
         blobRender();
     }).catch(function (error) {
         bootstrapError(error);
     });
 
-    request('/public/app.js?hash=' + wf.hash.appjs).then(function (res) {
+    request('/public/main/app.js?hash=' + wf.hash.appjs).then(function (res) {
         blobContent.appjs = res;
         blobRender();
     }).catch(function (error) {

@@ -27,7 +27,7 @@ module.exports = function (app) {
         res.status(200).set('cache-control', 'public, max-age=120').json(dataAPI);
     });
 
-    require(dirname + '/public/app.yate.js');
+    require(dirname + '/public/main/app.yate.js');
     var render = {
         "home": null,
         "projects": null
@@ -52,7 +52,7 @@ module.exports = function (app) {
      */
     function renderFile(render) {
         return new Promise(function (resolve, reject) {
-            require('fs').readFile(dirname + '/public/app.html', {encoding: 'utf-8'}, function (err, data) {
+            require('fs').readFile(dirname + '/public/main/app.html', {encoding: 'utf-8'}, function (err, data) {
                 if (err) {
                     reject(err);
                 }

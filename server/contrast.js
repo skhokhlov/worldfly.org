@@ -42,7 +42,7 @@ module.exports = function (app) {
                             };
                         }
 
-                        require('fs').readFile(dirname + '/public/contrast.html', {encoding: 'utf-8'}, function (err, data) {
+                        require('fs').readFile(dirname + '/public/contrast/contrast.html', {encoding: 'utf-8'}, function (err, data) {
                             if (err) {
                                 lib.sendError.s500(res);
                                 throw err;

@@ -6,6 +6,7 @@ html('<!doctype html>')
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="robots" content="noindex, nofollow"/>
     <title>{ .code } { .title } - World Fly</title>
     html('<link href="/public/error/error.css" rel="stylesheet" />')
@@ -13,20 +14,20 @@ html('<!doctype html>')
 <body class="b-page">
 <div class="b-header">
     <div class="b-header__logo">
-        <a href="/" class="b-header__logo_link"><img src="https://get.worldfly.org/storage/main/images/b-error__header_logo.svg" alt="World Fly"/></a>
+        <a href="/" class="b-header__link"><img src="https://get.worldfly.org/storage/main/images/b-error__header_logo.svg" alt="World Fly"/></a>
     </div>
     <div class="b-header__name">
         <h2 class="b-header__name__text">{ .code }</h2>
     </div>
 </div>
 <div class="b-content">
-    <h1 class="b-content__errorname">{ .title }</h1>
+    <h1 class="b-content__name">{ .title }</h1>
 
+    if .description {
     <div class="b-content__descr">
-        if .description {
-            html(.description)
-        }
+        html(.description)
     </div>
+    }
 </div>
 <div class="b-footer">
     <p>© World Fly</p>

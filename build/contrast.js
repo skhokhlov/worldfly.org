@@ -4,6 +4,7 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     stylus = require('gulp-stylus'),
     template = require('gulp-template'),
+    htmlmin = require('gulp-htmlmin'),
     autoprefixer = require('gulp-autoprefixer'),
     md5File = require('md5-file');
 
@@ -25,7 +26,7 @@ gulp.task('contrast-js', function () {
         .pipe(gulp.dest(dirname + '/public/contrast'));
 });
 
-gulp.task('contrast-production', ['css', 'js'], function () {
+gulp.task('contrast-production', ['contrast-css', 'contrast-js'], function () {
     gulp.src([dirname + '/app/contrast/contrast.html'])
         .pipe(template({
             hashContrastCss: md5File(dirname + '/public/contrast/contrast.css').substring(0, 10),

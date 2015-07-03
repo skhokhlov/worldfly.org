@@ -42,26 +42,6 @@ gulp.task('main-js', function () {
 
 });
 
-gulp.task('main-html', function () {
-    gulp.src(['app/main/app.html'])
-        .pipe(template({
-            hashAppcss: md5File('public/app.css').substring(0, 10),
-            hashAppjs: md5File('public/app.js').substring(0, 10),
-            hashAppyatejs: md5File('public/app.yate.js').substring(0, 10),
-            hashBootstrap: md5File('public/bootstrap.js').substring(0, 10),
-            hashRuntime: md5File('public/runtime.js').substring(0, 10),
-            hashContrastCss: md5File('public/contrast.css').substring(0, 10),
-            hashContrastJs: md5File('public/contrast.js').substring(0, 10)
-        }))
-        .pipe(htmlmin({
-            collapseWhitespace: true,
-            removeComments: true,
-            minifyCSS: true
-        }))
-        .pipe(gulp.dest('public/main'));
-});
-
-
 gulp.task('main-markdown', function () {
     gulp.src('./projects/*.md')
         .pipe(marked({
@@ -96,7 +76,7 @@ gulp.task('main-js-dev', function () {
 });
 
 
-gulp.task('main-production', ['main-js','main-yate','main-markdown','main-css'], function(){
+gulp.task('main-html', ['main-js', 'main-yate', 'main-markdown', 'main-css'], function () {
     gulp.src(['app/main/app.html'])
         .pipe(template({
             hashAppcss: md5File('public/main/app.css').substring(0, 10),
@@ -110,13 +90,19 @@ gulp.task('main-production', ['main-js','main-yate','main-markdown','main-css'],
             removeComments: true,
             minifyCSS: true
         }))
-        .pipe(gulp.dest('public/main'))
-        .pipe(gulp.src(['./*/*/*/*', './*/*/*', './*/*', './*'])
-            .pipe(zip('release_.zip'))
-            .pipe(gulp.dest('./')))
+        .pipe(gulp.dest('public/main'));
 });
 
-gulp.task('main', ['main-js-dev','main-yate-dev','main-markdown','main-css'], function(){
+
+gulp.task('main-production', ['main-html'], function () {
+    gulp.src(['./*/*/*/*', './*/*/*', './*/*', './*'])
+        .pipe(zip('release_.zip'))
+        .pipe(gulp.dest('./'))
+
+
+});
+
+gulp.task('main', ['main-js-dev', 'main-yate-dev', 'main-markdown', 'main-css'], function () {
     gulp.src(['app/main/app.html'])
         .pipe(template({
             hashAppcss: md5File('public/main/app.css').substring(0, 10),

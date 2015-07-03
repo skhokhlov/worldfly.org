@@ -32,24 +32,27 @@ app.get('/robots.txt', function (req, res) {
 
 app.get('/sitemap.xml', function (req, res) {
     res.set('Content-type', 'application/xml').send('<?xml version="1.0" encoding="UTF-8"?>\n' +
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" ' +
-    'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ' +
-    'xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">\n' +
-    '<url> \n' +
-    '<loc>https://www.worldfly.org/</loc> \n' +
-    '<lastmod>2015-5-11T13:29:09+00:00</lastmod> \n' +
-    '<changefreq>monthly</changefreq> \n' +
-    '</url> \n' +
-    '<url> \n' +
-    '<loc>https://www.worldfly.org/projects</loc> \n' +
-    '<lastmod>2015-5-11T13:29:09+00:00</lastmod> \n' +
-    '<changefreq>monthly</changefreq> \n' +
-    '</url> \n' +
-    '</urlset>');
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+    '<url>\n' +
+    '<loc>https://www.worldfly.org/</loc>\n' +
+    '<lastmod>2015-07-03</lastmod>\n' +
+    '<changefreq>monthly</changefreq>\n' +
+    '</url>\n' +
+    '<url>\n' +
+    '<loc>https://www.worldfly.org/projects</loc>\n' +
+    '<lastmod>2015-07-03</lastmod>\n' +
+    '<changefreq>monthly</changefreq>\n' +
+    '</url>\n' +
+    '<url>\n' +
+    '<loc>https://www.worldfly.org/contrast</loc>\n' +
+    '<lastmod>2015-07-03</lastmod>\n' +
+    '<changefreq>monthly</changefreq>\n' +
+    '</url>\n' +
+    '</urlset>\n');
 });
 
 
-app.use(function (req, res, next) {
+app.use(function (req, res) {
     lib.sendError.s404(res);
 });
 
@@ -57,4 +60,3 @@ require('http').createServer(app).listen(app.get('port'), function () {
     console.info('DEBUG environment is set to ' + (!!((process.env.DEBUG === 'true') || (process.env.DEBUG == null))));
     console.log('Server listening on port ' + app.get('port'));
 });
-

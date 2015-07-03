@@ -73,6 +73,8 @@ module.exports = function (app) {
                 });
             }).end();
 
+        } else {
+            res.redirect(301, 'https://www.worldfly.org/contrast');
         }
     });
 

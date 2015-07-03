@@ -29,6 +29,8 @@ a:hover {
 
 .b-header__name__text{
     font-weight: inherit;
+    position: relative;
+    top: -0.13em;
 }
 
 .b-content {

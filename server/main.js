@@ -2,7 +2,7 @@ module.exports = function (app) {
     var dirname = global.dirname,
         yr = require(dirname + '/node_modules/yate/lib/runtime.js'),
         lib = require('./lib.js'),
-        dataAPI = require('./data.js');
+        dataAPI = require('./data.js')();
 
 
     app.get('/', function (req, res) {

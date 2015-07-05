@@ -40,6 +40,22 @@ describe('router', function () {
                 .expect(404, cb);
         });
 
+        it('should return correct status code on /contrast', function (done) {
+            var cb = after(3, done);
+
+            request
+                .get('/contrast')
+                .expect(200, cb);
+
+            request
+                .delete('/contrast')
+                .expect(404, cb);
+
+            request
+                .post('/contrast')
+                .expect(404, cb);
+        });
+
         it('should return correct status code on a nonexistent page', function (done) {
             var cb = after(3, done);
 
@@ -57,18 +73,5 @@ describe('router', function () {
         });
     });
 
-    describe('accessibility', function () {
-        it('should return rendered page on /?nojs=true', function (done) {
-            request
-                .get('/?nojs=true')
-                .expect(200, done);
-        });
-
-        it('should return rendered page on /projects?nojs=true', function (done) {
-            request
-                .get('/projects?nojs=true')
-                .expect(200, done);
-        });
-    });
 
 });

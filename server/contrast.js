@@ -55,12 +55,15 @@ module.exports = function (app) {
                                     t = '<figure class="b-list__item"><figcaption class="b-list__desrc">{title}</figcaption><img src="{src}" alt="{title}" class="b-list__photo"/></figure>',
                                     img = '';
 
-                                for (var i = 0; i < l; i++) {
-                                    img += t.replace('{src}', r.photo[i].url.replace('{size}', ''))
-                                        .replace(new RegExp('{title}', 'g'), r.photo[i].title);
+                                while(l--){
+                                    img += t.replace('{src}', r.photo[l].url.replace('{size}', ''))
+                                        .replace(new RegExp('{title}', 'g'), r.photo[l].title);
                                 }
 
                                 res.status(200).send(data.replace('{content}', img));
+
+                            } else {
+                                lib.sendError.s503(res);
                             }
 
                         });

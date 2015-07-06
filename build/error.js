@@ -1,9 +1,11 @@
 var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
+    stylus = require('gulp-stylus'),
     csso = require('gulp-csso');
 
 gulp.task('error', function () {
-    gulp.src(dirname + '/app/error/error.css')
+    gulp.src(dirname + '/app/error/error.styl')
+        .pipe(stylus())
         .pipe(autoprefixer({
             browsers: ['last 2 versions']
         }))

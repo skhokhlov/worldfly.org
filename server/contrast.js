@@ -55,7 +55,7 @@ module.exports = function (app) {
                                     t = '<figure class="b-list__item"><figcaption class="b-list__desrc">{title}</figcaption><img src="{src}" alt="{title}" class="b-list__photo"/></figure>',
                                     img = '';
 
-                                while(l--){
+                                while (l--) {
                                     img += t.replace('{src}', r.photo[l].url.replace('{size}', ''))
                                         .replace(new RegExp('{title}', 'g'), r.photo[l].title);
                                 }
@@ -67,7 +67,6 @@ module.exports = function (app) {
                             }
 
                         });
-
 
                     } else {
                         lib.sendError.s503(res);

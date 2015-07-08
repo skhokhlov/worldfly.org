@@ -1,8 +1,7 @@
 //FIXME: There is memory leak
 
 module.exports = function (app) {
-    var dirname = global.dirname,
-        yr = require(dirname + '/node_modules/yate/lib/runtime.js'),
+    var yr = require(dirname + '/node_modules/yate/lib/runtime.js'),
         lib = require('./lib.js');
 
     //Require template
@@ -12,6 +11,7 @@ module.exports = function (app) {
         if (lib.hostAvailability(req.hostname)) {
             renderFile(yr.run('app', dataAPI().home)).then(function (data) {
                 res.set('cache-control', 'public, max-age=60').send(data);
+
             }).catch(function (e) {
                 lib.sendError.s500(res);
             });
@@ -24,7 +24,8 @@ module.exports = function (app) {
     app.get('/projects', function (req, res) {
         if (lib.hostAvailability(req.hostname)) {
             renderFile(yr.run('app', dataAPI().projects)).then(function (data) {
-                res.set('cache-control', 'public, max-age=60').send(data)
+                res.set('cache-control', 'public, max-age=60').send(data);
+
             }).catch(function (e) {
                 lib.sendError.s500(res);
             });
@@ -51,7 +52,7 @@ module.exports = function (app) {
                     reject(err);
                 }
 
-                resolve(data.replace('<div class="b-page__content"></div>', render));
+                resolve(data.replace('<div class="page__content"></div>', render));
 
             });
         });

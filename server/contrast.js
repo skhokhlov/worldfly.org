@@ -1,6 +1,5 @@
 module.exports = function (app) {
-    var dirname = global.dirname,
-        lib = require('./lib.js');
+    var lib = require('./lib.js');
 
     app.get('/contrast', function (req, res) {
         if (lib.hostAvailability(req.hostname)) {
@@ -52,7 +51,7 @@ module.exports = function (app) {
                             if (r.fail == null) {
 
                                 var l = r.photo.length,
-                                    t = '<figure class="b-list__item"><figcaption class="b-list__desrc">{title}</figcaption><img src="{src}" alt="{title}" class="b-list__photo"/></figure>',
+                                    t = '<figure class="list__item"><figcaption class="list__desrc">{title}</figcaption><img src="{src}" alt="{title}" class="list__photo"/></figure>',
                                     img = '';
 
                                 while (l--) {

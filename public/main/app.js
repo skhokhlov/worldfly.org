@@ -2,7 +2,7 @@
 
     var hash = window.location.hash || "",
         _data = JSON.parse(window.wf.PagesData),
-        loader = document.getElementsByClassName('b-loader')[0];
+        loader = document.getElementsByClassName('loader')[0];
 
     var app = {
 
@@ -63,8 +63,8 @@
          */
         navigation: function () {
             //Checking for b-nav__link_home element on page. For example on homepage this element is undefined.
-            if (!!document.getElementsByClassName('b-nav__link_home')) {
-                app.addClickListener('b-nav__link_home', function (event) {
+            if (!!document.getElementsByClassName('nav__link_home')) {
+                app.addClickListener('nav__link_home', function (event) {
                     history.pushState({page: 'home'}, 'Home page of World Fly', '/');
                     app.pages.home();
                     event.preventDefault();
@@ -72,8 +72,8 @@
                 });
             }
 
-            if (!!document.getElementsByClassName('b-nav__link_projects')) {
-                app.addClickListener('b-nav__link_projects', function (event) {
+            if (!!document.getElementsByClassName('nav__link_projects')) {
+                app.addClickListener('nav__link_projects', function (event) {
                     history.pushState({page: 'projects'}, 'Projects of World Fly', '/projects');
                     app.pages.projects();
                     event.preventDefault();
@@ -87,12 +87,12 @@
              */
             home: function () {
                 document.title = 'Homepage of World Fly';
-                var el = document.getElementsByClassName('b-page')[0];
+                var el = document.getElementsByClassName('page')[0];
                 el.style.opacity = 0;
 
                 //Wait for transition
                 setTimeout(function () {
-                    app.addClass(loader, 'b-loader_hidden');
+                    app.addClass(loader, 'loader_hidden');
                     el.innerHTML = app.render.home;
                     el.style.opacity = 1;
                     app.navigation();
@@ -104,12 +104,12 @@
              */
             projects: function () {
                 document.title = 'Projects of World Fly';
-                var el = document.getElementsByClassName('b-page')[0];
+                var el = document.getElementsByClassName('page')[0];
                 el.style.opacity = 0;
 
                 //Wait for transition
                 setTimeout(function () {
-                    app.addClass(loader, 'b-loader_hidden');
+                    app.addClass(loader, 'loader_hidden');
                     el.innerHTML = app.render.projects;
                     el.style.opacity = 1;
                     app.navigation();
@@ -140,7 +140,7 @@
         }
     });
 
-    app.addClass(loader, 'b-loader_hidden');
+    app.addClass(loader, 'loader_hidden');
     app.navigation();
 
 })(yr, window, document);

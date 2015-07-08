@@ -1,11 +1,10 @@
 'use strict';
 
 var express = require('express'),
-    app = express(),
-    dirname = __dirname;
+    app = express();
 
 
-global.dirname = dirname;
+global.dirname = __dirname;
 
 var lib = require('./server/lib.js');
 

@@ -123,7 +123,7 @@ var yr = yr || require('yate/lib/runtime.js');
         r0 += closeAttrs(a0);
         r0 += "<div";
         a0.a = {
-            'class': new yr.scalarAttr("b-page__content")
+            'class': new yr.scalarAttr("page__content")
         };
         a0.s = 'div';
         r0 += m.a(m, 0, m.s(j5, c0), 'block', a0)
@@ -196,19 +196,19 @@ var yr = yr || require('yate/lib/runtime.js');
         a0.s = 'div';
         var r1 = '';
         var a1 = { a: {} };
-        r1 += "b-logo ";
+        r1 += "logo ";
         if (cmpSN("home", m.v('v2', c0.doc.root))) {
-            r1 += "b-logo_home";
+            r1 += "logo_home";
         }
         a0.a[ "class" ] = new yr.scalarAttr(r1);
         r0 += closeAttrs(a0);
         if (cmpSN("home", m.v('v2', c0.doc.root))) {
-            r0 += "<img class=\"" + "b-logo__image b-logo__image_home" + "\" src=\"" + scalar2attrvalue( ( m.v('v0', c0.doc.root) ) ) + "/b-logo_index_black.svg" + "\" alt=\"" + "World Fly" + "\"/>";
-            r0 += "<img class=\"" + "b-logo__slogan" + "\" src=\"" + "https://get.worldfly.org/brands/worldfly/anything_is_possible.svg" + "\" alt=\"" + "Anything is possible" + "\"/>";
+            r0 += "<img class=\"" + "logo__image logo__image_home" + "\" src=\"" + scalar2attrvalue( ( m.v('v0', c0.doc.root) ) ) + "/b-logo_index_black.svg" + "\" alt=\"" + "World Fly" + "\"/>";
+            r0 += "<img class=\"" + "logo__slogan" + "\" src=\"" + "https://get.worldfly.org/brands/worldfly/anything_is_possible.svg" + "\" alt=\"" + "Anything is possible" + "\"/>";
         } else if (cmpSN("page", m.v('v2', c0.doc.root))) {
-            r0 += "<img class=\"" + "b-logo__image b-logo__image_page" + "\" src=\"" + scalar2attrvalue( ( m.v('v0', c0.doc.root) ) ) + "/b-logo_index_black.svg" + "\" alt=\"" + "World Fly" + "\"/>";
+            r0 += "<img class=\"" + "logo__image logo__image_page" + "\" src=\"" + scalar2attrvalue( ( m.v('v0', c0.doc.root) ) ) + "/b-logo_index_black.svg" + "\" alt=\"" + "World Fly" + "\"/>";
         } else {
-            r0 += "<img class=\"" + "b-logo__image" + "\" src=\"" + scalar2attrvalue( ( m.v('v0', c0.doc.root) ) ) + "/b-logo_index_black.svg" + "\" alt=\"" + "World Fly" + "\"/>";
+            r0 += "<img class=\"" + "logo__image" + "\" src=\"" + scalar2attrvalue( ( m.v('v0', c0.doc.root) ) ) + "/b-logo_index_black.svg" + "\" alt=\"" + "World Fly" + "\"/>";
         }
         r0 += "</div>";
 
@@ -229,16 +229,16 @@ var yr = yr || require('yate/lib/runtime.js');
         a0.s = 'div';
         var r1 = '';
         var a1 = { a: {} };
-        r1 += "b-nav ";
+        r1 += "nav ";
         if (cmpSN("home", m.v('v2', c0.doc.root))) {
-            r1 += "b-nav_home";
+            r1 += "nav_home";
         }
         a0.a[ "class" ] = new yr.scalarAttr(r1);
         r0 += closeAttrs(a0);
         if (cmpSN("home", m.v('v2', c0.doc.root))) {
             r0 += "<a";
             a0.a = {
-                'class': new yr.scalarAttr("b-nav__link b-nav__link_projects")
+                'class': new yr.scalarAttr("nav__link nav__link_projects")
             };
             a0.s = 'a';
             m.f('f0', c0, i0, l0, a0, "/projects");
@@ -247,7 +247,7 @@ var yr = yr || require('yate/lib/runtime.js');
         } else {
             r0 += "<a";
             a0.a = {
-                'class': new yr.scalarAttr("b-nav__link b-nav__link_home")
+                'class': new yr.scalarAttr("nav__link nav__link_home")
             };
             a0.s = 'a';
             m.f('f0', c0, i0, l0, a0, "/");
@@ -255,7 +255,7 @@ var yr = yr || require('yate/lib/runtime.js');
             r0 += "<span>" + "Home" + "</span></a>";
             r0 += "<a";
             a0.a = {
-                'class': new yr.scalarAttr("b-nav__link b-nav__link_active b-nav__link_projects")
+                'class': new yr.scalarAttr("nav__link nav__link_active nav__link_projects")
             };
             a0.s = 'a';
             m.f('f0', c0, i0, l0, a0, "/projects");
@@ -281,9 +281,9 @@ var yr = yr || require('yate/lib/runtime.js');
         a0.s = 'div';
         var r1 = '';
         var a1 = { a: {} };
-        r1 += "b-header ";
+        r1 += "header ";
         if (cmpSN("home", m.v('v2', c0.doc.root))) {
-            r1 += "b-header_home";
+            r1 += "header_home";
         }
         a0.a[ "class" ] = new yr.scalarAttr(r1);
         r0 += m.a(m, 0, selectNametest('*', c0, []), 'block', a0)
@@ -307,9 +307,9 @@ var yr = yr || require('yate/lib/runtime.js');
         a0.s = 'div';
         var r1 = '';
         var a1 = { a: {} };
-        r1 += "b-footer ";
+        r1 += "footer ";
         if (cmpSN("home", m.v('v2', c0.doc.root))) {
-            r1 += "b-footer_home";
+            r1 += "footer_home";
         }
         a0.a[ "class" ] = new yr.scalarAttr(r1);
         r0 += closeAttrs(a0);
@@ -329,7 +329,7 @@ var yr = yr || require('yate/lib/runtime.js');
         r0 += closeAttrs(a0);
         r0 += "<div";
         a0.a = {
-            'class': new yr.scalarAttr("b-body")
+            'class': new yr.scalarAttr("body")
         };
         a0.s = 'div';
         r0 += m.a(m, 0, m.s(j7, c0), 'block-content', a0)
@@ -347,8 +347,8 @@ var yr = yr || require('yate/lib/runtime.js');
         var current = [ c0 ];
 
         r0 += closeAttrs(a0);
-        r0 += "<div class=\"" + "b-body__content" + "\">";
-        r0 += "<h1 class=\"" + "b-body__title" + "\">" + nodeset2xml( ( m.n(j12, m.v('v1', c0.doc.root)) ) ) + "</h1>";
+        r0 += "<div class=\"" + "body__content" + "\">";
+        r0 += "<h1 class=\"" + "body__title" + "\">" + nodeset2xml( ( m.n(j12, m.v('v1', c0.doc.root)) ) ) + "</h1>";
         r0 += m.a(m, 0, selectNametest('*', c0, []), 'block', a0)
         r0 += "</div>";
 
@@ -377,7 +377,7 @@ var yr = yr || require('yate/lib/runtime.js');
         r0 += closeAttrs(a0);
         r0 += "<div";
         a0.a = {
-            'class': new yr.scalarAttr("b-list")
+            'class': new yr.scalarAttr("list")
         };
         a0.s = 'div';
         r0 += m.a(m, 0, m.s(j7, c0), 'list', a0)
@@ -409,33 +409,33 @@ var yr = yr || require('yate/lib/runtime.js');
         r0 += closeAttrs(a0);
         r0 += "<div";
         a0.a = {
-            'class': new yr.scalarAttr("b-list__item")
+            'class': new yr.scalarAttr("list__item")
         };
         a0.s = 'div';
         if (simpleBoolean('id', c0)) {
             a0.a[ "id" ] = new yr.scalarAttr(nodeset2scalar( (selectNametest('id', c0, [])) ));
         }
         r0 += closeAttrs(a0);
-        r0 += "<div class=\"" + "b-list__item__head" + "\">";
-        r0 += "<h2 class=\"" + "b-list__item__title" + "\">" + nodeset2xml( ( selectNametest('title', c0, []) ) ) + "</h2>";
+        r0 += "<div class=\"" + "list__item__head" + "\">";
+        r0 += "<h2 class=\"" + "list__title" + "\">" + nodeset2xml( ( selectNametest('title', c0, []) ) ) + "</h2>";
         if (simpleBoolean('years', c0)) {
-            r0 += "<span class=\"" + "b-list__item__years" + "\">";
-            r0 += "<span class=\"" + "b-list__item__years__begin" + "\">" + nodeset2xml( ( m.s(j21, c0) ) ) + "</span>";
+            r0 += "<span class=\"" + "years" + "\">";
+            r0 += "<span class=\"" + "years__begin" + "\">" + nodeset2xml( ( m.s(j21, c0) ) ) + "</span>";
             if (nodeset2boolean( m.s(j22, c0) )) {
                 if (cmpSN("∞", m.s(j22, c0))) {
-                    r0 += "<span class=\"" + "b-list__item__dash" + "\">" + "—" + "</span><span class=\"" + "b-list__item__years__end_big" + "\">" + nodeset2xml( ( m.s(j22, c0) ) ) + "</span>";
+                    r0 += "<span class=\"" + "years__dash" + "\">" + "—" + "</span><span class=\"" + "years__end years_big" + "\">" + nodeset2xml( ( m.s(j22, c0) ) ) + "</span>";
                 } else {
-                    r0 += "<span class=\"" + "b-list__item__dash" + "\">" + "—" + "</span><span class=\"" + "b-list__item__years__end" + "\">" + nodeset2xml( ( m.s(j22, c0) ) ) + "</span>";
+                    r0 += "<span class=\"" + "years__dash" + "\">" + "—" + "</span><span class=\"" + "years__end" + "\">" + nodeset2xml( ( m.s(j22, c0) ) ) + "</span>";
                 }
             }
             r0 += "</span>";
         }
         r0 += "</div>";
-        r0 += "<div class=\"" + "b-list__item__desrc" + "\">";
+        r0 += "<div class=\"" + "list__desrc" + "\">";
         var items0 = selectNametest('link', c0, []);
         for (var i1 = 0, l1 = items0.length; i1 < l1; i1++) {
             var c1 = items0[ i1 ];
-            r0 += "<span><a class=\"" + "b-list__item__desrc__link" + "\" href=\"" + nodeset2attrvalue( ( selectNametest('href', c1, []) ) ) + "\"><span>" + nodeset2xml( ( selectNametest('body', c1, []) ) ) + "</span></a>" + nodeset2xml( ( selectNametest('separator', c1, []) ) ) + "</span>";
+            r0 += "<span><a class=\"" + "list__link" + "\" href=\"" + nodeset2attrvalue( ( selectNametest('href', c1, []) ) ) + "\"><span>" + nodeset2xml( ( selectNametest('body', c1, []) ) ) + "</span></a>" + nodeset2xml( ( selectNametest('separator', c1, []) ) ) + "</span>";
         }
         if (simpleBoolean('description', c0)) {
             r0 += simpleScalar('description', c0);

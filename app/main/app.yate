@@ -23,7 +23,7 @@ match / {
 }
 
 match .page {
-    <div class="b-page__content">
+    <div class="page__content">
         apply .page-blocks.* block
     </div>
 }
@@ -48,19 +48,19 @@ match .project {
 match .logo block-content {
     <div>
     @class=(
-        "b-logo "
+        "logo "
         if page == "home" {
-            "b-logo_home"
+            "logo_home"
         }
     )
 
     if page == "home" {
-        <img class="b-logo__image b-logo__image_home" src="{ static }/b-logo_index_black.svg" alt="World Fly"/>
-        <img class="b-logo__slogan" src="https://get.worldfly.org/brands/worldfly/anything_is_possible.svg" alt="Anything is possible"/>
+        <img class="logo__image logo__image_home" src="{ static }/b-logo_index_black.svg" alt="World Fly"/>
+        <img class="logo__slogan" src="https://get.worldfly.org/brands/worldfly/anything_is_possible.svg" alt="Anything is possible"/>
     } else if page == "page" {
-        <img class="b-logo__image b-logo__image_page" src="{ static }/b-logo_index_black.svg" alt="World Fly"/>
+        <img class="logo__image logo__image_page" src="{ static }/b-logo_index_black.svg" alt="World Fly"/>
     } else {
-        <img class="b-logo__image" src="{ static }/b-logo_index_black.svg" alt="World Fly"/>
+        <img class="logo__image" src="{ static }/b-logo_index_black.svg" alt="World Fly"/>
     }
     </div>
 }
@@ -69,21 +69,21 @@ match .logo block-content {
 match .nav block-content {
     <div>
     @class=(
-        "b-nav "
+        "nav "
         if page == "home" {
-            "b-nav_home"
+            "nav_home"
         }
     )
 
     if page == "home" {
-        <a class="b-nav__link b-nav__link_projects">
+        <a class="nav__link nav__link_projects">
         url("/projects")
         <span>Projects</span></a>
     } else {
-        <a class="b-nav__link b-nav__link_home">
+        <a class="nav__link nav__link_home">
         url("/")
         <span>Home</span></a>
-        <a class="b-nav__link b-nav__link_active b-nav__link_projects">
+        <a class="nav__link nav__link_active nav__link_projects">
         url("/projects")
         <span>Projects</span></a>
     }
@@ -94,9 +94,9 @@ match .nav block-content {
 match .header block {
     <div>
     @class=(
-            "b-header "
+            "header "
             if page == "home" {
-                "b-header_home"
+                "header_home"
             }
         )
     apply .* block
@@ -107,9 +107,9 @@ match .header block {
 match .footer block-content {
     <div>
     @class=(
-        "b-footer "
+        "footer "
         if page == "home" {
-            "b-footer_home"
+            "footer_home"
         }
     )
 
@@ -119,15 +119,15 @@ match .footer block-content {
 
 
 match .body block {
-    <div class="b-body">
+    <div class="body">
     apply . block-content
     </div>
 }
 
 
 match .body block-content {
-    <div class="b-body__content">
-        <h1 class="b-body__title">{ params.header }</h1>
+    <div class="body__content">
+        <h1 class="body__title">{ params.header }</h1>
         apply .* block
     </div>
 }
@@ -138,7 +138,7 @@ match .projects block-content {
 }
 
 match .projects {
-    <div class="b-list">
+    <div class="list">
     apply . list
     </div>
 }
@@ -148,29 +148,32 @@ match .projects list {
 }
 
 match .project {
-    <div class="b-list__item">
+    <div class="list__item">
         if .id {
             @id = ( .id )
         }
-        <div class="b-list__item__head">
-            <h2 class="b-list__item__title">{ .title }</h2>
+
+        <div class="list__item__head">
+            <h2 class="list__title">{ .title }</h2>
+
             if .years {
-                <span class="b-list__item__years">
-                    <span class="b-list__item__years__begin">{ .years.begin }</span>
+                <span class="years">
+                    <span class="years__begin">{ .years.begin }</span>
                     if .years.end {
                         if .years.end == "∞" {
-                            <span class="b-list__item__dash">—</span><span class="b-list__item__years__end_big">{ .years.end }</span>
+                            <span class="years__dash">—</span><span class="years__end years_big">{ .years.end }</span>
                         } else {
-                            <span class="b-list__item__dash">—</span><span class="b-list__item__years__end">{ .years.end }</span>
+                            <span class="years__dash">—</span><span class="years__end">{ .years.end }</span>
                         }
                     }
                 </span>
             }
         </div>
-        <div class="b-list__item__desrc">
+        <div class="list__desrc">
             for .link {
-                <span><a class="b-list__item__desrc__link" href="{ .href }"><span>{ .body }</span></a>{ .separator }</span>
+                <span><a class="list__link" href="{ .href }"><span>{ .body }</span></a>{ .separator }</span>
             }
+
             if .description {
                 html(.description)
             }

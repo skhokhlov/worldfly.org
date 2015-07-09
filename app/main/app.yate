@@ -161,9 +161,9 @@ match .project {
                     <span class="years__begin">{ .years.begin }</span>
                     if .years.end {
                         if .years.end == "∞" {
-                            <span class="years__dash">—</span><span class="years__end years_big">{ .years.end }</span>
+                            <span class="years__dash">–</span><span class="years__end years_big">{ .years.end }</span>
                         } else {
-                            <span class="years__dash">—</span><span class="years__end">{ .years.end }</span>
+                            <span class="years__dash">–</span><span class="years__end">{ .years.end }</span>
                         }
                     }
                 </span>

@@ -422,10 +422,11 @@ var yr = yr || require('yate/lib/runtime.js');
             r0 += "<span class=\"" + "years" + "\">";
             r0 += "<span class=\"" + "years__begin" + "\">" + nodeset2xml( ( m.s(j21, c0) ) ) + "</span>";
             if (nodeset2boolean( m.s(j22, c0) )) {
+                r0 += "<span class=\"" + "years__dash" + "\">" + "–" + "</span>";
                 if (cmpSN("∞", m.s(j22, c0))) {
-                    r0 += "<span class=\"" + "years__dash" + "\">" + "–" + "</span><span class=\"" + "years__end years_big" + "\">" + nodeset2xml( ( m.s(j22, c0) ) ) + "</span>";
+                    r0 += "<span class=\"" + "years__end years_big" + "\">" + nodeset2xml( ( m.s(j22, c0) ) ) + "</span>";
                 } else {
-                    r0 += "<span class=\"" + "years__dash" + "\">" + "–" + "</span><span class=\"" + "years__end" + "\">" + nodeset2xml( ( m.s(j22, c0) ) ) + "</span>";
+                    r0 += "<span class=\"" + "years__end" + "\">" + nodeset2xml( ( m.s(j22, c0) ) ) + "</span>";
                 }
             }
             r0 += "</span>";

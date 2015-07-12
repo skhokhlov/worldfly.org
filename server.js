@@ -1,8 +1,7 @@
 'use strict';
 
-var express = require('express'),
-    app = express();
-
+var express = require('express');
+var app = express();
 
 global.dirname = __dirname;
 
@@ -10,12 +9,10 @@ var lib = require('./server/lib.js');
 
 app.set('port', process.env.PORT || 3000);
 
-
 app.use('/public', express.static(dirname + '/public', {
     index: false,
     maxAge: ((process.env.DEBUG === 'false') ? 15552000000 : 15000)
 }));
-
 
 require('./server/main.js')(app);
 
@@ -26,7 +23,15 @@ app.get('/favicon.ico', function (req, res) {
 });
 
 app.get('/robots.txt', function (req, res) {
-    res.set('Content-type', 'text/plain').send(process.env.DEBUG === 'false' ? 'User-Agent: *\nDisallow: /?nojs=true\nDisallow: /projects?nojs=true\nAllow: /\nAllow: /projects\n\nSitemap: https://www.worldfly.org/sitemap.xml\nHost: https://www.WorldFly.org' : 'User-Agent: *\nDisallow: /');
+    res.set('Content-type', 'text/plain').send(process.env.DEBUG === 'false' ?
+        'User-Agent: *\nDisallow: /?nojs=true\n' +
+        'Disallow: /projects?nojs=true\n' +
+        'Allow: /\n' +
+        'Allow: /projects\n\n' +
+        'Sitemap: https://www.worldfly.org/sitemap.xml\n' +
+        'Host: https://www.WorldFly.org'
+        : 'User-Agent: *\nDisallow: /'
+    );
 });
 
 app.get('/sitemap.xml', function (req, res) {
@@ -47,15 +52,16 @@ app.get('/sitemap.xml', function (req, res) {
     '<lastmod>2015-07-03</lastmod>\n' +
     '<changefreq>monthly</changefreq>\n' +
     '</url>\n' +
-    '</urlset>\n');
+    '</urlset>\n'
+    );
 });
-
 
 app.use(function (req, res) {
     lib.sendError.s404(res);
 });
 
 require('http').createServer(app).listen(app.get('port'), function () {
-    console.info('DEBUG environment is set to ' + (!!((process.env.DEBUG === 'true') || (process.env.DEBUG == null))));
+    console.info('DEBUG environment is set to ' +
+    (Boolean((process.env.DEBUG === 'true') || (process.env.DEBUG == null))));
     console.log('Server listening on port ' + app.get('port'));
 });

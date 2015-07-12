@@ -1,5 +1,4 @@
 var after = require('after');
-//var express = require('../app.js'),
 var request = require('supertest');
 
 require('../server.js');
@@ -72,6 +71,5 @@ describe('router', function () {
                 .expect(404, cb);
         });
     });
-
 
 });

@@ -5,7 +5,8 @@ module.exports = function (app) {
         if (lib.hostAvailability(req.hostname)) {
             var options = {
                 host: 'api.flickr.com',
-                path: '/services/rest/?method=flickr.photosets.getPhotos&api_key=' + process.env.FLICKR_KEY + '&photoset_id=72157654279469768&format=json&nojsoncallback=1'
+                path: '/services/rest/?method=flickr.photosets.getPhotos&api_key='
+                + process.env.FLICKR_KEY + '&photoset_id=72157654279469768&format=json&nojsoncallback=1'
             };
 
             require('https').request(options, function (response) {
@@ -24,10 +25,10 @@ module.exports = function (app) {
                     }
 
                     if (!(str.stat === 'fail')) {
-                        var i = str.photoset.photo.length,
-                            r = {
-                                photo: new Array(i)
-                            };
+                        var i = str.photoset.photo.length;
+                        var r = {
+                            photo: new Array(i)
+                        };
 
                         while (i--) {
                             var url = 'https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}{size}.jpg';
@@ -41,31 +42,34 @@ module.exports = function (app) {
                             };
                         }
 
-                        require('fs').readFile(dirname + '/public/contrast/contrast.html', {encoding: 'utf-8'}, function (err, data) {
-                            if (err) {
-                                lib.sendError.s500(res);
-                                throw err;
-                            }
-
-
-                            if (r.fail == null) {
-
-                                var l = r.photo.length,
-                                    t = '<figure class="list__item"><figcaption class="list__desrc">{title}</figcaption><img src="{src}" alt="{title}" class="list__photo"/></figure>',
-                                    img = '';
-
-                                while (l--) {
-                                    img += t.replace('{src}', r.photo[l].url.replace('{size}', ''))
-                                        .replace(new RegExp('{title}', 'g'), r.photo[l].title);
+                        require('fs').readFile(dirname + '/public/contrast/contrast.html', {encoding: 'utf-8'},
+                            function (err, data) {
+                                if (err) {
+                                    lib.sendError.s500(res);
+                                    throw err;
                                 }
 
-                                res.status(200).send(data.replace('{content}', img));
+                                if (r.fail == null) {
 
-                            } else {
-                                lib.sendError.s503(res);
-                            }
+                                    var l = r.photo.length;
+                                    var t = '<figure class="list__item">' +
+                                        '<figcaption class="list__desrc">{title}</figcaption>' +
+                                        '<img src="{src}" alt="{title}" class="list__photo"/>' +
+                                        '</figure>';
+                                    var img = '';
 
-                        });
+                                    while (l--) {
+                                        img += t.replace('{src}', r.photo[l].url.replace('{size}', ''))
+                                            .replace(new RegExp('{title}', 'g'), r.photo[l].title);
+                                    }
+
+                                    res.status(200).send(data.replace('{content}', img));
+
+                                } else {
+                                    lib.sendError.s503(res);
+                                }
+
+                            });
 
                     } else {
                         lib.sendError.s503(res);

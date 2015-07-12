@@ -1,12 +1,12 @@
-var gulp = require('gulp'),
-    csso = require('gulp-csso'),
-    uglify = require('gulp-uglify'),
-    jshint = require('gulp-jshint'),
-    stylus = require('gulp-stylus'),
-    template = require('gulp-template'),
-    htmlmin = require('gulp-htmlmin'),
-    autoprefixer = require('gulp-autoprefixer'),
-    md5File = require('md5-file');
+var gulp = require('gulp');
+var csso = require('gulp-csso');
+var uglify = require('gulp-uglify');
+var jshint = require('gulp-jshint');
+var stylus = require('gulp-stylus');
+var template = require('gulp-template');
+var htmlmin = require('gulp-htmlmin');
+var autoprefixer = require('gulp-autoprefixer');
+var md5File = require('md5-file');
 
 gulp.task('contrast-css', function () {
     gulp.src([dirname + '/app/contrast/contrast.styl'])
@@ -40,7 +40,6 @@ gulp.task('contrast-production', ['contrast-css', 'contrast-js'], function () {
         .pipe(gulp.dest(dirname + '/public/contrast'));
 });
 
-
 gulp.task('contrast-js-dev', function () {
     gulp.src([dirname + '/app/contrast/contrast.js'])
         .pipe(jshint())
@@ -56,4 +55,3 @@ gulp.task('contrast', ['contrast-css', 'contrast-js-dev'], function () {
         }))
         .pipe(gulp.dest(dirname + '/public/contrast'));
 });
-

@@ -1,7 +1,7 @@
-var gulp = require('gulp'),
-    autoprefixer = require('gulp-autoprefixer'),
-    stylus = require('gulp-stylus'),
-    csso = require('gulp-csso');
+var gulp = require('gulp');
+var autoprefixer = require('gulp-autoprefixer');
+var stylus = require('gulp-stylus');
+var csso = require('gulp-csso');
 
 gulp.task('error', function () {
     gulp.src(dirname + '/app/error/error.styl')
@@ -14,8 +14,8 @@ gulp.task('error', function () {
 
     var yr = require(dirname + '/node_modules/yate/lib/runtime.js');
 
-
-    require("child_process").exec(dirname + '/node_modules/yate/yate app/error/error.yate > ' + dirname + '/public/error/error.yate.js', function (err) {
+    require('child_process').exec(dirname + '/node_modules/yate/yate app/error/error.yate > '
+    + dirname + '/public/error/error.yate.js', function (err) {
         if (err) {
             new Error(err);
         }
@@ -25,7 +25,8 @@ gulp.task('error', function () {
             title: 'Not Found',
             description: '<p>The requested resource was not found.</p>' +
             '<p>You can skip <a href="/">to the main page</a>.</p>' +
-            '<p>If you believe that something should be here, <a href="mailto:support@worldfly.info">&#32;please let us know: support@worldfly.info</a>.</p>'
+            '<p>If you believe that something should be here, ' +
+            '<a href="mailto:support@worldfly.info">&#32;please let us know: support@worldfly.info</a>.</p>'
         });
 
         writeFile({
@@ -45,11 +46,12 @@ gulp.task('error', function () {
 
     function writeFile(options) {
         require(dirname + '/public/error/error.yate.js');
-        require('fs').writeFile(dirname + '/public/error/' + options.code + '.html', yr.run('error', options), function (err) {
-            if (err) {
-                throw err;
-            }
-        });
+        require('fs').writeFile(dirname + '/public/error/' + options.code + '.html', yr.run('error', options),
+            function (err) {
+                if (err) {
+                    throw err;
+                }
+            });
     }
 
 });

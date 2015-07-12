@@ -1,21 +1,21 @@
-var gulp = require('gulp'),
-    csso = require('gulp-csso'),
-    shell = require('gulp-shell'),
-    stylus = require('gulp-stylus'),
-    uglify = require('gulp-uglify'),
-    jshint = require('gulp-jshint'),
-    htmlmin = require('gulp-htmlmin'),
-    autoprefixer = require('gulp-autoprefixer'),
-    marked = require('gulp-markdown'),
-    template = require('gulp-template'),
-    md5File = require('md5-file'),
-    zip = require('gulp-zip');
+var gulp = require('gulp');
+var csso = require('gulp-csso');
+var shell = require('gulp-shell');
+var stylus = require('gulp-stylus');
+var uglify = require('gulp-uglify');
+var jshint = require('gulp-jshint');
+var htmlmin = require('gulp-htmlmin');
+var autoprefixer = require('gulp-autoprefixer');
+var marked = require('gulp-markdown');
+var template = require('gulp-template');
+var md5File = require('md5-file');
 
 gulp.task('main-yate', function () {
     gulp.src([dirname + '/app/main/app.yate'])
         .pipe(shell([
             './node_modules/.bin/yate <%= file.path %> > public/main/app.yate.js',
-            './node_modules/gulp-uglify/node_modules/uglify-js/bin/uglifyjs public/main/app.yate.js -o public/main/app.yate.js'
+            './node_modules/gulp-uglify/node_modules/uglify-js/bin/uglifyjs public/main/app.yate.js' +
+            ' -o public/main/app.yate.js'
         ]));
 });
 
@@ -53,9 +53,8 @@ gulp.task('main-markdown', function () {
             smartLists: true,
             smartypants: true
         }))
-        .pipe(gulp.dest('./projects/build/'))
+        .pipe(gulp.dest('./projects/build/'));
 });
-
 
 gulp.task('main-yate-dev', function () {
     gulp.src(['app/main/app.yate'])
@@ -75,7 +74,6 @@ gulp.task('main-js-dev', function () {
 
 });
 
-
 gulp.task('main-html', ['main-js', 'main-yate', 'main-markdown', 'main-css'], function () {
     gulp.src(['app/main/app.html'])
         .pipe(template({
@@ -93,14 +91,7 @@ gulp.task('main-html', ['main-js', 'main-yate', 'main-markdown', 'main-css'], fu
         .pipe(gulp.dest('public/main'));
 });
 
-
-gulp.task('main-production', ['main-html'], function () {
-    gulp.src(['./*/*/*/*', './*/*/*', './*/*', './*'])
-        .pipe(zip('release_.zip'))
-        .pipe(gulp.dest('./'))
-
-
-});
+gulp.task('main-production', ['main-html']);
 
 gulp.task('main', ['main-js-dev', 'main-yate-dev', 'main-markdown', 'main-css'], function () {
     gulp.src(['app/main/app.html'])

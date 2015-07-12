@@ -423,11 +423,22 @@ var yr = yr || require('yate/lib/runtime.js');
             r0 += "<span class=\"" + "years__begin" + "\">" + nodeset2xml( ( m.s(j21, c0) ) ) + "</span>";
             if (nodeset2boolean( m.s(j22, c0) )) {
                 r0 += "<span class=\"" + "years__dash" + "\">" + "–" + "</span>";
+                r0 += "<span";
+                a0.a = {
+                    'class': new yr.scalarAttr("years__end")
+                };
+                a0.s = 'span';
                 if (cmpSN("∞", m.s(j22, c0))) {
-                    r0 += "<span class=\"" + "years__end years_big" + "\">" + nodeset2xml( ( m.s(j22, c0) ) ) + "</span>";
-                } else {
-                    r0 += "<span class=\"" + "years__end" + "\">" + nodeset2xml( ( m.s(j22, c0) ) ) + "</span>";
+                    var tmp0 = a0.a[ "class" ];
+                    if (tmp0) {
+                        a0.a[ "class" ] = tmp0.addscalar(" years_big");
+                    } else {
+                        a0.a[ "class" ] = new yr.scalarAttr(" years_big");
+                    }
                 }
+                r0 += closeAttrs(a0);
+                r0 += "<span>" + nodeset2xml( ( m.s(j22, c0) ) ) + "</span>";
+                r0 += "</span>";
             }
             r0 += "</span>";
         }

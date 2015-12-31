@@ -1,6 +1,8 @@
 // FIXME: There is memory leak
 
 module.exports = function (app) {
+    'use strict';
+
     var yr = require(dirname + '/node_modules/yate/lib/runtime.js');
     var lib = require('./lib.js');
 
@@ -9,32 +11,29 @@ module.exports = function (app) {
      */
     require(dirname + '/public/main/app.yate.js');
 
-    app.get('/', function (req, res) {
-        if (lib.hostAvailability(req.hostname)) {
-            renderFile(yr.run('app', dataAPI().home)).then(function (data) {
-                res.set('cache-control', 'public, max-age=60').send(data);
+    function page(page) {
+        app.get(page.url, function (req, res) {
+            if (lib.hostAvailability(req.hostname)) {
+                renderFile(yr.run('app', dataAPI()[page.id])).then(function (data) {
+                    res.set('cache-control', 'public, max-age=60').send(data);
 
-            }).catch(function (e) {
-                lib.sendError.s500(res);
-            });
+                }).catch(function (e) {
+                    lib.sendError.s500(res);
+                });
 
-        } else {
-            res.redirect(301, 'https://www.worldfly.org/');
-        }
+            } else {
+                res.redirect(301, 'https://www.worldfly.org' + page.url);
+            }
+        });
+    }
+
+    page({
+        id: 'home',
+        url: '/'
     });
-
-    app.get('/projects', function (req, res) {
-        if (lib.hostAvailability(req.hostname)) {
-            renderFile(yr.run('app', dataAPI().projects)).then(function (data) {
-                res.set('cache-control', 'public, max-age=60').send(data);
-
-            }).catch(function (e) {
-                lib.sendError.s500(res);
-            });
-
-        } else {
-            res.redirect(301, 'https://www.worldfly.org/projects');
-        }
+    page({
+        id: 'projects',
+        url: '/projects'
     });
 
     app.get('/assest/data.json', function (req, res) {
@@ -202,9 +201,8 @@ module.exports = function (app) {
                                         begin: 2008,
                                         end: 2013
                                     },
-                                    description:
-                                        getFile('projects/build/' +
-                                        'collection_of_articles_on_aviation_and_astronautics.html')
+                                    description: getFile('projects/build/' +
+                                    'collection_of_articles_on_aviation_and_astronautics.html')
                                 },
                                 {
                                     title: 'News of aviation and astronautics',
@@ -228,8 +226,7 @@ module.exports = function (app) {
                                         begin: 2007,
                                         end: 2013
                                     },
-                                    description:
-                                        getFile('projects/build/encyclopedia_of_aviation_and_astronautics.html')
+                                    description: getFile('projects/build/encyclopedia_of_aviation_and_astronautics.html')
                                 }
                             ]
                         }

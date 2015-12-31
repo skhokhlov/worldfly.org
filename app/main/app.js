@@ -4,11 +4,6 @@
     var _data = JSON.parse(window.wf.PagesData);
     var loader = document.getElementsByClassName('loader')[0];
 
-    var render = {
-        home: yr.run('app', _data.home),
-        projects: yr.run('app', _data.projects)
-    };
-
     var app = {
         /**
          * Add click listener on elements with current class name
@@ -108,6 +103,12 @@
                     resolve();
 
                 }, 200);
+
+                window.addEventListener('popstate', function (event) {
+                    if (event.state.page === data.id) {
+                        pages[data.id]();
+                    }
+                });
             });
         },
 
@@ -115,69 +116,28 @@
          * Actions for activating homepage
          */
         home: function () {
-
             pages._common({
+                id: 'home',
                 title: 'Homepage of World Fly',
-                content: render.home
+                content: yr.run('app', _data.home)
             }).then(null).catch(null);
-
-            //document.title = 'Homepage of World Fly';
-            //var el = document.getElementsByClassName('page')[0];
-            //el.style.opacity = 0;
-            //
-            ////Wait for transition
-            //setTimeout(function () {
-            //    app.addClass(loader, 'loader_hidden');
-            //    el.innerHTML = render.home;
-            //    el.style.opacity = 1;
-            //    app.navigation();
-            //}, 200);
-
         },
+
         /**
          * Actions for activating projects page
          */
         projects: function () {
-
             pages._common({
+                id: 'projects',
                 title: 'Projects of World Fly',
-                content: render.projects
+                content: yr.run('app', _data.projects)
             }).then(function () {
                 if (Boolean(hash)) {
                     window.scrollTo(0, document.querySelector(hash).offsetTop);
                 }
             });
-
-                //document.title = 'Projects of World Fly';
-                //var el = document.getElementsByClassName('page')[0];
-                //el.style.opacity = 0;
-                //
-                ////Wait for transition
-                //setTimeout(function () {
-                //    app.addClass(loader, 'loader_hidden');
-                //    el.innerHTML = render.projects;
-                //    el.style.opacity = 1;
-                //    app.navigation();
-                //
-                //    if (!!hash) {
-                //        window.scrollTo(0, document.querySelector(hash).offsetTop);
-                //    }
-                //
-                //}, 200);
-
         }
     };
-
-    /**
-     * Actions for back and forward buttons navigation
-     */
-    window.addEventListener('popstate', function (event) {
-        if (event.state.page === 'home') {
-            pages.home();
-        } else if (event.state.page === 'projects') {
-            pages.projects();
-        }
-    });
 
     app.addClass(loader, 'loader_hidden');
     app.navigation();

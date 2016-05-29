@@ -1,45 +1,35 @@
-a
-  color: #08c
-  text-decoration: underline
+.page {
+  font: 400 1em "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
-  &:hover
-    color: #3b5998
+.link {
+  color: #428bca;
+  text-decoration: underline;
+}
 
+.content {
+  margin: 0 auto;
+  max-width: 900px;
+  padding: 1em;
+  margin-top: 10%;
+}
 
-.b-page
-  margin: 8px
-  font: 400 1em "Helvetica Neue", Helvetica, Arial, sans-serif
+.logo {
+  display: block;
+  text-indent: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 150px;
+  height: 33px;
+  background: url(https://get.worldfly.org/brands/worldfly/logo_small.svg) no-repeat;
+}
 
+.title {
+  font-weight: 400;
+  font-size: 1.15em;
+  margin: 1.5em 0;
+}
 
-.b-header
-  &__logo
-    display: inline-block
-
-  &__link
-    display: block
-    width: 150px
-    height: 40px
-
-  &__name
-    display: inline-block
-
-    &__text
-      font-weight: inherit
-      position: relative
-      top: -0.13em
-
-
-.b-content
-  padding: 0 6vw
-
-  &__name
-    font-weight: inherit
-
-  &__descr
-    padding: 0.8em 2vw
-
-
-.b-footer
-  color: #000
-  text-align: right
-  font-size: 0.9em
+.title__code {
+  font-weight: 600;
+}
